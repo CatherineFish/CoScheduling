@@ -58,3 +58,21 @@ void InitAlgorithm:: PrintTaskGraph()
     }
     return;
 }
+
+
+void InitAlgorithm::GraphSearch(TNode CurNode, double CurTimeSum)
+{
+
+}
+
+void InitAlgorithm:: MainLoop()
+{
+    for (size_t i = 0; i < TaskGraph.size(); i++)
+    {
+        if (TaskGraph[i].Parents.size() == 0)
+        {
+            GraphSearch(TaskGraph[i]);
+        }
+    }
+
+}
