@@ -7,19 +7,14 @@ PCNum //ядер в модуле ModNum-1
 TaskNum //количество задач
 
 //характеристики задачи 0
-Period
-Time
-Left
-Right
+Period Time Left Right
+NMessage \\количество отправляемых задачей сообщений
 {N_1 N_2 ... N_M} \\номера зависимых задач
 
 ...
 
 //характеристики задачи TaskNum-1
-Period
-Time
-Left
-Right
+Period Time Left Right
 NMessage \\количество отправляемых задачей сообщений
 {N_0 N_2 ... N_{NMessage-1} \\номера зависимых задач
 
@@ -29,8 +24,6 @@ MessageNum //количество сообщений
 N_Src //номер задачи-отправителя
 N_Dest //номер задачи-получателя
 Size
-Bandwidth
-Dur
 
 ...
 
@@ -38,5 +31,3 @@ Dur
 N_Src //номер задачи-отправителя
 N_Dest //номер задачи-получателя
 Size
-Bandwidth
-Dur
