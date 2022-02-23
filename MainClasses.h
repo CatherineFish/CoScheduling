@@ -1,5 +1,6 @@
 #pragma once 
 #include <vector>
+#include <memory>
 
 class PC 
 {
@@ -11,6 +12,8 @@ public:
     ~PC() = default;  
 };
 
+class Message;
+
 class Task
 {
 public:
@@ -20,6 +23,8 @@ public:
     double Right; 
 public:
     std::vector<int> OutMessage;
+    std::vector<int> InMessage;
+    std::vector<std::shared_ptr<Message>> MesOut;
     Task (int Period_, 
           int Time_, 
           int Left_, 
@@ -33,6 +38,7 @@ public:
     int Num;
     double Start;
     PC JobPC; // сделать просто номером
+
 public:
     Job();
     ~Job() = default;
@@ -45,15 +51,17 @@ public:
 class Message
 {
 public:
-    int Src; // просто номер
-    int Dest; // просто номер
+    std::shared_ptr<Task> Src; // просто номер
+    std::shared_ptr<Task> Dest; // просто номер
     double Size;
     double Bandwidth = 0.0;
     double Dur = 0.0;
 public:
-    Message(int Src_, 
-            int Dest_, 
-            double Size_): Src(Src_), Dest(Dest_), Size(Size_) {}
+    Message(std::shared_ptr<Task> Src_, std::shared_ptr<Task> Dest_, double Size_): Size(Size_) 
+    {
+        Src = std::shared_ptr<Task>(Src_);
+        Dest = std::shared_ptr<Task>(Dest_);
+    }
     ~Message() = default;  
 };
 
@@ -71,9 +79,9 @@ class System
 {
 public:
     System(char * FileName);
-    std::vector<PC> SystemPC;
-    std::vector<Task> SystemTask;
-    std::vector<Message> SystemMessage;
+    std::vector<std::shared_ptr<PC>> SystemPC;
+    std::vector<std::shared_ptr<Task>> SystemTask;
+    std::vector<std::shared_ptr<Message>> SystemMessage;
     void PrintSystem();
     ~System() = default;
 };
