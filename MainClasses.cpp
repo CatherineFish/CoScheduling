@@ -25,6 +25,7 @@ System::System (char * FileName)
         SystemTask.push_back(std::make_shared<Task>(
                              Period, Time, Left, Right));
     }
+    InputFile >> BTotal;    
     InputFile >> MessageNum;
     for (int i = 0; i < MessageNum; i++)
     {

@@ -79,6 +79,8 @@ class System
 {
 public:
     System(char * FileName);
+    double PPoint = 0.0;
+    double BTotal;
     std::vector<std::shared_ptr<PC>> SystemPC;
     std::vector<std::shared_ptr<Task>> SystemTask;
     std::vector<std::shared_ptr<Message>> SystemMessage;

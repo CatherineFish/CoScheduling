@@ -1,9 +1,11 @@
 #pragma once 
+
 #include <vector>
 #include <iostream>
 #include <memory>
 
 #include "MainClasses.h"
+#include "CoefClasses.h"
 
 class TNode
 {
@@ -30,4 +32,5 @@ public:
     void PrintAllPath();
     void FindAllPath(System* CurSystem);
     void SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem);
+    BLackCoef CurBLackCoef;
 };

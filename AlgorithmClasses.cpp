@@ -103,6 +103,7 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
 {
     double CurTimeSum, CurMesTime, NewDur, SumMesSize;
     int Mode, MessageCount;
+    double CurBandwidth = 0.0;
     std::cout << "Как распределить пропускную способность?" << std::endl;
     std::cout << "1 - Поровну" << std::endl;
     std::cout << "2 - Пропорционально" << std::endl;
@@ -182,11 +183,13 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
                 if (CurMes->Dest == AllPath[i][j + 1])
                 {
                     CurMes->Bandwidth = CurMes->Size / CurMes->Dur;
+                    CurBandwidth += CurMes->Bandwidth;
                 }
             }
         }   
 
     }
+    CurSystem->CurBLackCoef(CurSystem->BTotal - CurBandwidth); 
     //PrintAllPath();  
     
     CurSystem->PrintSystem();
