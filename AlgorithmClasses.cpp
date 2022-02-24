@@ -195,3 +195,11 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
     CurSystem->PrintSystem();
     return;
 }
+
+
+MainAlgorithm:: MainAlgorithm(System* CurSystem)
+{
+    
+}
+
+

@@ -2,6 +2,49 @@
 #include <iostream>
 #include "MainClasses.h"
 
+void Swap(int* a, int* b) 
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+    return;
+}
+
+int PairGCD(int a, int b) 
+{
+    if (a < b) {
+        Swap(&a, &b);
+    }
+    while (a % b != 0) {
+        a = a % b;
+        Swap(&a, &b);
+    }
+    return b;
+}
+
+int PairLCM(int a, int b) 
+{
+    return (a * b) / PairGCD(a, b);
+}
+
+int LCM(std::vector<int> Periods) 
+{
+    if (Periods.size() == 0)
+    {
+        return -1;
+    }
+    if (Periods.size() == 1)
+    {
+        return Periods[0];
+    }
+    int Result = PairLCM(Periods[0], Periods[1]);
+    for (size_t i = 2; i < Periods.size(); i++) 
+    {
+        Result = PairLCM(Result, Periods[i]);
+    }
+    return Result;
+}
+
 
 System::System (char * FileName)
 {
@@ -9,6 +52,7 @@ System::System (char * FileName)
     int ModNum, PCNum;
     int TaskNum, Period, Time, Left, Right, NMessage, Num;
     int MessageNum, Src, Dest, Size;
+    std::vector<int> PeriosVector;
     InputFile >> ModNum;
     for (int i = 0; i < ModNum; i++)
     {
@@ -22,6 +66,7 @@ System::System (char * FileName)
     for (int i = 0; i < TaskNum; i++)
     {
         InputFile >> Period >> Time >> Left >> Right;
+        PeriosVector.emplace_back(Period);
         SystemTask.push_back(std::make_shared<Task>(
                              Period, Time, Left, Right));
     }
@@ -36,6 +81,7 @@ System::System (char * FileName)
         SystemTask[Src]->MesOut.push_back(std::shared_ptr<Message>(SystemMessage[i]));
         SystemTask[Dest]->InMessage.emplace_back(Src);
     }
+    LCMPeriod = LCM(PeriosVector);
     return;
 }
 

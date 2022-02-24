@@ -2,6 +2,11 @@
 #include <vector>
 #include <memory>
 
+void Swap(int* a, int* b);
+int PairGCD(int a, int b);
+int PairLCM(int a, int b);
+int LCM(std::vector<int> Periods);
+
 class PC 
 {
 public:
@@ -22,6 +27,7 @@ public:
     double Left;
     double Right; 
 public:
+    double Slack;
     std::vector<int> OutMessage;
     std::vector<int> InMessage;
     std::vector<std::shared_ptr<Message>> MesOut;
@@ -81,9 +87,11 @@ public:
     System(char * FileName);
     double PPoint = 0.0;
     double BTotal;
+    double LCMPeriod;
     std::vector<std::shared_ptr<PC>> SystemPC;
     std::vector<std::shared_ptr<Task>> SystemTask;
     std::vector<std::shared_ptr<Message>> SystemMessage;
     void PrintSystem();
     ~System() = default;
+    BLackCoef CurBLackCoef;
 };

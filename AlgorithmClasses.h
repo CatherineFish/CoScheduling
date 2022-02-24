@@ -32,5 +32,15 @@ public:
     void PrintAllPath();
     void FindAllPath(System* CurSystem);
     void SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem);
-    BLackCoef CurBLackCoef;
+    
+};
+
+
+class MainAlgorithm
+{
+public:
+public:
+    MainAlgorithm(System* CurSystem);
+    ~MainAlgorithm() = default;
+    void MainLoop ();
 };
