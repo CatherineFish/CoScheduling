@@ -80,6 +80,9 @@ System::System (char * FileName)
         SystemTask[Src]->OutMessage.emplace_back(Dest);
         SystemTask[Src]->MesOut.push_back(std::shared_ptr<Message>(SystemMessage[i]));
         SystemTask[Dest]->InMessage.emplace_back(Src);
+        SystemTask[Dest]->MesOut.push_back(std::shared_ptr<Message>(SystemMessage[i]));
+        SystemMessage[i]->DestNum = Dest;
+        SystemMessage[i]->SrcNum = Src;
     }
     LCMPeriod = LCM(PeriosVector);
     return;
@@ -100,6 +103,7 @@ void System:: PrintSystem()
     std::cout << std::endl;
     
     std::cout << "--------Task--------:" << std::endl;
+    std::cout << "LCM = " << LCMPeriod << std::endl;
     for (size_t i = 0; i < SystemTask.size(); i++)
     {
         std::cout << std::endl;

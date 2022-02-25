@@ -1,5 +1,6 @@
 #include "MainClasses.h"
 #include "AlgorithmClasses.h"
+#include "CoefClasses.h"
 
 int main(int argc, char* argv[])
 {
@@ -7,6 +8,8 @@ int main(int argc, char* argv[])
     InitAlgorithm CurInitAlg(&CurSystem);
     //CurSystem.PrintSystem();
     //CurInitAlg.PrintTaskGraph();
-    CurInitAlg.FindAllPath(&CurSystem);
+    //CurInitAlg.FindAllPath(&CurSystem);
+    MainAlgorithm CurMainAlg(&CurSystem);
+    CurMainAlg.PrintJobSystem();
     return 0;
 }

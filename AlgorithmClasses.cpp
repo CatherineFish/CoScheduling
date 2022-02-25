@@ -138,21 +138,25 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
             }
         }
 
+        
         MessageCount = AllPath[i].size() - 1;
         CurMesTime = AllPath[i][AllPath[i].size() - 1]->Right - CurTimeSum;
+        /*
         std::cout << "SUM TIME FOR EXECUTION = " << CurTimeSum << std::endl;
         std::cout << "RIGHT TIME = " << AllPath[i][AllPath[i].size() - 1]->Right << std::endl;
         std::cout << "MESSAGE COUNT = " << MessageCount << std::endl;
         std::cout << "TIME FOR MESSAGES = " << CurMesTime << std::endl;
+        */
+        
         if (Mode == 1)
         {
             NewDur = CurMesTime / MessageCount;
-            std::cout << "NEW DUR = " << NewDur << std::endl;
+            //std::cout << "NEW DUR = " << NewDur << std::endl;
             for (size_t j = 0; j < AllPath[i].size() - 1; j++)
             {
                 for (const auto & CurMes: AllPath[i][j]->MesOut)
                 {
-                    std::cout << CurMes->Dest->Time << " " << AllPath[i][j + 1]->Time << std::endl;
+                    //std::cout << CurMes->Dest->Time << " " << AllPath[i][j + 1]->Time << std::endl;
                     if (CurMes->Dest == AllPath[i][j + 1])
                     {
                         CurMes->Dur = std::max(CurMes->Dur, NewDur);
@@ -176,6 +180,8 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
             std::cout << "Invalid Mode" << std::endl;
             exit(0);
         }
+
+        
         for (size_t j = 0; j < AllPath[i].size() - 1; j++)
         {
             for (const auto & CurMes: AllPath[i][j]->MesOut)
@@ -189,17 +195,105 @@ void InitAlgorithm:: FindAllPath(System* CurSystem)
         }   
 
     }
-    CurSystem->CurBLackCoef(CurSystem->BTotal - CurBandwidth); 
+
+    CurSystem->CurBLackCoef = BLackCoef(CurSystem->BTotal - CurBandwidth); 
     //PrintAllPath();  
     
-    CurSystem->PrintSystem();
+    //CurSystem->PrintSystem();
     return;
 }
 
 
 MainAlgorithm:: MainAlgorithm(System* CurSystem)
 {
+    int j = 0;
+    for (const auto & CurTask: CurSystem->SystemTask)
+    {
+        CurTask->JobInit = j;
+        for (size_t i = 0; i < CurSystem->LCMPeriod / CurTask->Period; i++)
+        {
+            //тут надо как-то по-умному копировать
+            Unplanned.push_back(std::make_shared<Job>(i));
+            Unplanned[j]->Period = CurTask->Period;
+            Unplanned[j]->Time = CurTask->Time;
+            Unplanned[j]->Left = CurTask->Left + i * CurTask->Period;
+            Unplanned[j]->Right = CurTask->Right + i * CurTask->Period;
+            /*for (const auto & CurMes: CurTask->MesOut)
+            {
+                Unplanned[j]->MesOut.push_back(std::shared_ptr<Message>(CurMes));
+            }
+            for (const auto & CurMes: CurTask->MesIn)
+            {
+                Unplanned[j]->MesIn.push_back(std::shared_ptr<Message>(CurMes));
+            }*/
+            
+            j++;                                              
+        }
+
+    }
+    /*
+    for (size_t i = 0; i < Unplanned.size(); i++)
+    {
+        std::cout << Unplanned[i]->Period << " " << Unplanned[i]->Time << " " << Unplanned[i]->Left << " " << Unplanned[i]->Right << std::endl; 
+            
+    }
+    */
+    
+    for (const auto & CurMes: CurSystem->SystemMessage)
+    {
+        for (size_t i = 0; i < CurSystem->LCMPeriod / CurMes->Src->Period; i++)
+        {
+
+            Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]->OutMessage.emplace_back(CurSystem->SystemTask[CurMes->DestNum]->JobInit + i);
+            Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]->MesOut.push_back(std::shared_ptr<Message>(CurMes));
+            Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]->OutMessage.emplace_back(CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i);
+            Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]->MesIn.push_back(std::shared_ptr<Message>(CurMes));
+        }    
+    }
     
 }
 
+void MainAlgorithm:: MainLoop(std::vector<std::shared_ptr<Message>> SystemMessage, std::vector<std::shared_ptr<PC>> SystemPC)
+{
+    double CurScore;
+    for (size_t i = 0; i < Unplanned.size(); i++)
+    {
+        CurScore = 0.0;
+        for (size_t j = 0; j < SystemPC.size(); j++)
+        {
+            //for (size_t )
+            //Unplanned[i]->ListBandwidth.push_back(std::pair<shared_ptr<PC>, double>(SystemPC[j], ));
 
+        }
+    }
+}
+
+void MainAlgorithm:: PrintJobSystem()
+{
+    std::cout << "======== J O B ========" << std::endl; 
+    
+    std::cout << "--------UNPLANNED--------:" << std::endl;
+    for (size_t i = 0; i < Unplanned.size(); i++)
+    {
+        std::cout << std::endl;
+        std::cout << "     Job " << Unplanned[i]->Time << std::endl;
+        std::cout << "Number: " << Unplanned[i]->Num << std::endl;
+        std::cout << "Period: " << Unplanned[i]->Period << std::endl;
+        std::cout << "Left: " << Unplanned[i]->Left << std::endl;
+        std::cout << "Right: " << Unplanned[i]->Right << std::endl;
+        std::cout << "Input Mes:" << std::endl;
+        for (size_t j = 0; j < Unplanned[i]->InMessage.size(); j++)
+        {
+            std::cout << Unplanned[i]->InMessage[j] << " ";    
+        }
+        std::cout << std::endl;
+        for (size_t j = 0; j < Unplanned[i]->OutMessage.size(); j++)
+        {
+            std::cout << Unplanned[i]->OutMessage[j] << " ";    
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "======================" << std::endl; 
+    return;  
+}

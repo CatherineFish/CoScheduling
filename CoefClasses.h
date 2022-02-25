@@ -1,23 +1,21 @@
-class Coefficien
+#pragma once 
+
+//можнос делать через один общий абстрактный класс для коэффициентов
+class BLackCoef
 {
 public:
     double Value;
-public:
-    virtual void UpdateFunction();
+    void UpdateFunction() {}
+    BLackCoef(double InitBand = 0.0);
+    ~BLackCoef() = default;
 };
 
-class BLackCoef: public Coefficien
+class StableCoef
 {
 public:
-    override UpdateFunction();
-    BLackCoef(double InitBand);
-    ~BLackCoef() = default;
-}
-
-class StableCoef: public Coefficien
-{
-    override UpdateFunction();
+    double Value;
+    void UpdateFunction() {}
     StableCoef();
     ~StableCoef() = default;
-}
+};
 

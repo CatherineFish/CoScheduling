@@ -40,7 +40,10 @@ class MainAlgorithm
 {
 public:
 public:
+    std::vector<std::shared_ptr<Job>> Unplanned;
     MainAlgorithm(System* CurSystem);
     ~MainAlgorithm() = default;
-    void MainLoop ();
+    void MainLoop (std::vector<std::shared_ptr<Message>> SystemMessage, std::vector<std::shared_ptr<PC>> SystemPC);
+    void UpdateBList(std::vector<std::shared_ptr<Message>> SystemMessage);
+    void PrintJobSystem();
 };

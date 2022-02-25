@@ -13,7 +13,7 @@ Period Time Left Right
 
 //характеристики задачи TaskNum-1
 Period Time Left Right
-
+BTotal //пропускная способность сети
 MessageNum //количество сообщений
 
 //характеристики сообщения 0

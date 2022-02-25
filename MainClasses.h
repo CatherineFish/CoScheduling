@@ -2,6 +2,8 @@
 #include <vector>
 #include <memory>
 
+#include "CoefClasses.h"
+
 void Swap(int* a, int* b);
 int PairGCD(int a, int b);
 int PairLCM(int a, int b);
@@ -27,14 +29,16 @@ public:
     double Left;
     double Right; 
 public:
+    int JobInit;
     double Slack;
     std::vector<int> OutMessage;
     std::vector<int> InMessage;
     std::vector<std::shared_ptr<Message>> MesOut;
-    Task (int Period_, 
-          int Time_, 
-          int Left_, 
-          int Right_): Period(Period_), Time(Time_), Left(Left_), Right(Right_) {}
+    std::vector<std::shared_ptr<Message>> MesIn;
+    Task (int Period_ = 0, 
+          int Time_ = 0, 
+          int Left_ = 0, 
+          int Right_ = 0): Period(Period_), Time(Time_), Left(Left_), Right(Right_) {}
     ~Task() = default;    
 };
 
@@ -43,15 +47,16 @@ class Job: public Task
 public:
     int Num;
     double Start;
-    PC JobPC; // сделать просто номером
+    std::shared_ptr<PC> JobPC; // сделать просто номером
 
 public:
-    Job();
+    Job(int Num_): Num(Num_){}
+    
     ~Job() = default;
     double Slack;
-    std::vector<std::pair<PC, double>> ListBandwidth; // сделать просто номером 
-    std::vector<std::pair<PC, double>> ListFill; // сделать просто номером 
-    std::vector<PC> ListResult; // сделать просто номером 
+    std::vector<std::pair<std::shared_ptr<PC>, double>> ListBandwidth; // сделать просто номером 
+    std::vector<std::pair<std::shared_ptr<PC>, double>> ListFill; // сделать просто номером 
+    std::vector<std::shared_ptr<PC>> ListResult; // сделать просто номером 
 };
 
 class Message
@@ -59,6 +64,8 @@ class Message
 public:
     std::shared_ptr<Task> Src; // просто номер
     std::shared_ptr<Task> Dest; // просто номер
+    int SrcNum;
+    int DestNum;
     double Size;
     double Bandwidth = 0.0;
     double Dur = 0.0;
