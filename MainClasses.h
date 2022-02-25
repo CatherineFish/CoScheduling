@@ -1,6 +1,7 @@
 #pragma once 
 #include <vector>
 #include <memory>
+#include <map>
 
 #include "CoefClasses.h"
 
@@ -48,15 +49,18 @@ public:
     int Num;
     double Start;
     std::shared_ptr<PC> JobPC; // сделать просто номером
-
+    bool IsPlanned = false;
 public:
     Job(int Num_): Num(Num_){}
     
     ~Job() = default;
     double Slack;
-    std::vector<std::pair<std::shared_ptr<PC>, double>> ListBandwidth; // сделать просто номером 
-    std::vector<std::pair<std::shared_ptr<PC>, double>> ListFill; // сделать просто номером 
-    std::vector<std::shared_ptr<PC>> ListResult; // сделать просто номером 
+    std::vector<std::shared_ptr<Job>> JobTo;
+    std::vector<std::shared_ptr<Job>> JobFrom;
+    
+    std::map<std::shared_ptr<PC>, double> ListBandwidth; // сделать просто номером 
+    std::map<std::shared_ptr<PC>, double> ListFill; // сделать просто номером 
+    std::map<std::shared_ptr<PC>, double> ListResult; // сделать просто номером 
 };
 
 class Message

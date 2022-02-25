@@ -1,3 +1,5 @@
+
+
 #include "AlgorithmClasses.h"
 
 TNode:: TNode(std::shared_ptr<Task> CurTask)
@@ -244,28 +246,85 @@ MainAlgorithm:: MainAlgorithm(System* CurSystem)
         for (size_t i = 0; i < CurSystem->LCMPeriod / CurMes->Src->Period; i++)
         {
 
-            Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]->OutMessage.emplace_back(CurSystem->SystemTask[CurMes->DestNum]->JobInit + i);
+            Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]->JobTo.push_back(std::shared_ptr(
+                                                                           Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]));
             Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]->MesOut.push_back(std::shared_ptr<Message>(CurMes));
-            Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]->OutMessage.emplace_back(CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i);
+            Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]->JobFrom.push_back(std::shared_ptr(
+                                                                           Unplanned[CurSystem->SystemTask[CurMes->SrcNum]->JobInit + i]));
             Unplanned[CurSystem->SystemTask[CurMes->DestNum]->JobInit + i]->MesIn.push_back(std::shared_ptr<Message>(CurMes));
         }    
     }
     
 }
 
-void MainAlgorithm:: MainLoop(std::vector<std::shared_ptr<Message>> SystemMessage, std::vector<std::shared_ptr<PC>> SystemPC)
+void MainAlgorithm:: UpdateFList (std::vector<std::shared_ptr<PC>> SystemPC)
 {
+    for (size_t i = 0; i < Unplanned.size(); i++)
+    {
+        for (size_t k = 0; k < SystemPC.size(); k++)
+        {
+            Unplanned[i]->ListFill[std::shared_ptr<PC>(SystemPC[k])] = SystemPC[k]->PC_PPoint;   
+        }
+    }
+    return;
+}
+
+void MainAlgorithm:: UpdateBList (std::vector<std::shared_ptr<PC>> SystemPC)
+{
+    //std::cout << "Start" << std::endl;
+                    
     double CurScore;
     for (size_t i = 0; i < Unplanned.size(); i++)
     {
-        CurScore = 0.0;
-        for (size_t j = 0; j < SystemPC.size(); j++)
+        //std::cout << "Cur Job: " << i << std::endl;
+                
+        for (size_t k = 0; k < SystemPC.size(); k++)
         {
-            //for (size_t )
-            //Unplanned[i]->ListBandwidth.push_back(std::pair<shared_ptr<PC>, double>(SystemPC[j], ));
-
+            //std::cout << "Cur PC: " << k <<  std::endl;
+                
+            CurScore = 0.0;
+                    
+            for (size_t j = 0; j < Unplanned[i]->JobFrom.size(); j++)
+            {
+                /*
+                std:: cout << "j = " << j << std::endl;
+                std:: cout << Unplanned[i]->JobFrom[i]->IsPlanned << std::endl;    
+                std::cout << "Cur Job: " << i << " || Cur PC: " << k << " || Cur Src: " << Unplanned[i]->JobFrom[j]->Time << " " << Unplanned[i]->JobFrom[j]->Num << std::endl;
+                */
+                if (Unplanned[i]->JobFrom[j]->IsPlanned && Unplanned[i]->JobFrom[j]->JobPC->ModNum != SystemPC[k]->ModNum)
+                {
+                    //std::cout << "Here" << std::endl;
+                    CurScore += Unplanned[i]->Period * Unplanned[i]->MesIn[j]->Size; //внести коэффициент
+                }
+                //std::cout << "Here" << std::endl;   
+            }            
+            //Unplanned[i]->ListBandwidth[std::shared_ptr<PC>(SystemPC[k])] = CurScore;   
         }
     }
+    return;
+}
+
+void MainAlgorithm:: UpdateRList ()
+{
+    for (size_t i = 0; i < Unplanned.size(); i++)
+    {
+        for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListBandwidth) 
+        {
+            if (CurPC.second < CritLimit)
+            {
+                Unplanned[i]->ListResult[CurPC.first] = Unplanned[i]->ListFill[CurPC.first];
+            }
+        }
+
+    }
+    return;
+}
+
+void MainAlgorithm:: MainLoop(System* CurSystem)
+{
+    UpdateBList(CurSystem->SystemPC);
+    UpdateFList(CurSystem->SystemPC);
+    UpdateRList();
 }
 
 void MainAlgorithm:: PrintJobSystem()
@@ -281,15 +340,15 @@ void MainAlgorithm:: PrintJobSystem()
         std::cout << "Period: " << Unplanned[i]->Period << std::endl;
         std::cout << "Left: " << Unplanned[i]->Left << std::endl;
         std::cout << "Right: " << Unplanned[i]->Right << std::endl;
-        std::cout << "Input Mes:" << std::endl;
-        for (size_t j = 0; j < Unplanned[i]->InMessage.size(); j++)
+        std::cout << "Input Mes From:" << std::endl;
+        for (size_t j = 0; j < Unplanned[i]->JobFrom.size(); j++)
         {
-            std::cout << Unplanned[i]->InMessage[j] << " ";    
+            std::cout << Unplanned[i]->JobFrom[j]->Time << " " << Unplanned[i]->JobFrom[j]->Num << std::endl;    
         }
         std::cout << std::endl;
-        for (size_t j = 0; j < Unplanned[i]->OutMessage.size(); j++)
+        for (size_t j = 0; j < Unplanned[i]->JobTo.size(); j++)
         {
-            std::cout << Unplanned[i]->OutMessage[j] << " ";    
+            std::cout << Unplanned[i]->JobTo[j]->Time << " " << Unplanned[i]->JobTo[j]->Num << std::endl;    
         }
         std::cout << std::endl;
     }

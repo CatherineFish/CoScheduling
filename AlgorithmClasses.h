@@ -43,7 +43,11 @@ public:
     std::vector<std::shared_ptr<Job>> Unplanned;
     MainAlgorithm(System* CurSystem);
     ~MainAlgorithm() = default;
-    void MainLoop (std::vector<std::shared_ptr<Message>> SystemMessage, std::vector<std::shared_ptr<PC>> SystemPC);
-    void UpdateBList(std::vector<std::shared_ptr<Message>> SystemMessage);
+    void MainLoop (System* CurSystem);
+    void UpdateBList(std::vector<std::shared_ptr<PC>> SystemPC);
+    void UpdateFList(std::vector<std::shared_ptr<PC>> SystemPC);
+    void UpdateRList();
+    
+    double CritLimit = 0.0; //TODO
     void PrintJobSystem();
 };
