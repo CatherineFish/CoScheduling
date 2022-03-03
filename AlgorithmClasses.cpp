@@ -381,147 +381,191 @@ int MainAlgorithm::Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForP
     return 0;
 }
 
+double MainAlgorithm:: UpdatePPoint()
+{
+    double NewPoint = 0.0;
+    for (const auto & CurJob: Planned)
+    {
+        NewPoint = std::max(NewPoint, CurJob->Start + CurJob->Time);
+    }
+    return NewPoint;
+}
+
 
 void MainAlgorithm:: MainLoop(System* CurSystem)
 {
-    double NewLeft = 0.0;
-    int CheckResult;
-    bool flag = false, CMesFlag = true;
-    UpdateBList(CurSystem);
-    UpdateFList(CurSystem->SystemPC);
-    UpdateRList();
-    for (const auto & CurJob : Unplanned) 
+    while (Unplanned.size())
     {
-        for (const auto & SendIdx: CurJob->InMessage)
+        std::cout << "Current size: " << Unplanned.size() << std::endl;
+        std::vector<std::shared_ptr<Job>> QueueForPlan;
+        double NewLeft = 0.0, MinLeft = 100000000.0;//TODO MIN
+        int CheckResult, FlagPPoint = -2;
+        bool flag = false, CMesFlag = true;
+        UpdateBList(CurSystem);
+        UpdateFList(CurSystem->SystemPC);
+        UpdateRList();
+        for (const auto & CurJob : Unplanned) 
         {
-            if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurJob->ListResult.begin()->first->ModNum)
+            for (const auto & SendIdx: CurJob->InMessage)
             {
-                flag = true;
-
-                CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->TmpDur = 0.0;
+                if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurJob->ListResult.begin()->first->ModNum)
+                {
+                    flag = true;
+    
+                    CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->TmpDur = 0.0;
+                }
+            }    
+    
+        }
+        for (const auto & CurJob : Unplanned) 
+        {
+            if (!CurJob->PreviousJob || (CurJob->PreviousJob->IsPlanned && CurJob->PreviousJob->JobPC->ModNum == CurJob->ListResult.begin()->first->ModNum))
+            {
+                CMesFlag = false;
+            }   
+            if (CMesFlag) 
+            {
+                CurSystem->SystemCMessage.push_back(std::make_shared<ContextMessage>(CurJob->PreviousJob, CurJob));
+                CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Size = CurJob->CMessageSize;
+                CurJob->Slack = CurJob->Right - CurJob->Time - CurSystem->PPoint;
+                CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Bandwidth = CurJob->CMessageSize / CurJob->Slack;
+                CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurJob->PreviousJob, CurJob)] = CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1];
+                CurJob->InMessage.push_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob->PreviousJob) - CurSystem->SystemJob.begin());
             }
-        }    
-
-    }
-    
-    for (const auto & CurJob : Unplanned) 
-    {
-        
-        if (!CurJob->PreviousJob || CurJob->PreviousJob->IsPlanned && CurJob->PreviousJob->JobPC->ModNum == CurJob->ListResult.begin()->first->ModNum)
-        {
-            CMesFlag = false;
-        }
-        
-        if (CMesFlag) //TODO
-        {
-            CurSystem->SystemCMessage.push_back(std::make_shared<ContextMessage>(CurJob->PreviousJob, CurJob));
-            CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Size = CurJob->CMessageSize;
-            CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Bandwidth = CurJob->CMessageSize / CurJob->Slack;//todo
-            CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurJob->PreviousJob, CurJob)] = CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1];
-            CurJob->InMessage.push_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob->PreviousJob) - CurSystem->SystemJob.begin());
-            //CurJob->MesIn.push_back(std::shared_ptr(CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]));
-            //TODO^ нужно удалять неиспользуемые контекстные сообщения
-        }
-        
-        if (flag || CMesFlag)
-        {
-            UpdateLeft(CurJob, CurSystem);
-        }     
-    }
-    
-
-    for (const auto & CurJob: Unplanned)
-    {
-        CurJob->Slack = CurJob->Right - CurJob->Time - CurSystem->PPoint;
-        if (CurJob->Left >= CurSystem->PPoint)
-        {
-            QueueForPlan.push_back(std::shared_ptr(CurJob));
-        }
-    }
-    std::sort(QueueForPlan.begin(), QueueForPlan.end(), SortBySlack);
-    
-    
-    std::cout << "Queue For Planning: " << std::endl;
-    for (const auto& CurJob: QueueForPlan)
-    {
-        std::cout << "Job Time: " << CurJob->Time << " JbNum: " << CurJob->NumOfTask << " Job Slack " << CurJob->Slack << std::endl;
-    }
-    std::cout << std::endl;
-
-    
-    if (QueueForPlan.size() == 0)
-    {
-        //TODO
-    }
-    CheckResult = Check(QueueForPlan[0], QueueForPlan[0]->ListResult.begin()->first, CurSystem);
-    
-    if (CheckResult); // TODO
-    
-    QueueForPlan[0]->JobPC = QueueForPlan[0]->ListResult.begin()->first;
-    QueueForPlan[0]->Start = CurSystem->PPoint;
-    QueueForPlan[0]->JobPC->PC_PPoint = CurSystem->PPoint + QueueForPlan[0]->Time;
-
-
-    for (const auto & SendIdx: QueueForPlan[0]->InMessage)
-    {
-        if (CurSystem->SystemJob[SendIdx]->JobPC != QueueForPlan[0]->JobPC)
-        {
-            if (CurSystem->SystemJob[SendIdx] == QueueForPlan[0]->PreviousJob) 
-            {
-                CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], QueueForPlan[0])]->IsPlanned = true;
             
-            }
-            CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
-                                  std::shared_ptr<Job>>
-                                  (CurSystem->SystemJob[SendIdx],
-                                  QueueForPlan[0])]->StabilityCoef.Update(-1);//todo
-        } else {
-            CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
-                              std::shared_ptr<Job>>
-                              (CurSystem->SystemJob[SendIdx],
-                              QueueForPlan[0])]->StabilityCoef.Update(+1);//todo
-        }
-    }
-
-    for (const auto & CurJob: Unplanned)
-    {
-        auto it = CurJob->InMessage.rbegin();
-        //std::cout << "Current Job: " << CurJob->Time << " Num: " << CurJob->Num << std::endl;
-        while(it != CurJob->InMessage.rend())
-        {
-            //std::cout << "IT = " << *it << std::endl;
-            //std::cout << "Job: " << CurSystem->SystemJob[*it]->Time << " Job Num " << CurSystem->SystemJob[*it]->Num << std::endl;
-        
-            if (!CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
-                                       std::shared_ptr<Job>>
-                                       (CurSystem->SystemJob[*it], CurJob)]->IsPlanned)
+            if (flag || CMesFlag)
             {
-                CurSystem->JobMessage.erase(std::pair<std::shared_ptr<Job>, 
-                                            std::shared_ptr<Job>>
-                                            (CurSystem->SystemJob[*it], CurJob));
-                it = decltype(it)(CurJob->InMessage.erase(std::next(it).base()));
+                UpdateLeft(CurJob, CurSystem);
+            }
+            MinLeft = std::min(MinLeft, CurJob->Left);     
+        }
+        
+        while (FlagPPoint < 0)
+        {
+            for (const auto & CurJob: Unplanned)
+            {
+                CurJob->Slack = CurJob->Right - CurJob->Time - CurSystem->PPoint;
+                if (CurJob->Slack < 0)
+                {
+                    CurSystem->PPoint = CurJob->Right - CurJob->Time;
+                    QueueForPlan.clear();
+                    QueueForPlan.push_back(std::shared_ptr(CurJob));
+                    FlagPPoint = -1;
+                    break;
+                }
+                if (CurJob->Left >= CurSystem->PPoint)
+                {
+                    QueueForPlan.push_back(std::shared_ptr(CurJob));
+                }
+            }
+            if (FlagPPoint == -2) FlagPPoint = 0;
+            FlagPPoint *= -1;
+            if (QueueForPlan.size() == 0)
+            {
+                CurSystem->PPoint = MinLeft;
+                QueueForPlan.clear();
+                FlagPPoint = -2;
+            }
+        }
+        std::sort(QueueForPlan.begin() + FlagPPoint, QueueForPlan.end(), SortBySlack);
+        
+        
+        std::cout << "Queue For Planning: " << std::endl;
+        for (const auto& CurJob: QueueForPlan)
+        {
+            std::cout << "Job Time: " << CurJob->Time << " JbNum: " << CurJob->NumOfTask << " Job Slack " << CurJob->Slack << std::endl;
+        }
+        std::cout << std::endl;
+    
+        
+        
+        CheckResult = Check(QueueForPlan[0], QueueForPlan[0]->ListResult.begin()->first, CurSystem);
+        
+        if (CheckResult); // TODO
+        
+        QueueForPlan[0]->JobPC = QueueForPlan[0]->ListResult.begin()->first;
+        QueueForPlan[0]->Start = CurSystem->PPoint;
+        QueueForPlan[0]->JobPC->PC_PPoint = CurSystem->PPoint + QueueForPlan[0]->Time;
+    
+    
+        for (const auto & SendIdx: QueueForPlan[0]->InMessage)
+        {
+            if (CurSystem->SystemJob[SendIdx]->JobPC != QueueForPlan[0]->JobPC)
+            {
+                if (CurSystem->SystemJob[SendIdx] == QueueForPlan[0]->PreviousJob) 
+                {
+                    CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], QueueForPlan[0])]->IsPlanned = true;
                 
-                break;
-            } else 
+                }
+                std::shared_ptr<Message> CurMes = CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                                                 std::shared_ptr<Job>>
+                                                                 (CurSystem->SystemJob[SendIdx],
+                                                                 QueueForPlan[0])];
+                CurMes->StabilityCoef.Update(-1);//todo
+                CurSystem->CurBLackCoef.Update(false, CurMes);
+            } else {
+                std::shared_ptr<Message> CurMes = CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                                  std::shared_ptr<Job>>
+                                                  (CurSystem->SystemJob[SendIdx],
+                                                  QueueForPlan[0])];
+                CurMes->StabilityCoef.Update(+1);//todo
+                CurSystem->CurBLackCoef.Update(true, CurMes);
+                
+            }
+        }
+    
+        for (const auto & CurJob: Unplanned)
+        {
+            auto it = CurJob->InMessage.rbegin();
+            //std::cout << "Current Job: " << CurJob->Time << " Num: " << CurJob->Num << std::endl;
+            while(it != CurJob->InMessage.rend())
+            {
+                //std::cout << "IT = " << *it << std::endl;
+                //std::cout << "Job: " << CurSystem->SystemJob[*it]->Time << " Job Num " << CurSystem->SystemJob[*it]->Num << std::endl;
+            
+                if (!CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                           std::shared_ptr<Job>>
+                                           (CurSystem->SystemJob[*it], CurJob)]->IsPlanned)
+                {
+                    CurSystem->JobMessage.erase(std::pair<std::shared_ptr<Job>, 
+                                                std::shared_ptr<Job>>
+                                                (CurSystem->SystemJob[*it], CurJob));
+                    it = decltype(it)(CurJob->InMessage.erase(std::next(it).base()));
+                    
+                    break;
+                } else 
+                {
+                    it++;
+                }
+    
+            }
+        }
+        
+        auto it = CurSystem->SystemCMessage.begin();
+        while (it != CurSystem->SystemCMessage.end()){
+            if (!(*it)->IsPlanned)
+            {
+                it = CurSystem->SystemCMessage.erase(it);
+            } else
             {
                 it++;
             }
-
         }
-    }
-    
-    auto it = CurSystem->SystemCMessage.begin();
-    while (it != CurSystem->SystemCMessage.end()){
-        if (!(*it)->IsPlanned)
-        {
-            it = CurSystem->SystemCMessage.erase(it);
-        } else
-        {
-            it++;
+        auto UnPlannedIt = Unplanned.begin();
+        while (UnPlannedIt != Unplanned.end()){
+            if (*UnPlannedIt == QueueForPlan[0])
+            {
+                UnPlannedIt = Unplanned.erase(UnPlannedIt);
+                break;
+            } else
+            {
+                UnPlannedIt++;
+            }
         }
+        Planned.push_back(std::shared_ptr<Job>(QueueForPlan[0]));
+        CurSystem->PPoint = UpdatePPoint();
     }
-    
-  
+    return;
 }
 
 

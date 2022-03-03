@@ -1,11 +1,13 @@
 #pragma once 
+#include <memory>
 
+class Message;
 //можнос делать через один общий абстрактный класс для коэффициентов
 class BLackCoef
 {
 public:
     double Value;
-    void UpdateFunction() {}
+    void Update(bool IsGood, std::shared_ptr<Message> CurMes) {}
     BLackCoef(double InitBand = 0.0);
     ~BLackCoef() = default;
 };

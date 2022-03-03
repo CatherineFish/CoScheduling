@@ -41,7 +41,8 @@ class MainAlgorithm
 public:
 public:
     std::vector<std::shared_ptr<Job>> Unplanned;
-    std::vector<std::shared_ptr<Job>> QueueForPlan;
+    std::vector<std::shared_ptr<Job>> Planned;
+    
     
     MainAlgorithm(System* CurSystem);
     ~MainAlgorithm() = default;
@@ -49,6 +50,8 @@ public:
     void UpdateBList(System* CurSystem);
     void UpdateFList(std::vector<std::shared_ptr<PC>> SystemPC);
     void UpdateRList();
+    double UpdatePPoint();
+    
     static bool SortBySlack(std::shared_ptr<Job> i, std::shared_ptr<Job> j);
     double CritLimit = 100000.0; //TODO
     void PrintJobSystem(System* CurSystem);
