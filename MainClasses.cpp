@@ -49,8 +49,9 @@ int LCM(std::vector<int> Periods)
 System::System (char * FileName)
 {
     std::ifstream InputFile(FileName);
-    int ModNum, PCNum;
+    int ModNum, PCNum, k = 0;
     int TaskNum, Period, Time, Left, Right, NMessage, Num;
+    double CMessageSize;
     int MessageNum, Src, Dest, Size;
     std::vector<int> PeriosVector;
     InputFile >> ModNum;
@@ -60,31 +61,37 @@ System::System (char * FileName)
         for (int j=0; j< PCNum; j++)
         {
             SystemPC.push_back(std::make_shared<PC>(i));
+            SystemPC[k]->Num = k;
+            k++;
         }        
     }
     InputFile >> TaskNum;
     for (int i = 0; i < TaskNum; i++)
     {
-        InputFile >> Period >> Time >> Left >> Right;
+        InputFile >> Period >> Time >> Left >> Right >>CMessageSize;
         PeriosVector.emplace_back(Period);
         SystemTask.push_back(std::make_shared<Task>(
-                             Period, Time, Left, Right));
+                             Period, Time, Left, Right, CMessageSize));
     }
     InputFile >> BTotal;    
     InputFile >> MessageNum;
+    
     for (int i = 0; i < MessageNum; i++)
     {
         InputFile >> Src >> Dest >> Size;
         SystemMessage.push_back(std::make_shared<Message>(
                                 SystemTask[Src], SystemTask[Dest], Size));
+        SystemMessage[i]->IsPlanned = true;
         SystemTask[Src]->OutMessage.emplace_back(Dest);
-        SystemTask[Src]->MesOut.push_back(std::shared_ptr<Message>(SystemMessage[i]));
+        SystemTask[Src]->MesOut.push_back(std::weak_ptr<Message>(SystemMessage[i]));
         SystemTask[Dest]->InMessage.emplace_back(Src);
-        SystemTask[Dest]->MesOut.push_back(std::shared_ptr<Message>(SystemMessage[i]));
+        //SystemTask[Dest]->MesIn.emplace_back(std::shared_ptr<Message>(SystemMessage[i]));
         SystemMessage[i]->DestNum = Dest;
         SystemMessage[i]->SrcNum = Src;
     }
     LCMPeriod = LCM(PeriosVector);
+    
+    
     return;
 }
 
@@ -99,6 +106,7 @@ void System:: PrintSystem()
         std::cout << "       PC " << i << std::endl;
         std::cout << "Module: " << SystemPC[i]->ModNum << std::endl;
         std::cout << "PPoint: " << SystemPC[i]->PC_PPoint << std::endl;
+        std::cout << "Num: " << SystemPC[i]->Num << std::endl;
     }
     std::cout << std::endl;
     
@@ -114,7 +122,19 @@ void System:: PrintSystem()
         std::cout << "Right: " << SystemTask[i]->Right << std::endl;
         std::cout << "Input Mes Count: " << SystemTask[i]->InMessage.size() << std::endl;
         std::cout << "Output Mes Count: " << SystemTask[i]->OutMessage.size() << std::endl;
-              std::cout << "Output Out Mes: " << SystemTask[i]->MesOut.size() << std::endl;
+        std::cout << "Output Mes: " << std::endl;
+        for (size_t j = 0; j < SystemTask[i]->MesOut.size(); j++)
+        {
+            std::shared_ptr<Message> p = SystemTask[i]->MesOut[j].lock();    
+            if (p) 
+            {
+                std::cout << p->Size << " ";
+            } else 
+            {
+                std::cout << "PROBLEMS" << std::endl;
+            }
+        }
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 

@@ -14,8 +14,8 @@ class StableCoef
 {
 public:
     double Value;
-    void UpdateFunction() {}
-    StableCoef();
+    void Update(double val) {}
+    StableCoef() {}
     ~StableCoef() = default;
 };
 

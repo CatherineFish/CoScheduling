@@ -12,7 +12,7 @@ Period Time Left Right
 ...
 
 //характеристики задачи TaskNum-1
-Period Time Left Right
+Period Time Left Right CMessageSize
 BTotal //пропускная способность сети
 MessageNum //количество сообщений
 

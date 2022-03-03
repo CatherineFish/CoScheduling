@@ -10,11 +10,16 @@ int PairGCD(int a, int b);
 int PairLCM(int a, int b);
 int LCM(std::vector<int> Periods);
 
+
+class Job; 
+
 class PC 
 {
 public:
+    int Num;
     int ModNum;
     double PC_PPoint = 0;
+    std::vector<std::shared_ptr<Job>> PlannedOnPC;
 public:
     PC(int Num): ModNum(Num) {}
     ~PC() = default;  
@@ -29,34 +34,43 @@ public:
     double Time;
     double Left;
     double Right; 
+    double CMessageSize;
 public:
     int JobInit;
     double Slack;
     std::vector<int> OutMessage;
     std::vector<int> InMessage;
-    std::vector<std::shared_ptr<Message>> MesOut;
-    std::vector<std::shared_ptr<Message>> MesIn;
+    std::vector<std::weak_ptr<Message>> MesOut;
+    std::vector<std::weak_ptr<Message>> MesIn;
     Task (int Period_ = 0, 
           int Time_ = 0, 
           int Left_ = 0, 
-          int Right_ = 0): Period(Period_), Time(Time_), Left(Left_), Right(Right_) {}
+          int Right_ = 0,
+          double CMessageSize_ = 0.0): Period(Period_), 
+                                        Time(Time_), 
+                                        Left(Left_), 
+                                        Right(Right_),
+                                        CMessageSize(CMessageSize_) {}
     ~Task() = default;    
 };
 
 class Job: public Task
 {
 public:
+    double InitLeft = 0.0;
     int Num;
+    int NumOfTask;
     double Start;
     std::shared_ptr<PC> JobPC; // сделать просто номером
     bool IsPlanned = false;
+    std::shared_ptr<Job> PreviousJob;
 public:
     Job(int Num_): Num(Num_){}
     
     ~Job() = default;
     double Slack;
-    std::vector<std::shared_ptr<Job>> JobTo;
-    std::vector<std::shared_ptr<Job>> JobFrom;
+    //std::vector<std::shared_ptr<Job>> JobTo;
+    //std::vector<std::shared_ptr<Job>> JobFrom;
     
     std::map<std::shared_ptr<PC>, double> ListBandwidth; // сделать просто номером 
     std::map<std::shared_ptr<PC>, double> ListFill; // сделать просто номером 
@@ -73,22 +87,31 @@ public:
     double Size;
     double Bandwidth = 0.0;
     double Dur = 0.0;
+    double TmpDur = 1.0;
+    bool IsPlanned = false;
+    StableCoef StabilityCoef;
 public:
     Message(std::shared_ptr<Task> Src_, std::shared_ptr<Task> Dest_, double Size_): Size(Size_) 
     {
         Src = std::shared_ptr<Task>(Src_);
         Dest = std::shared_ptr<Task>(Dest_);
     }
+    Message(){}
     ~Message() = default;  
 };
 
 class ContextMessage: public Message
 {
 public:
-    Job Src; // просто номер
-    Job Dest; // просто номер
+    std::shared_ptr<Job> Src; // просто номер
+    std::shared_ptr<Job> Dest; // просто номер
+    
 public:
-    ContextMessage();
+    ContextMessage(std::shared_ptr<Job> Src_, std::shared_ptr<Job> Dest_) 
+    {
+        Src = std::shared_ptr<Job>(Src_);
+        Dest = std::shared_ptr<Job>(Dest_);
+    }
     ~ContextMessage() = default;  
 };
 
@@ -102,6 +125,10 @@ public:
     std::vector<std::shared_ptr<PC>> SystemPC;
     std::vector<std::shared_ptr<Task>> SystemTask;
     std::vector<std::shared_ptr<Message>> SystemMessage;
+    std::vector<std::shared_ptr<ContextMessage>> SystemCMessage;
+    std::vector<std::shared_ptr<Job>> SystemJob;
+    std::map<std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>, std::shared_ptr<Message>> JobMessage;
+    
     void PrintSystem();
     ~System() = default;
     BLackCoef CurBLackCoef;
