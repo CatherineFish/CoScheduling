@@ -19,7 +19,7 @@ public:
     int Num;
     int ModNum;
     double PC_PPoint = 0;
-    std::vector<std::shared_ptr<Job>> PlannedOnPC;
+    std::vector<int> PlannedOnPC;
 public:
     PC(int Num): ModNum(Num) {}
     ~PC() = default;  
@@ -30,6 +30,8 @@ class Message;
 class Task
 {
 public:
+    double InitLeft = 0.0;
+    
     double Period;
     double Time;
     double Left;
@@ -57,12 +59,13 @@ public:
 class Job: public Task
 {
 public:
-    double InitLeft = 0.0;
     int Num;
     int NumOfTask;
     double Start;
+    double BandForCMes;
     std::shared_ptr<PC> JobPC; // сделать просто номером
     bool IsPlanned = false;
+    double IsCorrected = 0.0;
     std::shared_ptr<Job> PreviousJob;
 public:
     Job(int Num_): Num(Num_){}
@@ -74,7 +77,7 @@ public:
     
     std::map<std::shared_ptr<PC>, double> ListBandwidth; // сделать просто номером 
     std::map<std::shared_ptr<PC>, double> ListFill; // сделать просто номером 
-    std::map<std::shared_ptr<PC>, double> ListResult; // сделать просто номером 
+    std::multimap<double, std::shared_ptr<PC>> ListResult; // сделать просто номером 
 };
 
 class Message
@@ -83,6 +86,7 @@ public:
     std::shared_ptr<Task> Src; // просто номер
     std::shared_ptr<Task> Dest; // просто номер
     int SrcNum;
+    bool NotModify = false;
     int DestNum;
     double Size;
     double Bandwidth = 0.0;
@@ -128,7 +132,8 @@ public:
     std::vector<std::shared_ptr<ContextMessage>> SystemCMessage;
     std::vector<std::shared_ptr<Job>> SystemJob;
     std::map<std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>, std::shared_ptr<Message>> JobMessage;
-    
+    void PrintMessages();
+    void PrintPC();
     void PrintSystem();
     ~System() = default;
     BLackCoef CurBLackCoef;

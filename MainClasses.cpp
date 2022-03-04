@@ -72,6 +72,7 @@ System::System (char * FileName)
         PeriosVector.emplace_back(Period);
         SystemTask.push_back(std::make_shared<Task>(
                              Period, Time, Left, Right, CMessageSize));
+        SystemTask[i]->InitLeft = SystemTask[i]->Left;
     }
     InputFile >> BTotal;    
     InputFile >> MessageNum;
@@ -85,7 +86,7 @@ System::System (char * FileName)
         SystemTask[Src]->OutMessage.emplace_back(Dest);
         SystemTask[Src]->MesOut.push_back(std::weak_ptr<Message>(SystemMessage[i]));
         SystemTask[Dest]->InMessage.emplace_back(Src);
-        //SystemTask[Dest]->MesIn.emplace_back(std::shared_ptr<Message>(SystemMessage[i]));
+        SystemTask[Dest]->MesIn.emplace_back(std::weak_ptr<Message>(SystemMessage[i]));
         SystemMessage[i]->DestNum = Dest;
         SystemMessage[i]->SrcNum = Src;
     }
@@ -122,10 +123,24 @@ void System:: PrintSystem()
         std::cout << "Right: " << SystemTask[i]->Right << std::endl;
         std::cout << "Input Mes Count: " << SystemTask[i]->InMessage.size() << std::endl;
         std::cout << "Output Mes Count: " << SystemTask[i]->OutMessage.size() << std::endl;
-        std::cout << "Output Mes: " << std::endl;
+        std::cout << "MesOut: " << std::endl;
         for (size_t j = 0; j < SystemTask[i]->MesOut.size(); j++)
         {
             std::shared_ptr<Message> p = SystemTask[i]->MesOut[j].lock();    
+            if (p) 
+            {
+                std::cout << p->Size << " ";
+            } else 
+            {
+                std::cout << "PROBLEMS" << std::endl;
+            }
+        }
+        std::cout << std::endl;
+
+        std::cout << "MesIN: " << std::endl;
+        for (size_t j = 0; j < SystemTask[i]->MesIn.size(); j++)
+        {
+            std::shared_ptr<Message> p = SystemTask[i]->MesIn[j].lock();    
             if (p) 
             {
                 std::cout << p->Size << " ";
@@ -152,4 +167,49 @@ void System:: PrintSystem()
     std::cout << std::endl;
     std::cout << "======================" << std::endl; 
     return;
+}
+
+void System:: PrintMessages()
+{
+    std::cout << "--------Message--------:" << std::endl;
+    for (size_t i = 0; i < SystemMessage.size(); i++)
+    {
+        std::cout << std::endl;
+        std::cout << "     Message " << i  << std::endl;
+        std::cout << "Src: " << SystemMessage[i]->Src->Time << std::endl;
+        std::cout << "Dest: " << SystemMessage[i]->Dest->Time << std::endl;
+        std::cout << "Size: " << SystemMessage[i]->Size << std::endl;
+        std::cout << "Bandwidth: " << SystemMessage[i]->Bandwidth << std::endl;
+        std::cout << "Dur: " << SystemMessage[i]->Dur << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "-------- Context Message--------:" << std::endl;
+    for (size_t i = 0; i < SystemCMessage.size(); i++)
+    {
+        std::cout << std::endl;
+        std::cout << "     Message " << i  << std::endl;
+        std::cout << "Src: " << SystemCMessage[i]->Src->Time << std::endl;
+        std::cout << "Dest: " << SystemCMessage[i]->Dest->Time << std::endl;
+        std::cout << "Size: " << SystemCMessage[i]->Size << std::endl;
+        std::cout << "Bandwidth: " << SystemCMessage[i]->Bandwidth << std::endl;
+        std::cout << "Dur: " << SystemCMessage[i]->Dur << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "======================" << std::endl; 
+    return;
+}
+
+void System:: PrintPC()
+{
+    std::cout << "--------PC--------:" << std::endl;
+    for (size_t i = 0; i < SystemPC.size(); i++)
+    {
+        std::cout << std::endl;
+        std::cout << "       PC " << i << std::endl;
+        for (const auto & Idx: SystemPC[i]->PlannedOnPC)
+        {
+            std::cout << "Job Start = " << SystemJob[Idx]->Start << " Time = " << SystemJob[Idx]->Time << std::endl;
+        }
+    }
+    std::cout << std::endl;
 }
