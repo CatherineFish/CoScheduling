@@ -1,0 +1,3181 @@
+Как распределить пропускную способность?
+1 - Поровну
+2 - Пропорционально
+======All Graph Path======
+---- Path 0 ----
+5 
+6 
+
+---- Path 1 ----
+5 
+7 
+9 
+
+---- Path 2 ----
+8 
+9 
+
+---- Path 3 ----
+10 
+
+=========================
+SUM TIME FOR EXECUTION = 11
+RIGHT TIME = 20
+MESSAGE COUNT = 1
+TIME FOR MESSAGES = 9
+SUM TIME FOR EXECUTION = 21
+RIGHT TIME = 30
+MESSAGE COUNT = 2
+TIME FOR MESSAGES = 9
+SUM TIME FOR EXECUTION = 17
+RIGHT TIME = 30
+MESSAGE COUNT = 1
+TIME FOR MESSAGES = 13
+SUM TIME FOR EXECUTION = 10
+RIGHT TIME = 20
+MESSAGE COUNT = 0
+TIME FOR MESSAGES = 10
+========SYSTEM========
+--------PC--------:
+
+       PC 0
+Module: 0
+PPoint: 0
+Num: 0
+
+       PC 1
+Module: 1
+PPoint: 0
+Num: 1
+
+       PC 2
+Module: 1
+PPoint: 0
+Num: 2
+
+       PC 3
+Module: 2
+PPoint: 0
+Num: 3
+
+--------Task--------:
+LCM = 40
+
+     Task 0
+Period: 20
+Time: 5
+Left: 0
+Right: 5
+Input Mes Count: 0
+Output Mes Count: 2
+MesOut: 
+10 15 
+MesIN: 
+
+
+     Task 1
+Period: 20
+Time: 6
+Left: 14
+Right: 20
+Input Mes Count: 1
+Output Mes Count: 0
+MesOut: 
+
+MesIN: 
+10 
+
+     Task 2
+Period: 20
+Time: 7
+Left: 8
+Right: 15
+Input Mes Count: 1
+Output Mes Count: 1
+MesOut: 
+20 
+MesIN: 
+15 
+
+     Task 3
+Period: 20
+Time: 8
+Left: 10
+Right: 18
+Input Mes Count: 0
+Output Mes Count: 1
+MesOut: 
+10 
+MesIN: 
+
+
+     Task 4
+Period: 20
+Time: 9
+Left: 21
+Right: 30
+Input Mes Count: 2
+Output Mes Count: 0
+MesOut: 
+
+MesIN: 
+20 10 
+
+     Task 5
+Period: 40
+Time: 10
+Left: 0
+Right: 20
+Input Mes Count: 0
+Output Mes Count: 0
+MesOut: 
+
+MesIN: 
+
+
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+======================
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 0
+Period: 20
+Left: 0
+Right: 5
+Input Mes From:
+
+6 0
+7 0
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 14
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 7
+Number: 0
+Period: 20
+Left: 8
+Right: 15
+Input Mes From:
+5 0
+
+9 0
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+Input Mes From:
+
+9 0
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+     Job 10
+Number: 0
+Period: 40
+Left: 0
+Right: 20
+Input Mes From:
+
+
+List Bandwidth: 
+
+List Fill: 
+
+List Result: 
+
+
+======================
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 11
+PLANNED
+UPDATE
+Job Time: 5 Job Num 0
+0 0 0
+Job Time: 5 Job Num 1
+0 0 0
+Job Time: 6 Job Num 0
+0
+0 0 0
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 0
+0
+0 0 0
+Job Time: 7 Job Num 1
+1
+0 0 0
+Job Time: 8 Job Num 0
+0 0 0
+Job Time: 8 Job Num 1
+0 0 0
+Job Time: 9 Job Num 0
+4
+6
+0 0 0
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+Job Time: 10 Job Num 0
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 0
+Period: 20
+Left: 0
+Right: 5
+Input Mes From:
+
+6 0
+7 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 14
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 0
+Period: 20
+Left: 8
+Right: 15
+Input Mes From:
+5 0
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+Input Mes From:
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 10
+Number: 0
+Period: 40
+Left: 0
+Right: 20
+Input Mes From:
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 0 Slack 0
+Add in Queue
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 0 Slack 14
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 0 Slack 8
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 0 Slack 10
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+Cur Job: 10 NUM 0 Slack 10
+Add in Queue
+Queue For Planning: 
+Job Time: 5 JbNum: 0 Job Slack 0
+Job Time: 10 JbNum: 5 Job Slack 10
+
+Planning
+Job Time 5 JobNum 0 PC: 0
+Point for plan: 0Check Result: 0
+CHEC PLAN JOB 5 PC: 0 0
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 10
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+UPDATE
+Job Time: 5 Job Num 1
+20 0 0
+Job Time: 6 Job Num 0
+0
+OKKKK
+0 5 1
+HELLo
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 0
+0
+OKKKK
+0 5 1
+HELLo
+Job Time: 7 Job Num 1
+1
+0 0 0
+Job Time: 8 Job Num 0
+0 0 0
+Job Time: 8 Job Num 1
+0 0 0
+Job Time: 9 Job Num 0
+4
+6
+0 0 0
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+Job Time: 10 Job Num 0
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 5
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 0
+Period: 20
+Left: 5
+Right: 15
+Input Mes From:
+5 0
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 300; 
+[2] = 300; 
+[3] = 300; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+Input Mes From:
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 10
+Number: 0
+Period: 40
+Left: 0
+Right: 20
+Input Mes From:
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 5; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+[5] = 0; 
+
+
+======================
+MAke Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 0 Slack 14
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 0 Slack 8
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 0 Slack 10
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+Cur Job: 10 NUM 0 Slack 10
+Add in Queue
+Queue For Planning: 
+Job Time: 10 JbNum: 5 Job Slack 10
+
+Planning
+Job Time 10 JobNum 0 PC: 1
+Point for plan: 0Check Result: 0
+CHEC PLAN JOB 10 PC: 1 1
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 9
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 5 Job Num 1
+20 0 0
+Job Time: 6 Job Num 0
+0
+0 14 1
+HELLo
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 0
+0
+OKKKK
+0 5 1
+HELLo
+Job Time: 7 Job Num 1
+1
+0 0 0
+Job Time: 8 Job Num 0
+0 0 0
+Job Time: 8 Job Num 1
+0 0 0
+Job Time: 9 Job Num 0
+4
+6
+0 0 0
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 14
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 5; 
+[1] = 10; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 2; 
+[0] = 3; 
+[5] = 0; 
+[10] = 1; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 0
+Period: 20
+Left: 5
+Right: 15
+Input Mes From:
+5 0
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 300; 
+[2] = 300; 
+[3] = 300; 
+
+List Fill: 
+[0] = 5; 
+[1] = 10; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[5] = 0; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+Input Mes From:
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 10; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 2; 
+[0] = 3; 
+[10] = 1; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 0 Slack 14
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 0 Slack 8
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 0 Slack 10
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+MAke Queue
+Cur PPoint = 5
+Cur Job: 5 NUM 1 Slack 15
+Cur Job: 6 NUM 0 Slack 9
+Cur Job: 6 NUM 1 Slack 29
+Cur Job: 7 NUM 0 Slack 3
+Add in Queue
+Cur Job: 7 NUM 1 Slack 23
+Cur Job: 8 NUM 0 Slack 5
+Cur Job: 8 NUM 1 Slack 25
+Cur Job: 9 NUM 0 Slack 16
+Cur Job: 9 NUM 1 Slack 36
+Queue For Planning: 
+Job Time: 7 JbNum: 2 Job Slack 3
+
+Planning
+Job Time 7 JobNum 0 PC: 0
+Point for plan: 5Check Result: 0
+CHEC PLAN JOB 7 PC: 0 0
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 8
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 5 Job Num 1
+20 0 0
+Job Time: 6 Job Num 0
+0
+OKKKK
+0 5 1
+HELLo
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 1
+1
+28 0 0
+Job Time: 8 Job Num 0
+0 0 0
+Job Time: 8 Job Num 1
+0 0 0
+Job Time: 9 Job Num 0
+4
+OKKKK
+6
+0 12 1
+HELLo
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 5
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 340; 
+[2] = 340; 
+[3] = 340; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+Input Mes From:
+
+9 0
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 12; 
+[1] = 10; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 2; 
+[0] = 3; 
+[10] = 1; 
+[12] = 0; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 12
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 400; 
+[2] = 400; 
+[3] = 400; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 0 Slack 14
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 0 Slack 10
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+MAke Queue
+Cur PPoint = 10
+Cur Job: 5 NUM 1 Slack 10
+Cur Job: 6 NUM 0 Slack 4
+Add in Queue
+Cur Job: 6 NUM 1 Slack 24
+Cur Job: 7 NUM 1 Slack 18
+Cur Job: 8 NUM 0 Slack 0
+Add in Queue
+Cur Job: 8 NUM 1 Slack 20
+Cur Job: 9 NUM 0 Slack 11
+Cur Job: 9 NUM 1 Slack 31
+Queue For Planning: 
+Job Time: 8 JbNum: 3 Job Slack 0
+Job Time: 6 JbNum: 1 Job Slack 4
+
+Planning
+Job Time 8 JobNum 0 PC: 2
+Point for plan: 10Check Result: 0
+CHEC PLAN JOB 8 PC: 2 1
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 7
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 5 Job Num 1
+20 0 0
+Job Time: 6 Job Num 0
+0
+0 14 1
+HELLo
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 1
+1
+28 0 0
+Job Time: 8 Job Num 1
+30 0 0
+Job Time: 9 Job Num 0
+4
+OKKKK
+6
+0 21 1
+HELLo
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 6
+Number: 0
+Period: 20
+Left: 14
+Right: 20
+Input Mes From:
+5 0
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 12; 
+[1] = 10; 
+[2] = 18; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+[10] = 1; 
+[12] = 0; 
+[18] = 2; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 340; 
+[2] = 340; 
+[3] = 340; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 260; 
+[1] = 0; 
+[2] = 0; 
+[3] = 260; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 200; 
+[1] = 400; 
+[2] = 400; 
+[3] = 600; 
+
+List Fill: 
+[0] = 12; 
+[1] = 0; 
+[2] = 18; 
+[3] = 0; 
+
+List Result: 
+[12] = 0; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 0 Slack 14
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+MAke Queue
+Cur PPoint = 14
+Cur Job: 5 NUM 1 Slack 6
+Cur Job: 6 NUM 0 Slack 0
+Add in Queue
+Cur Job: 6 NUM 1 Slack 20
+Cur Job: 7 NUM 1 Slack 14
+Cur Job: 8 NUM 1 Slack 16
+Cur Job: 9 NUM 0 Slack 7
+Cur Job: 9 NUM 1 Slack 27
+Queue For Planning: 
+Job Time: 6 JbNum: 1 Job Slack 0
+
+Planning
+Job Time 6 JobNum 0 PC: 3
+Point for plan: 14Check Result: 0
+CHEC PLAN JOB 6 PC: 3 2
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 6
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 5 Job Num 1
+20 0 0
+Job Time: 6 Job Num 1
+1
+0 0 0
+Job Time: 7 Job Num 1
+1
+28 0 0
+Job Time: 8 Job Num 1
+30 0 0
+Job Time: 9 Job Num 0
+4
+OKKKK
+6
+0 21 1
+HELLo
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+Input Mes From:
+
+6 1
+7 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 200; 
+[2] = 200; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 20; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[20] = 3; 
+
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 300; 
+[1] = 300; 
+[2] = 300; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 340; 
+[2] = 340; 
+[3] = 340; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 260; 
+[1] = 0; 
+[2] = 0; 
+[3] = 260; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 200; 
+[1] = 400; 
+[2] = 400; 
+[3] = 600; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 10
+Cur Job: 5 NUM 1 Slack 10
+Cur Job: 6 NUM 1 Slack 24
+Cur Job: 7 NUM 1 Slack 18
+Cur Job: 8 NUM 1 Slack 20
+Cur Job: 9 NUM 0 Slack 11
+Cur Job: 9 NUM 1 Slack 31
+MAke Queue
+Cur PPoint = 20
+Cur Job: 5 NUM 1 Slack 0
+Add in Queue
+Cur Job: 6 NUM 1 Slack 14
+Cur Job: 7 NUM 1 Slack 8
+Cur Job: 8 NUM 1 Slack 10
+Cur Job: 9 NUM 0 Slack 1
+Cur Job: 9 NUM 1 Slack 21
+Queue For Planning: 
+Job Time: 5 JbNum: 0 Job Slack 0
+
+Planning
+Job Time 5 JobNum 1 PC: 0
+Point for plan: 20Check Result: 0
+CHEC PLAN JOB 5 PC: 0 0
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 5
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 5 Job Num 1 PC 0 0 NUM: 1
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 6 Job Num 1
+1
+0 34 1
+HELLo
+Job Time: 7 Job Num 1
+1
+OKKKK
+28 25 1
+HELLo
+HERE
+Job Time: 8 Job Num 1
+30 0 0
+Job Time: 9 Job Num 0
+4
+OKKKK
+6
+0 21 1
+HELLo
+Job Time: 9 Job Num 1
+5
+7
+0 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 300; 
+[1] = 500; 
+[2] = 500; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 640; 
+[2] = 640; 
+[3] = 640; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 260; 
+[1] = 0; 
+[2] = 0; 
+[3] = 260; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+Input Mes From:
+7 0
+8 0
+
+
+List Bandwidth: 
+[0] = 200; 
+[1] = 400; 
+[2] = 400; 
+[3] = 600; 
+
+List Fill: 
+[0] = 25; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[25] = 0; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
+
+
+======================
+MAke Queue
+Cur PPoint = 10
+Cur Job: 6 NUM 1 Slack 24
+Cur Job: 7 NUM 1 Slack 18
+Cur Job: 8 NUM 1 Slack 20
+Cur Job: 9 NUM 0 Slack 11
+Cur Job: 9 NUM 1 Slack 31
+MAke Queue
+Cur PPoint = 25
+Cur Job: 6 NUM 1 Slack 9
+Cur Job: 7 NUM 1 Slack 3
+Cur Job: 8 NUM 1 Slack 5
+Cur Job: 9 NUM 0 Slack -4
+Queue For Planning: 
+Job Time: 9 JbNum: 4 Job Slack -4
+
+Planning
+Job Time 9 JobNum 0 PC: 0
+Point for plan: 21Check Result: 0
+CHEC PLAN JOB 9 PC: 0 0
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 4
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 5 Job Num 1 PC 0 0 NUM: 1
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 6 Job Num 1
+1
+0 34 1
+HELLo
+Job Time: 7 Job Num 1
+1
+OKKKK
+28 25 1
+HELLo
+HERE
+Job Time: 8 Job Num 1
+30 0 0
+Job Time: 9 Job Num 1
+5
+7
+41 0 0
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 300; 
+[1] = 500; 
+[2] = 500; 
+[3] = 200; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+Input Mes From:
+5 1
+
+9 1
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 640; 
+[2] = 640; 
+[3] = 640; 
+
+List Fill: 
+[0] = 30; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[30] = 0; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 260; 
+[1] = 0; 
+[2] = 0; 
+[3] = 260; 
+
+List Fill: 
+[0] = 30; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 280; 
+[2] = 280; 
+[3] = 280; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+======================
+MAke Queue
+Cur PPoint = 10
+Cur Job: 6 NUM 1 Slack 24
+Cur Job: 7 NUM 1 Slack 18
+Cur Job: 8 NUM 1 Slack 20
+Cur Job: 9 NUM 1 Slack 31
+MAke Queue
+Cur PPoint = 30
+Cur Job: 6 NUM 1 Slack 4
+Cur Job: 7 NUM 1 Slack -2
+Queue For Planning: 
+Job Time: 7 JbNum: 2 Job Slack -2
+
+Planning
+Job Time 7 JobNum 1 PC: 0
+Point for plan: 28Check Result: 0
+CHEC PLAN JOB 7 PC: 0 0
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 3
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 5 Job Num 1 PC 0 0 NUM: 1
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 7 Job Num 1 PC 0 0 NUM: 5
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 6 Job Num 1
+1
+0 34 1
+HELLo
+Job Time: 8 Job Num 1
+30 0 0
+Job Time: 9 Job Num 1
+5
+OKKKK
+7
+41 35 1
+HELLo
+HERE
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 300; 
+[1] = 500; 
+[2] = 500; 
+[3] = 200; 
+
+List Fill: 
+[0] = 35; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+Input Mes From:
+
+9 1
+
+List Bandwidth: 
+[0] = 260; 
+[1] = 0; 
+[2] = 0; 
+[3] = 260; 
+
+List Fill: 
+[0] = 35; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 1; 
+[0] = 2; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 0; 
+[1] = 680; 
+[2] = 680; 
+[3] = 680; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+======================
+MAke Queue
+Cur PPoint = 10
+Cur Job: 6 NUM 1 Slack 24
+Cur Job: 8 NUM 1 Slack 20
+Cur Job: 9 NUM 1 Slack 31
+MAke Queue
+Cur PPoint = 30
+Cur Job: 6 NUM 1 Slack 4
+Cur Job: 8 NUM 1 Slack 0
+Add in Queue
+Cur Job: 9 NUM 1 Slack 11
+Queue For Planning: 
+Job Time: 8 JbNum: 3 Job Slack 0
+
+Planning
+Job Time 8 JobNum 1 PC: 1
+Point for plan: 30Check Result: 0
+CHEC PLAN JOB 8 PC: 1 1
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 2
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 5 Job Num 1 PC 0 0 NUM: 1
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 7 Job Num 1 PC 0 0 NUM: 5
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 1 PC 1 1 NUM: 7
+Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 6 Job Num 1
+1
+0 34 1
+HELLo
+Job Time: 9 Job Num 1
+5
+OKKKK
+7
+41 41 1
+HELLo
+HERE
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+Input Mes From:
+5 1
+
+
+List Bandwidth: 
+[0] = 300; 
+[1] = 500; 
+[2] = 500; 
+[3] = 200; 
+
+List Fill: 
+[0] = 35; 
+[1] = 38; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 3; 
+
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 200; 
+[1] = 680; 
+[2] = 680; 
+[3] = 880; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+======================
+MAke Queue
+Cur PPoint = 18
+Cur Job: 6 NUM 1 Slack 16
+Cur Job: 9 NUM 1 Slack 23
+MAke Queue
+Cur PPoint = 34
+Cur Job: 6 NUM 1 Slack 0
+Add in Queue
+Cur Job: 9 NUM 1 Slack 7
+Queue For Planning: 
+Job Time: 6 JbNum: 1 Job Slack 0
+
+Planning
+Job Time 6 JobNum 1 PC: 3
+Point for plan: 34Check Result: 0
+CHEC PLAN JOB 6 PC: 3 2
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================
+Current size: 1
+PLANNED
+Job Time: 5 Job Num 0 PC 0 0 NUM: 0
+Job Time: 5 Job Num 1 PC 0 0 NUM: 1
+Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 1 PC 3 2 NUM: 3
+Job Time: 7 Job Num 0 PC 0 0 NUM: 4
+Job Time: 7 Job Num 1 PC 0 0 NUM: 5
+Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 1 PC 1 1 NUM: 7
+Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 10 Job Num 0 PC 1 1 NUM: 10
+UPDATE
+Job Time: 9 Job Num 1
+5
+OKKKK
+7
+41 41 1
+HELLo
+HERE
+======== J O B ========
+--------UNPLANNED--------:
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+Input Mes From:
+7 1
+8 1
+
+
+List Bandwidth: 
+[0] = 200; 
+[1] = 680; 
+[2] = 680; 
+[3] = 880; 
+
+List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
+
+List Result: 
+[0] = 0; 
+
+
+======================
+MAke Queue
+Cur PPoint = 18
+Cur Job: 9 NUM 1 Slack 23
+MAke Queue
+Cur PPoint = 41
+Cur Job: 9 NUM 1 Slack 0
+Add in Queue
+Queue For Planning: 
+Job Time: 9 JbNum: 4 Job Slack 0
+
+Planning
+Job Time 9 JobNum 1 PC: 0
+Point for plan: 41Check Result: 0
+CHEC PLAN JOB 9 PC: 0 0
+--------PC--------:
+
+       PC 0
+Job Start = 0 Time = 5
+Job Start = 5 Time = 7
+Job Start = 20 Time = 5
+Job Start = 21 Time = 9
+Job Start = 28 Time = 7
+Job Start = 41 Time = 9
+
+       PC 1
+Job Start = 0 Time = 10
+Job Start = 30 Time = 8
+
+       PC 2
+Job Start = 10 Time = 8
+
+       PC 3
+Job Start = 14 Time = 6
+Job Start = 34 Time = 6
+
+--------Message--------:
+
+     Message 0
+Src: 5
+Dest: 6
+Size: 10
+Bandwidth: 1.11111
+Dur: 9
+
+     Message 1
+Src: 5
+Dest: 7
+Size: 15
+Bandwidth: 5
+Dur: 3
+
+     Message 2
+Src: 7
+Dest: 9
+Size: 20
+Bandwidth: 4.44444
+Dur: 4.5
+
+     Message 3
+Src: 8
+Dest: 9
+Size: 10
+Bandwidth: 3.33333
+Dur: 3
+
+-------- Context Message--------:
+
+======================

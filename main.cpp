@@ -7,9 +7,9 @@ int main(int argc, char* argv[])
 {
     System CurSystem(argv[1]);
     InitAlgorithm CurInitAlg(&CurSystem);
-    //CurSystem.PrintSystem();
     
     CurInitAlg.MainLoop(&CurSystem);
+    CurSystem.PrintSystem();
     
     MainAlgorithm CurMainAlg(&CurSystem);
     
@@ -17,6 +17,6 @@ int main(int argc, char* argv[])
     //CurMainAlg.PrintJobSystem(&CurSystem);
     
     CurSystem.PrintPC();
-    //CurSystem.PrintMessages();
+    CurSystem.PrintMessages();
     return 0;
 }

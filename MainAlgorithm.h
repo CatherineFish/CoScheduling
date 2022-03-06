@@ -25,7 +25,7 @@ public:
     double UpdatePPoint(System* CurSystem);
     
     static bool SortBySlack(std::shared_ptr<Job> i, std::shared_ptr<Job> j);
-    double CritLimit = 150.0; //TODO
+    double CritLimit = 250.0; //TODO
     void PrintJobSystem(System* CurSystem);
     void UpdateLeft(std::shared_ptr<Job> CurJob, System* CurSystem);
     int Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForPlan, System* CurSystem);

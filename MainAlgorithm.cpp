@@ -208,9 +208,24 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         UpdateBList(CurSystem);
         UpdateFList(CurSystem->SystemPC);
         UpdateRList();
+        std::cout << "PLANNED" << std::endl;
+        
+        for (int i = 0; i < CurSystem->SystemJob.size(); i++)
+        {
+            if (CurSystem->SystemJob[i]->IsPlanned)
+            {
+                std::cout << "Job Time: " << CurSystem->SystemJob[i]->Time << 
+                             " Job Num " << CurSystem->SystemJob[i]->Num << 
+                             " PC " << CurSystem->SystemJob[i]->JobPC->Num << 
+                             " " << CurSystem->SystemJob[i]->JobPC->ModNum << 
+                             " NUM: " << i << std::endl;
+
+            
+                
+            }
+        }
         std::cout << "UPDATE" << std::endl;
         
-
         for (const auto & CurJob : Unplanned) 
         {
             flag = false;
@@ -219,29 +234,42 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
             CMesFlag = true;
             for (const auto & SendIdx: CurJob->InMessage)
             {
-            	if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurJob->ListResult.begin()->second->ModNum)
+                std::cout << SendIdx << std::endl;
+                //std::cout << CurSystem->SystemJob[SendIdx]->JobPC->ModNum << std::endl;
+            	
+                if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurJob->ListResult.begin()->second->ModNum)
                 {
-                    std::cout << "OKKKK" << std::endl;
                     flag = true;
+                    
+                    std::cout << "OKKKK" << std::endl;
                     NewLeft = std::max(NewLeft, CurSystem->SystemJob[SendIdx]->Start + CurSystem->SystemJob[SendIdx]->Time); 
                     //CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->TmpDur = 0.0;
                 } else if (CurSystem->SystemJob[SendIdx]->IsPlanned)
                 {
+                    flag = true;
+                    
                 	NewLeft = std::max(NewLeft, CurSystem->SystemJob[SendIdx]->Start + CurSystem->SystemJob[SendIdx]->Time + 
                                        CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->Dur); 
                 	
                 }
             }
+            std::cout << CurJob->IsCorrected << " " << NewLeft << " " << flag <<  std::endl; 
             if (flag)
             {
+                std::cout << "HELLo" << std::endl;
                 if (CurJob->IsCorrected != 0.0)
                 {
+                    std::cout << "HERE" << std::endl;
                     CurJob->Left = std::max(CurJob->IsCorrected, NewLeft); 
                 } else {
-                    CurJob->Left = std::max(CurJob->InitLeft, NewLeft);
+                    CurJob->Left = NewLeft;
                 
                 }    
             }
+            std::cout << CurJob->Left << " " << CurJob->ListResult.begin()->second->PC_PPoint << std::endl; 
+            CurJob->Left = CurJob->ListResult.begin()->second->PC_PPoint > CurJob->Left ?
+                                            CurJob->ListResult.begin()->second->PC_PPoint :
+                                            CurJob->Left;
                 
             /*if (!CurJob->PreviousJob || !CurJob->PreviousJob->IsPlanned || (CurJob->PreviousJob->IsPlanned && CurJob->PreviousJob->JobPC->ModNum == CurJob->ListResult.begin()->second->ModNum))
             {
@@ -263,16 +291,20 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
             {
                 UpdateLeft(CurJob, CurSystem);
             }*/
-            MinLeft = std::min(MinLeft, CurJob->Left);     
+               
         }
         PrintJobSystem(CurSystem);
         
         while (FlagPPoint < 0)
         {
+            MinLeft = 100000.0;//todo
             std::cout << "MAke Queue" << std::endl;
             std::cout << "Cur PPoint = " << CurSystem->PPoint << std::endl;
             for (const auto & CurJob: Unplanned)
             {
+                MinLeft = std::min(MinLeft, CurJob->ListResult.begin()->second->PC_PPoint > CurJob->Left ?
+                                            CurJob->ListResult.begin()->second->PC_PPoint :
+                                            CurJob->Left);
                 std::cout << "Cur Job: " << CurJob->Time << " NUM " << CurJob->Num;
                 CurJob->Slack = CurJob->Right - CurJob->Time - CurSystem->PPoint;
                 std::cout << " Slack " << CurJob->Slack << std::endl;
@@ -294,9 +326,11 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
             FlagPPoint *= -1;
             if (QueueForPlan.size() == 0)
             {
+
                 CurSystem->PPoint = MinLeft;
                 QueueForPlan.clear();
                 FlagPPoint = -2;
+
             }
         }
         std::sort(QueueForPlan.begin() + FlagPPoint, QueueForPlan.end(), SortBySlack);
@@ -319,8 +353,11 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         std::cout << "Check Result: " << CheckResult << std::endl;
 
 
-        QueueForPlan[0]->JobPC = QueueForPlan[0]->ListResult.begin()->second;
+        QueueForPlan[0]->JobPC = std::shared_ptr<PC>(QueueForPlan[0]->ListResult.begin()->second);
+        std::cout << "Point for plan: " << CurSystem->PPoint;
+        
         QueueForPlan[0]->Start = CurSystem->PPoint;
+        std::cout << "CHEC PLAN JOB " << QueueForPlan[0]->Time << " PC: " << QueueForPlan[0]->JobPC->Num << " " << QueueForPlan[0]->JobPC->ModNum << std::endl; 
         QueueForPlan[0]->JobPC->PC_PPoint = CurSystem->PPoint + QueueForPlan[0]->Time;
         QueueForPlan[0]->IsPlanned = true;
         if (QueueForPlan[0]->PreviousJob && QueueForPlan[0]->JobPC->ModNum != QueueForPlan[0]->PreviousJob->JobPC->ModNum)
