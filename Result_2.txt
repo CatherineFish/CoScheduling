@@ -164,6 +164,7 @@ Bandwidth: 3.33333
 Dur: 3
 
 ======================
+PLANNED
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -178,10 +179,22 @@ Input Mes From:
 7 0
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 5
@@ -195,10 +208,22 @@ Input Mes From:
 7 1
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 6
@@ -211,10 +236,22 @@ Input Mes From:
 
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 6
@@ -227,10 +264,22 @@ Input Mes From:
 
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 7
@@ -244,10 +293,22 @@ Input Mes From:
 9 0
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 7
@@ -261,10 +322,22 @@ Input Mes From:
 9 1
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 8
@@ -277,10 +350,22 @@ Input Mes From:
 9 0
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 8
@@ -293,10 +378,22 @@ Input Mes From:
 9 1
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 9
@@ -310,10 +407,22 @@ Input Mes From:
 
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 9
@@ -327,10 +436,22 @@ Input Mes From:
 
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
      Job 10
@@ -342,397 +463,118 @@ Input Mes From:
 
 
 List Bandwidth: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Fill: 
+[0] = 0; 
+[1] = 0; 
+[2] = 0; 
+[3] = 0; 
 
 List Result: 
+[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[0] = 3; 
 
 
 ======================
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 11
-PLANNED
 UPDATE
 Job Time: 5 Job Num 0
-0 0 0
+Want to plan: 0 Can Plan: 0
 Job Time: 5 Job Num 1
-0 0 0
+Want to plan: 20 Can Plan: 0
 Job Time: 6 Job Num 0
-0
-0 0 0
+Want to plan: 14 Can Plan: 0
 Job Time: 6 Job Num 1
-1
-0 0 0
+Want to plan: 34 Can Plan: 0
 Job Time: 7 Job Num 0
-0
-0 0 0
+Want to plan: 8 Can Plan: 0
 Job Time: 7 Job Num 1
-1
-0 0 0
+Want to plan: 28 Can Plan: 0
 Job Time: 8 Job Num 0
-0 0 0
+Want to plan: 10 Can Plan: 0
 Job Time: 8 Job Num 1
-0 0 0
+Want to plan: 30 Can Plan: 0
 Job Time: 9 Job Num 0
-4
-6
-0 0 0
+Want to plan: 21 Can Plan: 0
 Job Time: 9 Job Num 1
-5
-7
-0 0 0
+Want to plan: 41 Can Plan: 0
 Job Time: 10 Job Num 0
-0 0 0
+Want to plan: 0 Can Plan: 0
 ======== J O B ========
---------UNPLANNED--------:
 
      Job 5
 Number: 0
 Period: 20
 Left: 0
 Right: 5
-Input Mes From:
-
-6 0
-7 0
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 5
 Number: 1
 Period: 20
 Left: 20
 Right: 25
-Input Mes From:
-
-6 1
-7 1
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 6
 Number: 0
 Period: 20
 Left: 14
 Right: 20
-Input Mes From:
-5 0
-
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 6
 Number: 1
 Period: 20
 Left: 34
 Right: 40
-Input Mes From:
-5 1
-
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 7
 Number: 0
 Period: 20
 Left: 8
 Right: 15
-Input Mes From:
-5 0
-
-9 0
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 7
 Number: 1
 Period: 20
 Left: 28
 Right: 35
-Input Mes From:
-5 1
-
-9 1
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 8
 Number: 0
 Period: 20
 Left: 10
 Right: 18
-Input Mes From:
-
-9 0
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 8
 Number: 1
 Period: 20
 Left: 30
 Right: 38
-Input Mes From:
-
-9 1
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 9
 Number: 0
 Period: 20
 Left: 21
 Right: 30
-Input Mes From:
-7 0
-8 0
-
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 9
 Number: 1
 Period: 20
 Left: 41
 Right: 50
-Input Mes From:
-7 1
-8 1
-
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
      Job 10
 Number: 0
 Period: 40
 Left: 0
 Right: 20
-Input Mes From:
-
-
-List Bandwidth: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Fill: 
-[0] = 0; 
-[1] = 0; 
-[2] = 0; 
-[3] = 0; 
-
-List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
-
 
 ======================
-MAke Queue
+MAKE Queue
 Cur PPoint = 0
 Cur Job: 5 NUM 0 Slack 0
 Add in Queue
@@ -754,76 +596,8 @@ Job Time: 10 JbNum: 5 Job Slack 10
 Planning
 Job Time 5 JobNum 0 PC: 0
 Point for plan: 0Check Result: 0
-CHEC PLAN JOB 5 PC: 0 0
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 10
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
-UPDATE
-Job Time: 5 Job Num 1
-20 0 0
-Job Time: 6 Job Num 0
-0
-OKKKK
-0 5 1
-HELLo
-Job Time: 6 Job Num 1
-1
-0 0 0
-Job Time: 7 Job Num 0
-0
-OKKKK
-0 5 1
-HELLo
-Job Time: 7 Job Num 1
-1
-0 0 0
-Job Time: 8 Job Num 0
-0 0 0
-Job Time: 8 Job Num 1
-0 0 0
-Job Time: 9 Job Num 0
-4
-6
-0 0 0
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
-Job Time: 10 Job Num 0
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -851,15 +625,15 @@ List Fill:
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
 Number: 0
 Period: 20
-Left: 5
+Left: 14
 Right: 20
 Input Mes From:
 5 0
@@ -879,9 +653,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -915,7 +689,7 @@ List Result:
      Job 7
 Number: 0
 Period: 20
-Left: 5
+Left: 8
 Right: 15
 Input Mes From:
 5 0
@@ -936,6 +710,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[300] = 1; 
+[300] = 2; 
+[300] = 3; 
 
 
      Job 7
@@ -1105,11 +882,98 @@ List Result:
 [0] = 1; 
 [0] = 2; 
 [0] = 3; 
-[5] = 0; 
 
 
 ======================
-MAke Queue
+UPDATE
+Job Time: 5 Job Num 1
+Want to plan: 20 Can Plan: 5
+Job Time: 6 Job Num 0
+Sender 0 was planned on this Module
+Updated Left from 14 to 5 OR 0
+Want to plan: 5 Can Plan: 5
+Job Time: 6 Job Num 1
+Want to plan: 34 Can Plan: 5
+Job Time: 7 Job Num 0
+Sender 0 was planned on this Module
+Updated Left from 8 to 5 OR 2
+Want to plan: 5 Can Plan: 5
+Job Time: 7 Job Num 1
+Want to plan: 28 Can Plan: 5
+Job Time: 8 Job Num 0
+Want to plan: 10 Can Plan: 5
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 5
+Job Time: 9 Job Num 0
+Want to plan: 21 Can Plan: 5
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 5
+Job Time: 10 Job Num 0
+Want to plan: 0 Can Plan: 0
+======== J O B ========
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+
+     Job 6
+Number: 0
+Period: 20
+Left: 5
+Right: 20
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 7
+Number: 0
+Period: 20
+Left: 5
+Right: 15
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+     Job 10
+Number: 0
+Period: 40
+Left: 0
+Right: 20
+
+======================
+MAKE Queue
 Cur PPoint = 0
 Cur Job: 5 NUM 1 Slack 20
 Cur Job: 6 NUM 0 Slack 14
@@ -1128,74 +992,9 @@ Job Time: 10 JbNum: 5 Job Slack 10
 Planning
 Job Time 10 JobNum 0 PC: 1
 Point for plan: 0Check Result: 0
-CHEC PLAN JOB 10 PC: 1 1
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 9
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 5 Job Num 1
-20 0 0
-Job Time: 6 Job Num 0
-0
-0 14 1
-HELLo
-Job Time: 6 Job Num 1
-1
-0 0 0
-Job Time: 7 Job Num 0
-0
-OKKKK
-0 5 1
-HELLo
-Job Time: 7 Job Num 1
-1
-0 0 0
-Job Time: 8 Job Num 0
-0 0 0
-Job Time: 8 Job Num 1
-0 0 0
-Job Time: 9 Job Num 0
-4
-6
-0 0 0
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -1223,15 +1022,15 @@ List Fill:
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
 Number: 0
 Period: 20
-Left: 14
+Left: 5
 Right: 20
 Input Mes From:
 5 0
@@ -1244,16 +1043,15 @@ List Bandwidth:
 [3] = 200; 
 
 List Fill: 
-[0] = 5; 
+[0] = 0; 
 [1] = 10; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 2; 
-[0] = 3; 
-[5] = 0; 
-[10] = 1; 
+[0] = 0; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -1301,13 +1099,15 @@ List Bandwidth:
 [3] = 300; 
 
 List Fill: 
-[0] = 5; 
+[0] = 0; 
 [1] = 10; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[5] = 0; 
+[0] = 0; 
+[300] = 2; 
+[300] = 3; 
 
 
      Job 7
@@ -1356,15 +1156,15 @@ List Bandwidth:
 
 List Fill: 
 [0] = 0; 
-[1] = 10; 
+[1] = 0; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
 [0] = 0; 
+[0] = 1; 
 [0] = 2; 
 [0] = 3; 
-[10] = 1; 
 
 
      Job 8
@@ -1454,7 +1254,87 @@ List Result:
 
 
 ======================
-MAke Queue
+UPDATE
+Job Time: 5 Job Num 1
+Want to plan: 20 Can Plan: 5
+Job Time: 6 Job Num 0
+Sender 0 was planned on this Module
+Updated Left from 5 to 5 OR 0
+Want to plan: 5 Can Plan: 5
+Job Time: 6 Job Num 1
+Want to plan: 34 Can Plan: 5
+Job Time: 7 Job Num 0
+Sender 0 was planned on this Module
+Updated Left from 5 to 5 OR 2
+Want to plan: 5 Can Plan: 5
+Job Time: 7 Job Num 1
+Want to plan: 28 Can Plan: 5
+Job Time: 8 Job Num 0
+Want to plan: 10 Can Plan: 5
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 5
+Job Time: 9 Job Num 0
+Want to plan: 21 Can Plan: 5
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 5
+======== J O B ========
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+
+     Job 6
+Number: 0
+Period: 20
+Left: 5
+Right: 20
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 7
+Number: 0
+Period: 20
+Left: 5
+Right: 15
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+======================
+MAKE Queue
 Cur PPoint = 0
 Cur Job: 5 NUM 1 Slack 20
 Cur Job: 6 NUM 0 Slack 14
@@ -1465,10 +1345,11 @@ Cur Job: 8 NUM 0 Slack 10
 Cur Job: 8 NUM 1 Slack 30
 Cur Job: 9 NUM 0 Slack 21
 Cur Job: 9 NUM 1 Slack 41
-MAke Queue
+MAKE Queue
 Cur PPoint = 5
 Cur Job: 5 NUM 1 Slack 15
 Cur Job: 6 NUM 0 Slack 9
+Add in Queue
 Cur Job: 6 NUM 1 Slack 29
 Cur Job: 7 NUM 0 Slack 3
 Add in Queue
@@ -1479,77 +1360,16 @@ Cur Job: 9 NUM 0 Slack 16
 Cur Job: 9 NUM 1 Slack 36
 Queue For Planning: 
 Job Time: 7 JbNum: 2 Job Slack 3
+Job Time: 6 JbNum: 1 Job Slack 9
 
 Planning
 Job Time 7 JobNum 0 PC: 0
 Point for plan: 5Check Result: 0
-CHEC PLAN JOB 7 PC: 0 0
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 8
+Count 2
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 5 Job Num 1
-20 0 0
-Job Time: 6 Job Num 0
-0
-OKKKK
-0 5 1
-HELLo
-Job Time: 6 Job Num 1
-1
-0 0 0
-Job Time: 7 Job Num 1
-1
-28 0 0
-Job Time: 8 Job Num 0
-0 0 0
-Job Time: 8 Job Num 1
-0 0 0
-Job Time: 9 Job Num 0
-4
-OKKKK
-6
-0 12 1
-HELLo
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -1577,9 +1397,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -1598,16 +1418,14 @@ List Bandwidth:
 [3] = 200; 
 
 List Fill: 
-[0] = 0; 
-[1] = 0; 
+[0] = 12; 
+[1] = 10; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -1662,6 +1480,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[340] = 1; 
+[340] = 2; 
+[340] = 3; 
 
 
      Job 8
@@ -1681,15 +1502,14 @@ List Bandwidth:
 
 List Fill: 
 [0] = 12; 
-[1] = 10; 
+[1] = 0; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
+[0] = 1; 
 [0] = 2; 
 [0] = 3; 
-[10] = 1; 
-[12] = 0; 
 
 
      Job 8
@@ -1723,7 +1543,7 @@ List Result:
      Job 9
 Number: 0
 Period: 20
-Left: 12
+Left: 21
 Right: 30
 Input Mes From:
 7 0
@@ -1744,6 +1564,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[400] = 1; 
+[400] = 2; 
+[400] = 3; 
 
 
      Job 9
@@ -1776,7 +1599,79 @@ List Result:
 
 
 ======================
-MAke Queue
+UPDATE
+Job Time: 5 Job Num 1
+Want to plan: 20 Can Plan: 12
+Job Time: 6 Job Num 0
+Sender 0 was planned on other Module
+Updated Left from 5 to 14 OR 0
+Want to plan: 14 Can Plan: 0
+Job Time: 6 Job Num 1
+Want to plan: 34 Can Plan: 12
+Job Time: 7 Job Num 1
+Want to plan: 28 Can Plan: 12
+Job Time: 8 Job Num 0
+Want to plan: 10 Can Plan: 10
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 12
+Job Time: 9 Job Num 0
+Sender 4 was planned on this Module
+Updated Left from 21 to 12 OR 15
+Want to plan: 15 Can Plan: 12
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 12
+======== J O B ========
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+
+     Job 6
+Number: 0
+Period: 20
+Left: 14
+Right: 20
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+
+     Job 8
+Number: 0
+Period: 20
+Left: 10
+Right: 18
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 0
+Period: 20
+Left: 15
+Right: 30
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+======================
+MAKE Queue
 Cur PPoint = 0
 Cur Job: 5 NUM 1 Slack 20
 Cur Job: 6 NUM 0 Slack 14
@@ -1786,11 +1681,10 @@ Cur Job: 8 NUM 0 Slack 10
 Cur Job: 8 NUM 1 Slack 30
 Cur Job: 9 NUM 0 Slack 21
 Cur Job: 9 NUM 1 Slack 41
-MAke Queue
+MAKE Queue
 Cur PPoint = 10
 Cur Job: 5 NUM 1 Slack 10
 Cur Job: 6 NUM 0 Slack 4
-Add in Queue
 Cur Job: 6 NUM 1 Slack 24
 Cur Job: 7 NUM 1 Slack 18
 Cur Job: 8 NUM 0 Slack 0
@@ -1800,76 +1694,15 @@ Cur Job: 9 NUM 0 Slack 11
 Cur Job: 9 NUM 1 Slack 31
 Queue For Planning: 
 Job Time: 8 JbNum: 3 Job Slack 0
-Job Time: 6 JbNum: 1 Job Slack 4
 
 Planning
-Job Time 8 JobNum 0 PC: 2
+Job Time 8 JobNum 0 PC: 1
 Point for plan: 10Check Result: 0
-CHEC PLAN JOB 8 PC: 2 1
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 7
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 5 Job Num 1
-20 0 0
-Job Time: 6 Job Num 0
-0
-0 14 1
-HELLo
-Job Time: 6 Job Num 1
-1
-0 0 0
-Job Time: 7 Job Num 1
-1
-28 0 0
-Job Time: 8 Job Num 1
-30 0 0
-Job Time: 9 Job Num 0
-4
-OKKKK
-6
-0 21 1
-HELLo
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -1897,9 +1730,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[0] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -1918,16 +1751,15 @@ List Bandwidth:
 [3] = 200; 
 
 List Fill: 
-[0] = 12; 
-[1] = 10; 
-[2] = 18; 
+[0] = 0; 
+[1] = 18; 
+[2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
-[10] = 1; 
-[12] = 0; 
-[18] = 2; 
+[0] = 0; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -1982,6 +1814,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[340] = 1; 
+[340] = 2; 
+[340] = 3; 
 
 
      Job 8
@@ -2008,12 +1843,14 @@ List Fill:
 List Result: 
 [0] = 1; 
 [0] = 2; 
+[260] = 0; 
+[260] = 3; 
 
 
      Job 9
 Number: 0
 Period: 20
-Left: 21
+Left: 15
 Right: 30
 Input Mes From:
 7 0
@@ -2027,13 +1864,16 @@ List Bandwidth:
 [3] = 600; 
 
 List Fill: 
-[0] = 12; 
+[0] = 0; 
 [1] = 0; 
-[2] = 18; 
+[2] = 0; 
 [3] = 0; 
 
 List Result: 
-[12] = 0; 
+[200] = 0; 
+[400] = 1; 
+[400] = 2; 
+[600] = 3; 
 
 
      Job 9
@@ -2066,7 +1906,72 @@ List Result:
 
 
 ======================
-MAke Queue
+UPDATE
+Job Time: 5 Job Num 1
+Want to plan: 20 Can Plan: 12
+Job Time: 6 Job Num 0
+Sender 0 was planned on this Module
+Updated Left from 14 to 5 OR 0
+Want to plan: 5 Can Plan: 12
+Job Time: 6 Job Num 1
+Want to plan: 34 Can Plan: 12
+Job Time: 7 Job Num 1
+Want to plan: 28 Can Plan: 12
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 18
+Job Time: 9 Job Num 0
+Sender 4 was planned on this Module
+Sender 6 was planned on other Module
+Updated Left from 15 to 21 OR 15
+Want to plan: 21 Can Plan: 12
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 12
+======== J O B ========
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+
+     Job 6
+Number: 0
+Period: 20
+Left: 12
+Right: 20
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+======================
+MAKE Queue
 Cur PPoint = 0
 Cur Job: 5 NUM 1 Slack 20
 Cur Job: 6 NUM 0 Slack 14
@@ -2075,84 +1980,29 @@ Cur Job: 7 NUM 1 Slack 28
 Cur Job: 8 NUM 1 Slack 30
 Cur Job: 9 NUM 0 Slack 21
 Cur Job: 9 NUM 1 Slack 41
-MAke Queue
-Cur PPoint = 14
-Cur Job: 5 NUM 1 Slack 6
-Cur Job: 6 NUM 0 Slack 0
+MAKE Queue
+Cur PPoint = 12
+Cur Job: 5 NUM 1 Slack 8
+Cur Job: 6 NUM 0 Slack 2
 Add in Queue
-Cur Job: 6 NUM 1 Slack 20
-Cur Job: 7 NUM 1 Slack 14
-Cur Job: 8 NUM 1 Slack 16
-Cur Job: 9 NUM 0 Slack 7
-Cur Job: 9 NUM 1 Slack 27
+Cur Job: 6 NUM 1 Slack 22
+Cur Job: 7 NUM 1 Slack 16
+Cur Job: 8 NUM 1 Slack 18
+Cur Job: 9 NUM 0 Slack 9
+Cur Job: 9 NUM 1 Slack 29
 Queue For Planning: 
-Job Time: 6 JbNum: 1 Job Slack 0
+Job Time: 6 JbNum: 1 Job Slack 2
 
 Planning
-Job Time 6 JobNum 0 PC: 3
-Point for plan: 14Check Result: 0
-CHEC PLAN JOB 6 PC: 3 2
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 6
+Job Time 6 JobNum 0 PC: 0
+Point for plan: 12Check Result: 0
+Count 2
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 5 Job Num 1
-20 0 0
-Job Time: 6 Job Num 1
-1
-0 0 0
-Job Time: 7 Job Num 1
-1
-28 0 0
-Job Time: 8 Job Num 1
-30 0 0
-Job Time: 9 Job Num 0
-4
-OKKKK
-6
-0 21 1
-HELLo
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -2176,13 +2026,13 @@ List Fill:
 [0] = 0; 
 [1] = 0; 
 [2] = 0; 
-[3] = 20; 
+[3] = 0; 
 
 List Result: 
 [0] = 0; 
-[0] = 1; 
-[0] = 2; 
-[20] = 3; 
+[200] = 1; 
+[200] = 2; 
+[200] = 3; 
 
 
      Job 6
@@ -2195,10 +2045,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 300; 
+[0] = 0; 
 [1] = 300; 
 [2] = 300; 
-[3] = 0; 
+[3] = 300; 
 
 List Fill: 
 [0] = 0; 
@@ -2207,7 +2057,10 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
+[0] = 0; 
+[300] = 1; 
+[300] = 2; 
+[300] = 3; 
 
 
      Job 7
@@ -2234,6 +2087,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[340] = 1; 
+[340] = 2; 
+[340] = 3; 
 
 
      Job 8
@@ -2260,6 +2116,8 @@ List Fill:
 List Result: 
 [0] = 1; 
 [0] = 2; 
+[260] = 0; 
+[260] = 3; 
 
 
      Job 9
@@ -2285,7 +2143,10 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
+[200] = 0; 
+[400] = 1; 
+[400] = 2; 
+[600] = 3; 
 
 
      Job 9
@@ -2318,15 +2179,70 @@ List Result:
 
 
 ======================
-MAke Queue
-Cur PPoint = 10
-Cur Job: 5 NUM 1 Slack 10
-Cur Job: 6 NUM 1 Slack 24
-Cur Job: 7 NUM 1 Slack 18
-Cur Job: 8 NUM 1 Slack 20
-Cur Job: 9 NUM 0 Slack 11
-Cur Job: 9 NUM 1 Slack 31
-MAke Queue
+UPDATE
+Job Time: 5 Job Num 1
+Want to plan: 20 Can Plan: 18
+Job Time: 6 Job Num 1
+Want to plan: 34 Can Plan: 18
+Job Time: 7 Job Num 1
+Want to plan: 28 Can Plan: 18
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 18
+Job Time: 9 Job Num 0
+Sender 4 was planned on this Module
+Sender 6 was planned on other Module
+Updated Left from 21 to 21 OR 15
+Want to plan: 21 Can Plan: 18
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 18
+======== J O B ========
+
+     Job 5
+Number: 1
+Period: 20
+Left: 20
+Right: 25
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 7
+Number: 1
+Period: 20
+Left: 28
+Right: 35
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 0
+Period: 20
+Left: 21
+Right: 30
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+======================
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 5 NUM 1 Slack 20
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
 Cur PPoint = 20
 Cur Job: 5 NUM 1 Slack 0
 Add in Queue
@@ -2341,71 +2257,13 @@ Job Time: 5 JbNum: 0 Job Slack 0
 Planning
 Job Time 5 JobNum 1 PC: 0
 Point for plan: 20Check Result: 0
-CHEC PLAN JOB 5 PC: 0 0
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 5
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 5 Job Num 1 PC 0 0 NUM: 1
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 6 Job Num 1
-1
-0 34 1
-HELLo
-Job Time: 7 Job Num 1
-1
-OKKKK
-28 25 1
-HELLo
-HERE
-Job Time: 8 Job Num 1
-30 0 0
-Job Time: 9 Job Num 0
-4
-OKKKK
-6
-0 21 1
-HELLo
-Job Time: 9 Job Num 1
-5
-7
-0 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -2419,10 +2277,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 300; 
-[1] = 500; 
-[2] = 500; 
-[3] = 200; 
+[0] = 0; 
+[1] = 700; 
+[2] = 700; 
+[3] = 700; 
 
 List Fill: 
 [0] = 0; 
@@ -2431,7 +2289,10 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
+[0] = 0; 
+[700] = 1; 
+[700] = 2; 
+[700] = 3; 
 
 
      Job 7
@@ -2446,9 +2307,9 @@ Input Mes From:
 
 List Bandwidth: 
 [0] = 0; 
-[1] = 640; 
-[2] = 640; 
-[3] = 640; 
+[1] = 940; 
+[2] = 940; 
+[3] = 940; 
 
 List Fill: 
 [0] = 0; 
@@ -2458,6 +2319,9 @@ List Fill:
 
 List Result: 
 [0] = 0; 
+[940] = 1; 
+[940] = 2; 
+[940] = 3; 
 
 
      Job 8
@@ -2484,6 +2348,8 @@ List Fill:
 List Result: 
 [0] = 1; 
 [0] = 2; 
+[260] = 0; 
+[260] = 3; 
 
 
      Job 9
@@ -2509,7 +2375,9 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[25] = 0; 
+[400] = 1; 
+[400] = 2; 
+[600] = 3; 
 
 
      Job 9
@@ -2542,117 +2410,121 @@ List Result:
 
 
 ======================
-MAke Queue
-Cur PPoint = 10
-Cur Job: 6 NUM 1 Slack 24
-Cur Job: 7 NUM 1 Slack 18
-Cur Job: 8 NUM 1 Slack 20
-Cur Job: 9 NUM 0 Slack 11
-Cur Job: 9 NUM 1 Slack 31
-MAke Queue
-Cur PPoint = 25
-Cur Job: 6 NUM 1 Slack 9
-Cur Job: 7 NUM 1 Slack 3
-Cur Job: 8 NUM 1 Slack 5
-Cur Job: 9 NUM 0 Slack -4
-Queue For Planning: 
-Job Time: 9 JbNum: 4 Job Slack -4
+UPDATE
+Job Time: 6 Job Num 1
+Sender 1 was planned on this Module
+Updated Left from 34 to 25 OR 20
+Want to plan: 25 Can Plan: 25
+Job Time: 7 Job Num 1
+Sender 1 was planned on this Module
+Updated Left from 28 to 25 OR 22
+Want to plan: 25 Can Plan: 25
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 18
+Job Time: 9 Job Num 0
+Sender 4 was planned on other Module
+Sender 6 was planned on this Module
+Updated Left from 21 to 18 OR 15
+Want to plan: 18 Can Plan: 18
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 25
+======== J O B ========
 
-Planning
-Job Time 9 JobNum 0 PC: 0
-Point for plan: 21Check Result: 0
-CHEC PLAN JOB 9 PC: 0 0
---------Message--------:
+     Job 6
+Number: 1
+Period: 20
+Left: 25
+Right: 40
 
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
+     Job 7
+Number: 1
+Period: 20
+Left: 25
+Right: 35
 
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
 
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
+     Job 9
+Number: 0
+Period: 20
+Left: 18
+Right: 30
 
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
 
 ======================
-Current size: 4
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 0 Slack 21
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
+Cur PPoint = 18
+Cur Job: 6 NUM 1 Slack 16
+Cur Job: 7 NUM 1 Slack 10
+Cur Job: 8 NUM 1 Slack 12
+Cur Job: 9 NUM 0 Slack 3
+Add in Queue
+Cur Job: 9 NUM 1 Slack 23
+Queue For Planning: 
+Job Time: 9 JbNum: 4 Job Slack 3
+
+Planning
+Job Time 9 JobNum 0 PC: 1
+Point for plan: 18Check Result: 0
+Count 2
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 5 Job Num 1 PC 0 0 NUM: 1
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
-Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
+Job Time: 9 Job Num 0 PC 1 1 NUM: 8
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 6 Job Num 1
-1
-0 34 1
-HELLo
-Job Time: 7 Job Num 1
-1
-OKKKK
-28 25 1
-HELLo
-HERE
-Job Time: 8 Job Num 1
-30 0 0
-Job Time: 9 Job Num 1
-5
-7
-41 0 0
 ======== J O B ========
 --------UNPLANNED--------:
 
      Job 6
 Number: 1
 Period: 20
-Left: 34
+Left: 25
 Right: 40
 Input Mes From:
 5 1
 
 
 List Bandwidth: 
-[0] = 300; 
-[1] = 500; 
-[2] = 500; 
-[3] = 200; 
+[0] = 0; 
+[1] = 455; 
+[2] = 455; 
+[3] = 455; 
 
 List Fill: 
 [0] = 0; 
-[1] = 0; 
+[1] = 27; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
+[0] = 0; 
+[455] = 2; 
+[455] = 3; 
 
 
      Job 7
 Number: 1
 Period: 20
-Left: 28
+Left: 25
 Right: 35
 Input Mes From:
 5 1
@@ -2661,18 +2533,20 @@ Input Mes From:
 
 List Bandwidth: 
 [0] = 0; 
-[1] = 640; 
-[2] = 640; 
-[3] = 640; 
+[1] = 662.333; 
+[2] = 662.333; 
+[3] = 662.333; 
 
 List Fill: 
-[0] = 30; 
-[1] = 0; 
+[0] = 0; 
+[1] = 27; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[30] = 0; 
+[0] = 0; 
+[662.333] = 2; 
+[662.333] = 3; 
 
 
      Job 8
@@ -2685,13 +2559,13 @@ Input Mes From:
 9 1
 
 List Bandwidth: 
-[0] = 260; 
+[0] = 47.6667; 
 [1] = 0; 
 [2] = 0; 
-[3] = 260; 
+[3] = 47.6667; 
 
 List Fill: 
-[0] = 30; 
+[0] = 0; 
 [1] = 0; 
 [2] = 0; 
 [3] = 0; 
@@ -2699,6 +2573,8 @@ List Fill:
 List Result: 
 [0] = 1; 
 [0] = 2; 
+[47.6667] = 0; 
+[47.6667] = 3; 
 
 
      Job 9
@@ -2712,10 +2588,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 0; 
-[1] = 280; 
-[2] = 280; 
-[3] = 280; 
+[0] = 51.3333; 
+[1] = 0; 
+[2] = 0; 
+[3] = 51.3333; 
 
 List Fill: 
 [0] = 0; 
@@ -2724,110 +2600,110 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[51.3333] = 0; 
+[51.3333] = 3; 
 
 
 ======================
-MAke Queue
-Cur PPoint = 10
-Cur Job: 6 NUM 1 Slack 24
-Cur Job: 7 NUM 1 Slack 18
-Cur Job: 8 NUM 1 Slack 20
-Cur Job: 9 NUM 1 Slack 31
-MAke Queue
-Cur PPoint = 30
-Cur Job: 6 NUM 1 Slack 4
-Cur Job: 7 NUM 1 Slack -2
+UPDATE
+Job Time: 6 Job Num 1
+Sender 1 was planned on this Module
+Updated Left from 25 to 25 OR 20
+Want to plan: 25 Can Plan: 25
+Job Time: 7 Job Num 1
+Sender 1 was planned on this Module
+Updated Left from 25 to 25 OR 22
+Want to plan: 25 Can Plan: 25
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 27
+Job Time: 9 Job Num 1
+Want to plan: 41 Can Plan: 27
+======== J O B ========
+
+     Job 6
+Number: 1
+Period: 20
+Left: 25
+Right: 40
+
+     Job 7
+Number: 1
+Period: 20
+Left: 25
+Right: 35
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 1
+Period: 20
+Left: 41
+Right: 50
+
+======================
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 7 NUM 1 Slack 28
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
+Cur PPoint = 25
+Cur Job: 6 NUM 1 Slack 9
+Add in Queue
+Cur Job: 7 NUM 1 Slack 3
+Add in Queue
+Cur Job: 8 NUM 1 Slack 5
+Cur Job: 9 NUM 1 Slack 16
 Queue For Planning: 
-Job Time: 7 JbNum: 2 Job Slack -2
+Job Time: 7 JbNum: 2 Job Slack 3
+Job Time: 6 JbNum: 1 Job Slack 9
 
 Planning
 Job Time 7 JobNum 1 PC: 0
-Point for plan: 28Check Result: 0
-CHEC PLAN JOB 7 PC: 0 0
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 3
+Point for plan: 25Check Result: 0
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 5 Job Num 1 PC 0 0 NUM: 1
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
 Job Time: 7 Job Num 1 PC 0 0 NUM: 5
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
-Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
+Job Time: 9 Job Num 0 PC 1 1 NUM: 8
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 6 Job Num 1
-1
-0 34 1
-HELLo
-Job Time: 8 Job Num 1
-30 0 0
-Job Time: 9 Job Num 1
-5
-OKKKK
-7
-41 35 1
-HELLo
-HERE
 ======== J O B ========
 --------UNPLANNED--------:
 
      Job 6
 Number: 1
 Period: 20
-Left: 34
+Left: 25
 Right: 40
 Input Mes From:
 5 1
 
 
 List Bandwidth: 
-[0] = 300; 
-[1] = 500; 
-[2] = 500; 
-[3] = 200; 
+[0] = 0; 
+[1] = 455; 
+[2] = 455; 
+[3] = 455; 
 
 List Fill: 
-[0] = 35; 
-[1] = 0; 
+[0] = 32; 
+[1] = 27; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
+[455] = 2; 
+[455] = 3; 
 
 
      Job 8
@@ -2840,13 +2716,13 @@ Input Mes From:
 9 1
 
 List Bandwidth: 
-[0] = 260; 
+[0] = 47.6667; 
 [1] = 0; 
 [2] = 0; 
-[3] = 260; 
+[3] = 47.6667; 
 
 List Fill: 
-[0] = 35; 
+[0] = 32; 
 [1] = 0; 
 [2] = 0; 
 [3] = 0; 
@@ -2854,6 +2730,7 @@ List Fill:
 List Result: 
 [0] = 1; 
 [0] = 2; 
+[47.6667] = 3; 
 
 
      Job 9
@@ -2867,10 +2744,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 0; 
-[1] = 680; 
-[2] = 680; 
-[3] = 680; 
+[0] = 51.3333; 
+[1] = 0; 
+[2] = 0; 
+[3] = 51.3333; 
 
 List Fill: 
 [0] = 0; 
@@ -2879,16 +2756,51 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[51.3333] = 0; 
+[51.3333] = 3; 
 
 
 ======================
-MAke Queue
-Cur PPoint = 10
-Cur Job: 6 NUM 1 Slack 24
-Cur Job: 8 NUM 1 Slack 20
-Cur Job: 9 NUM 1 Slack 31
-MAke Queue
+UPDATE
+Job Time: 6 Job Num 1
+Sender 1 was planned on other Module
+Updated Left from 25 to 34 OR 20
+Want to plan: 34 Can Plan: 0
+Job Time: 8 Job Num 1
+Want to plan: 30 Can Plan: 27
+Job Time: 9 Job Num 1
+Sender 5 was planned on other Module
+Updated Left from 41 to 36.5 OR 35
+Want to plan: 36.5 Can Plan: 27
+======== J O B ========
+
+     Job 6
+Number: 1
+Period: 20
+Left: 34
+Right: 40
+
+     Job 8
+Number: 1
+Period: 20
+Left: 30
+Right: 38
+
+     Job 9
+Number: 1
+Period: 20
+Left: 36.5
+Right: 50
+
+======================
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 8 NUM 1 Slack 30
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
 Cur PPoint = 30
 Cur Job: 6 NUM 1 Slack 4
 Cur Job: 8 NUM 1 Slack 0
@@ -2900,63 +2812,16 @@ Job Time: 8 JbNum: 3 Job Slack 0
 Planning
 Job Time 8 JobNum 1 PC: 1
 Point for plan: 30Check Result: 0
-CHEC PLAN JOB 8 PC: 1 1
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 2
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 5 Job Num 1 PC 0 0 NUM: 1
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
 Job Time: 7 Job Num 1 PC 0 0 NUM: 5
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
 Job Time: 8 Job Num 1 PC 1 1 NUM: 7
-Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 9 Job Num 0 PC 1 1 NUM: 8
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 6 Job Num 1
-1
-0 34 1
-HELLo
-Job Time: 9 Job Num 1
-5
-OKKKK
-7
-41 41 1
-HELLo
-HERE
 ======== J O B ========
 --------UNPLANNED--------:
 
@@ -2970,25 +2835,27 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 300; 
-[1] = 500; 
-[2] = 500; 
-[3] = 200; 
+[0] = 0; 
+[1] = 455; 
+[2] = 455; 
+[3] = 455; 
 
 List Fill: 
-[0] = 35; 
+[0] = 0; 
 [1] = 38; 
 [2] = 0; 
 [3] = 0; 
 
 List Result: 
-[0] = 3; 
+[0] = 0; 
+[455] = 2; 
+[455] = 3; 
 
 
      Job 9
 Number: 1
 Period: 20
-Left: 41
+Left: 36.5
 Right: 50
 Input Mes From:
 7 1
@@ -2996,10 +2863,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 200; 
-[1] = 680; 
-[2] = 680; 
-[3] = 880; 
+[0] = 451.333; 
+[1] = 0; 
+[2] = 0; 
+[3] = 451.333; 
 
 List Fill: 
 [0] = 0; 
@@ -3008,86 +2875,71 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[451.333] = 0; 
+[451.333] = 3; 
 
 
 ======================
-MAke Queue
-Cur PPoint = 18
-Cur Job: 6 NUM 1 Slack 16
-Cur Job: 9 NUM 1 Slack 23
-MAke Queue
-Cur PPoint = 34
-Cur Job: 6 NUM 1 Slack 0
+UPDATE
+Job Time: 6 Job Num 1
+Sender 1 was planned on this Module
+Updated Left from 34 to 25 OR 20
+Want to plan: 25 Can Plan: 32
+Job Time: 9 Job Num 1
+Sender 5 was planned on other Module
+Sender 7 was planned on this Module
+Updated Left from 36.5 to 38 OR 35
+Want to plan: 38 Can Plan: 38
+======== J O B ========
+
+     Job 6
+Number: 1
+Period: 20
+Left: 32
+Right: 40
+
+     Job 9
+Number: 1
+Period: 20
+Left: 38
+Right: 50
+
+======================
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 6 NUM 1 Slack 34
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
+Cur PPoint = 32
+Cur Job: 6 NUM 1 Slack 2
 Add in Queue
-Cur Job: 9 NUM 1 Slack 7
+Cur Job: 9 NUM 1 Slack 9
 Queue For Planning: 
-Job Time: 6 JbNum: 1 Job Slack 0
+Job Time: 6 JbNum: 1 Job Slack 2
 
 Planning
-Job Time 6 JobNum 1 PC: 3
-Point for plan: 34Check Result: 0
-CHEC PLAN JOB 6 PC: 3 2
---------Message--------:
-
-     Message 0
-Src: 5
-Dest: 6
-Size: 10
-Bandwidth: 1.11111
-Dur: 9
-
-     Message 1
-Src: 5
-Dest: 7
-Size: 15
-Bandwidth: 5
-Dur: 3
-
-     Message 2
-Src: 7
-Dest: 9
-Size: 20
-Bandwidth: 4.44444
-Dur: 4.5
-
-     Message 3
-Src: 8
-Dest: 9
-Size: 10
-Bandwidth: 3.33333
-Dur: 3
-
--------- Context Message--------:
-
-======================
-Current size: 1
+Job Time 6 JobNum 1 PC: 0
+Point for plan: 32Check Result: 0
 PLANNED
 Job Time: 5 Job Num 0 PC 0 0 NUM: 0
 Job Time: 5 Job Num 1 PC 0 0 NUM: 1
-Job Time: 6 Job Num 0 PC 3 2 NUM: 2
-Job Time: 6 Job Num 1 PC 3 2 NUM: 3
+Job Time: 6 Job Num 0 PC 0 0 NUM: 2
+Job Time: 6 Job Num 1 PC 0 0 NUM: 3
 Job Time: 7 Job Num 0 PC 0 0 NUM: 4
 Job Time: 7 Job Num 1 PC 0 0 NUM: 5
-Job Time: 8 Job Num 0 PC 2 1 NUM: 6
+Job Time: 8 Job Num 0 PC 1 1 NUM: 6
 Job Time: 8 Job Num 1 PC 1 1 NUM: 7
-Job Time: 9 Job Num 0 PC 0 0 NUM: 8
+Job Time: 9 Job Num 0 PC 1 1 NUM: 8
 Job Time: 10 Job Num 0 PC 1 1 NUM: 10
-UPDATE
-Job Time: 9 Job Num 1
-5
-OKKKK
-7
-41 41 1
-HELLo
-HERE
 ======== J O B ========
 --------UNPLANNED--------:
 
      Job 9
 Number: 1
 Period: 20
-Left: 41
+Left: 38
 Right: 50
 Input Mes From:
 7 1
@@ -3095,10 +2947,10 @@ Input Mes From:
 
 
 List Bandwidth: 
-[0] = 200; 
-[1] = 680; 
-[2] = 680; 
-[3] = 880; 
+[0] = 451.333; 
+[1] = 0; 
+[2] = 0; 
+[3] = 451.333; 
 
 List Fill: 
 [0] = 0; 
@@ -3107,44 +2959,61 @@ List Fill:
 [3] = 0; 
 
 List Result: 
-[0] = 0; 
+[0] = 1; 
+[0] = 2; 
+[451.333] = 0; 
+[451.333] = 3; 
 
 
 ======================
-MAke Queue
-Cur PPoint = 18
-Cur Job: 9 NUM 1 Slack 23
-MAke Queue
-Cur PPoint = 41
-Cur Job: 9 NUM 1 Slack 0
+UPDATE
+Job Time: 9 Job Num 1
+Sender 5 was planned on other Module
+Sender 7 was planned on this Module
+Updated Left from 38 to 38 OR 35
+Want to plan: 38 Can Plan: 38
+======== J O B ========
+
+     Job 9
+Number: 1
+Period: 20
+Left: 38
+Right: 50
+
+======================
+MAKE Queue
+Cur PPoint = 0
+Cur Job: 9 NUM 1 Slack 41
+MAKE Queue
+Cur PPoint = 38
+Cur Job: 9 NUM 1 Slack 3
 Add in Queue
 Queue For Planning: 
-Job Time: 9 JbNum: 4 Job Slack 0
+Job Time: 9 JbNum: 4 Job Slack 3
 
 Planning
-Job Time 9 JobNum 1 PC: 0
-Point for plan: 41Check Result: 0
-CHEC PLAN JOB 9 PC: 0 0
+Job Time 9 JobNum 1 PC: 1
+Point for plan: 38Check Result: 0
 --------PC--------:
 
        PC 0
 Job Start = 0 Time = 5
 Job Start = 5 Time = 7
+Job Start = 12 Time = 6
 Job Start = 20 Time = 5
-Job Start = 21 Time = 9
-Job Start = 28 Time = 7
-Job Start = 41 Time = 9
+Job Start = 25 Time = 7
+Job Start = 32 Time = 6
 
        PC 1
 Job Start = 0 Time = 10
+Job Start = 10 Time = 8
+Job Start = 18 Time = 9
 Job Start = 30 Time = 8
+Job Start = 38 Time = 9
 
        PC 2
-Job Start = 10 Time = 8
 
        PC 3
-Job Start = 14 Time = 6
-Job Start = 34 Time = 6
 
 --------Message--------:
 

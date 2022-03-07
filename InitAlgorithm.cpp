@@ -2,72 +2,9 @@
 
 #include "InitAlgorithm.h"
 
-/*TNode:: TNode(std::shared_ptr<Task> CurTask)
-{
-    CurrentTask = std::shared_ptr<Task>(CurTask);
-}
-
-
-InitAlgorithm:: InitAlgorithm(System* CurSystem)
-{
-    int j = 0;
-    for (const auto & CurTask: CurSystem->SystemTask)
-    {
-        TaskGraph.emplace_back(CurTask);
-        for (size_t i = 0; i < CurTask->OutMessage.size(); i++)
-        {
-            TaskGraph[j].Children.push_back(std::shared_ptr<Task>(CurSystem->SystemTask[CurTask->OutMessage[i]]));
-        }
-        j++;
-    }
-
-    j = 0;
-    for (const auto & CurTask: CurSystem->SystemTask)
-    {
-        for (size_t i = 0; i < CurTask->OutMessage.size(); i++)
-        {
-            TaskGraph[CurTask->OutMessage[i]].Parents.push_back(std::shared_ptr<Task>(CurSystem->SystemTask[j]));
-        }
-        j++;
-    }
-}
-
-void InitAlgorithm:: PrintTaskGraph()
-{
-    std::cout << "======TaskGraph======" << std::endl;
-    for (size_t i = 0; i < TaskGraph.size(); i++)
-    {
-        std::cout << "Task " << i << " :" << std::endl;
-        std::cout << "Task Time: " << TaskGraph[i].CurrentTask->Time << std::endl;
-        std::cout << "Task Children: " << std::endl;
-        for (size_t j = 0; j < TaskGraph[i].Children.size(); j++)
-        {
-            std::cout << TaskGraph[i].Children[j]->Time << std::endl;
-        }
-        std::cout << "Task Parents: " << std::endl;
-        for (size_t j = 0; j < TaskGraph[i].Parents.size(); j++)
-        {
-            std::cout << TaskGraph[i].Parents[j]->Time << std::endl;
-        }
-        std::cout << std::endl;
-    }
-    return;
-}
-
-*/
 
 void InitAlgorithm:: SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem)
 {
-    /*
-    std::cout << "-------NEW TASK-------" << std::endl;
-    std::cout << CurTask.Time << " " << CurTask.OutMessage.size() << std::endl;
-    std::cout << "CURRENT VECTOR" << std::endl;
-    for (size_t i = 0; i < CurPath.size(); i++)
-    {
-        std::cout << CurPath[i]->Time << " ";
-    }
-    std::cout << std::endl;
-    */
     if (CurTask->OutMessage.size() == 0)
     {
         CurPath.push_back(std::shared_ptr<Task>(CurTask));
@@ -145,9 +82,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
                 }
                 
             }
-        }
-
-        
+        }    
         MessageCount = AllPath[i].size() - 1;
         CurMesTime = AllPath[i][AllPath[i].size() - 1]->Right - CurTimeSum;
         
@@ -160,7 +95,6 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
         if (Mode == 1)
         {
             NewDur = CurMesTime / MessageCount;
-            //std::cout << "NEW DUR = " << NewDur << std::endl;
             for (size_t j = 0; j < AllPath[i].size() - 1; j++)
             {
                 for (const auto & CurMes: AllPath[i][j]->MesOut)
@@ -230,7 +164,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
 
     }
 
-    CurSystem->CurBLackCoef = BLackCoef(CurSystem->BTotal - CurBandwidth); 
+    CurSystem->CurBLackCoef = BLackCoef(CurBandwidth, CurSystem->BTotal); 
     
     double EarlestTimeForStart;
     for (size_t i = 0; i < AllPath.size(); i++)
@@ -262,7 +196,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
     double LatestTimeForEnd;
     for (size_t i = 0; i < AllPath.size(); i++)
     {
-        LatestTimeForEnd = 5000000.0; // todo
+        LatestTimeForEnd = CurSystem->LCMPeriod;
         for (int j = AllPath[i].size() - 1; j >= 0; j--)
         {
                 
@@ -283,13 +217,8 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
                 {
                     std::cout << "PROBLEMS INITALGORITHM MAIN LOOP" << std::endl;
                 }
-                
             }
         }
     }
-    
-    //PrintAllPath();  
-    
-    //CurSystem->PrintSystem();
     return;
 }

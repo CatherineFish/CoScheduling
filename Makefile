@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS += -std=c++17 -Wall -pedantic -Wextra -Wno-unused-variable
-SOURCES = main.cpp MainAlgorithm.cpp InitAlgorithm.cpp MainClasses.cpp CoefClasses.cpp 
+SOURCES = main.cpp MainAlgorithm.cpp InitAlgorithm.cpp MainClasses.cpp CoefClasses.cpp LimitedSearch.cpp 
 OBJECTS = $(SOURCES:.cpp=.o) 
 EXECUTABLE = main
 

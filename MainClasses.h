@@ -125,6 +125,7 @@ public:
     System(char * FileName);
     double PPoint = 0.0;
     double BTotal;
+    double CurBand = 0.0;
     double LCMPeriod;
     std::vector<std::shared_ptr<PC>> SystemPC;
     std::vector<std::shared_ptr<Task>> SystemTask;

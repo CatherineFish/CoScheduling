@@ -74,6 +74,7 @@ System::System (char * FileName)
                              Period, Time, Left, Right, CMessageSize));
         SystemTask[i]->InitLeft = SystemTask[i]->Left;
     }
+    LCMPeriod = LCM(PeriosVector);
     InputFile >> BTotal;    
     InputFile >> MessageNum;
     
@@ -89,8 +90,9 @@ System::System (char * FileName)
         SystemTask[Dest]->MesIn.emplace_back(std::weak_ptr<Message>(SystemMessage[i]));
         SystemMessage[i]->DestNum = Dest;
         SystemMessage[i]->SrcNum = Src;
+        SystemMessage[i]->StabilityCoef = StableCoef(LCMPeriod / SystemTask[Src]->Period);
     }
-    LCMPeriod = LCM(PeriosVector);
+    
     
     
     return;

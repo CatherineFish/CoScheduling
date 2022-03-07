@@ -2,6 +2,8 @@
 #include "MainAlgorithm.h"
 #include "InitAlgorithm.h"
 #include "CoefClasses.h"
+#include "LimitedSearch.h"
+
 
 int main(int argc, char* argv[])
 {

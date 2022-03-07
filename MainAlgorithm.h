@@ -20,14 +20,18 @@ public:
     ~MainAlgorithm() = default;
     void MainLoop (System* CurSystem);
     void UpdateBList(System* CurSystem);
-    void UpdateFList(std::vector<std::shared_ptr<PC>> SystemPC);
+    void UpdateFList(System* CurSystem);
     void UpdateRList();
     double UpdatePPoint(System* CurSystem);
     
     static bool SortBySlack(std::shared_ptr<Job> i, std::shared_ptr<Job> j);
+    
     double CritLimit = 250.0; //TODO
+    int LimitForPC; //TODO
+        
+
     void PrintJobSystem(System* CurSystem);
-    void UpdateLeft(std::shared_ptr<Job> CurJob, System* CurSystem);
+    void PrintJobSystemWithoutLists(System* CurSystem);
     int Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForPlan, System* CurSystem);
 
 };
