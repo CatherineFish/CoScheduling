@@ -140,11 +140,174 @@ std::shared_ptr<PC> LimitedSearch:: FirstSceme(std::shared_ptr<Job> CurJob,
     }
     auto JobForUnPlan = std::shared_ptr<Job>(*Planned.rend());
     auto PCForUnPlan = JobForUnPlan->JobPC;    
-    //UnPlan(Planned, CurSystem);
+    UnPlan(Planned, CurSystem);
     auto NewPC = FirstSceme(JobForUnPlan, PCForUnPlan, Planned, CurSystem, CSearch + 1, Iteration);
-    //Plan(JobForUnPlan, NewPC);
+    Plan(JobForUnPlan, NewPC, Planned, CurSystem);
     return FirstSceme(CurJob, nullptr, Planned, CurSystem, CSearch - 1, Iteration + 1);
 }
+
+
+void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
+                           std::shared_ptr<PC> CurPC, 
+                           std::vector<std::shared_ptr<Job>> Planned,
+                           System * CurSystem)
+{
+    int Idx = *(CurPC->PlannedOnPC.rend());
+    double NewPPoint = std::max(CurSystem->SystemJob[Idx]->Start + CurSystem->SystemJob[Idx]->Time, CurJob->InitLeft);
     
+    //Планируем
+    CurJob->JobPC = std::shared_ptr<PC>(CurPC);
+    CurJob->Start = NewPPoint;
+    CurJob->JobPC->PC_PPoint = NewPPoint + CurJob->Time;
+    CurJob->IsPlanned = true;
+
+    //Если предыдущий экземпляр работы запланирован на дургой модуль, формируем контекстное сообщение, если его нет
+    if (CurJob->PreviousJob && CurJob->PreviousJob->IsPlanned && 
+        CurJob->JobPC->ModNum != CurJob->PreviousJob->JobPC->ModNum)
+    {
+        bool IsContextMes = false;
+        for (const auto & CurMes: CurSystem->SystemCMessage)
+        {
+            if (CurMes->Src->NumOfTask == CurJob->NumOfTask)
+            {
+                //контекстное сообщение есть
+                IsContextMes = true;
+                break;
+            }
+        }
+        if (!IsContextMes)
+        {
+            //контекстного сообщения нет - создаём
+            CurSystem->SystemCMessage.push_back(std::make_shared<ContextMessage>(CurJob->PreviousJob, CurJob));
+            auto CurMes = CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1];
+            CurMes->Size = CurJob->CMessageSize;
+            CurMes->Dur = CurJob->Left -
+                          CurJob->PreviousJob->Start -
+                          CurJob->PreviousJob->Time;            
+            CurMes->Bandwidth = CurJob->CMessageSize / 
+                                (CurJob->Left -
+                                CurJob->PreviousJob->Start - 
+                                CurJob->PreviousJob->Time);
+            CurSystem->CurBLackCoef.Update(false, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
+            
+            CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                  std::shared_ptr<Job>>
+                                  (CurJob->PreviousJob, CurJob)] = CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1];
+                
+        }
+        //чтобы не перегружать CurSystem->JobMessage, там только одно контекстное сообщение 
+                      
+    }
+
+
+    //обновление коэффициентов для сообщений
+    for (const auto & SendIdx: CurJob->InMessage)
+    {
+        std::shared_ptr<Message> CurMes = CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                                                std::shared_ptr<Job>>
+                                                                (CurSystem->SystemJob[SendIdx],
+                                                                CurJob)];
+
+        if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum != CurJob->JobPC->ModNum)
+        {
+            if (CurMes->StabilityCoef.Value != 0) 
+            {
+                CurSystem->CurBand += CurMes->Bandwidth;
+            }  
+            CurMes->StabilityCoef.Update(true);
+            CurSystem->CurBLackCoef.Update(true, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
+        } else {
+            CurMes->StabilityCoef.Update(false);
+            CurSystem->CurBLackCoef.Update(false, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
+        }
+    }
     
+    //обновляем ядро, на которое поставили работу
+    CurJob->JobPC->PlannedOnPC.emplace_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob) - CurSystem->SystemJob.begin());
+    
+    //обновляем список запланированных работ
+    Planned.push_back(std::shared_ptr<Job>(CurJob));
+    
+    //обновляем точку планирования
+    CurSystem->PPoint = UpdatePPoint(CurSystem);        
+}
+
+
+double LimitedSearch:: UpdatePPoint(System* CurSystem)
+{
+    double NewPoint = CurSystem->LCMPeriod;
+    for (const auto & CurPC: CurSystem->SystemPC)
+    {
+        if (CurPC->PlannedOnPC.size() == 0) {
+            NewPoint = 0.0;
+            break;
+        }
+        NewPoint = std::min(NewPoint, CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start + 
+                            CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Time);
+    }
+    return NewPoint;
+}
+    
+void LimitedSearch:: UnPlan (std::vector<std::shared_ptr<Job>> Planned,
+                             System * CurSystem)
+{
+    size_t size = Planned.size() - 1;
+    
+
+    //Если предыдущий экземпляр работы запланирован на дургой модуль, есть контекстное сообщение, убираем его
+    if (Planned[size]->PreviousJob && Planned[size]->PreviousJob->IsPlanned && 
+        Planned[size]->JobPC->ModNum != Planned[size]->PreviousJob->JobPC->ModNum)
+    {
+        //проверяем, что контекстное сообщение создано только из-за этой работы, иначе не удаляем сообщение
+        for (const auto & CurMes: CurSystem->SystemCMessage)
+        {
+            if (CurMes->Src->NumOfTask == Planned[size]->NumOfTask)
+            {
+                if (CurMes->Dest == Planned[size])
+                {
+                    //контекстное из-за рассматриваемой работы - удаляем
+                    CurSystem->JobMessage.erase(std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>
+                                                (Planned[size]->PreviousJob, Planned[size]));
+                    std::remove(CurSystem->SystemCMessage.begin(), CurSystem->SystemCMessage.end(), CurMes);
+                }
+                break;
+            }
+        }             
+    }
+
+
+    //обновление коэффициентов для сообщений
+    for (const auto & SendIdx: Planned[size]->InMessage)
+    {
+        std::shared_ptr<Message> CurMes = CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, 
+                                                                std::shared_ptr<Job>>
+                                                                (CurSystem->SystemJob[SendIdx],
+                                                                Planned[size])];
+
+        if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum != Planned[size]->JobPC->ModNum)
+        {
+            if (Planned[size]->Num == CurMes->StabilityCoef.NumOfPlanned) {
+                CurMes->StabilityCoef.Reload(true);    
+            }
+            
+            CurSystem->CurBLackCoef.Reload(true, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
+        } else {
+            CurMes->StabilityCoef.Reload(false);
+            CurSystem->CurBLackCoef.Reload(false, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
+        }
+    }
+    
+    //обновляем ядро, на которое поставили работу, она там точно последняя
+    Planned[size]->JobPC->PlannedOnPC.pop_back();
+    Planned[size]->JobPC->PC_PPoint = CurSystem->SystemJob[*(Planned[size]->JobPC->PlannedOnPC.rend())]->Start + CurSystem->SystemJob[*(Planned[size]->JobPC->PlannedOnPC.rend())]->Time;
+    
+    //обновляем список запланированных работ
+    
+    //обновляем точку планирования
+    CurSystem->PPoint = UpdatePPoint(CurSystem);    
+    //delete Planned[size]->JobPC;//тут могут быть проблемы
+    Planned[size]->IsPlanned = false;
+    Planned.pop_back();
+    return;
+}  
 

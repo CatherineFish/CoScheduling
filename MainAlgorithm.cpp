@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <numeric>
 #include "MainAlgorithm.h"
+#include "LimitedSearch.h"
 
 
 MainAlgorithm:: MainAlgorithm(System* CurSystem)
@@ -388,12 +389,16 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         
         //проверяем, что можно запланировать
         CheckResult = Check(QueueForPlan[0], QueueForPlan[0]->ListResult.begin()->second, CurSystem);
-        
-        if (CheckResult); // TODO запуск ограниченного перебора
         std::cout << "Check Result: " << CheckResult << std::endl;
 
+        auto CurPC = QueueForPlan[0]->ListResult.begin()->second;
+        if (CheckResult == 2) // TODO запуск ограниченного перебора
+        {
+            LimitedSearch CurLimitedSerch(10);
+            CurPC = CurLimitedSerch.MainLoop(1, QueueForPlan[0], Planned, CurSystem); 
+        }
         //Планируем
-        QueueForPlan[0]->JobPC = std::shared_ptr<PC>(QueueForPlan[0]->ListResult.begin()->second);
+        QueueForPlan[0]->JobPC = std::shared_ptr<PC>(CurPC);
         QueueForPlan[0]->Start = CurSystem->PPoint;
         QueueForPlan[0]->JobPC->PC_PPoint = CurSystem->PPoint + QueueForPlan[0]->Time;
         QueueForPlan[0]->IsPlanned = true;
@@ -447,7 +452,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
 
             if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum != QueueForPlan[0]->JobPC->ModNum)
             {
-                if (CurMes->StabilityCoef.Value == 0) 
+                if (CurMes->StabilityCoef.Value != 0) 
                 {
                     CurSystem->CurBand += CurMes->Bandwidth;
                 }  
@@ -473,8 +478,9 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         }
         
         //обновляем ядро, на которое поставили работу
-        auto ItPCForPlan = find(CurSystem->SystemPC.begin(), CurSystem->SystemPC.end(), QueueForPlan[0]->JobPC);	
-        (*ItPCForPlan)->PlannedOnPC.emplace_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), QueueForPlan[0]) - CurSystem->SystemJob.begin());
+        //хз, зачем так сложно было
+        //auto ItPCForPlan = find(CurSystem->SystemPC.begin(), CurSystem->SystemPC.end(), QueueForPlan[0]->JobPC);	
+        QueueForPlan[0]->JobPC->PlannedOnPC.emplace_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), QueueForPlan[0]) - CurSystem->SystemJob.begin());
         
         //обновляем список запланированных работ
         Planned.push_back(std::shared_ptr<Job>(QueueForPlan[0]));

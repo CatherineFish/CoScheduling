@@ -30,4 +30,12 @@ public:
               std::shared_ptr<PC> PCForPlan,
               System* CurSystem,
               double NewPPoint);
+    void UnPlan (std::vector<std::shared_ptr<Job>> Planned,
+                 System * CurSystem);
+    double UpdatePPoint(System* CurSystem);
+    void Plan (std::shared_ptr<Job> CurJob,
+               std::shared_ptr<PC> CurPC,
+               std::vector<std::shared_ptr<Job>> Planned, 
+               System * CurSystem);
+
 };
