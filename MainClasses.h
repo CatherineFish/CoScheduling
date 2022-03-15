@@ -37,11 +37,13 @@ public:
     double Left;
     double Right; 
     double CMessageSize;
+    double MinLeft; //not diagrammed
+    double MaxLeft; //not diagrammed
+    bool IsInit = false; //not diagrammed
 public:
-    int JobInit;
-    double Slack;
-    std::vector<int> OutMessage;
-    std::vector<int> InMessage;
+    int JobInit; //not diagrammed
+    std::vector<int> OutMessage; //not diagrammed
+    std::vector<int> InMessage; //not diagrammed
     std::vector<std::weak_ptr<Message>> MesOut;
     std::vector<std::weak_ptr<Message>> MesIn;
     Task (int Period_ = 0, 
@@ -62,19 +64,14 @@ public:
     int Num;
     int NumOfTask;
     double Start;
-    double BandForCMes;
     std::shared_ptr<PC> JobPC; // сделать просто номером
     bool IsPlanned = false;
-    double IsCorrected = 0.0;
     std::shared_ptr<Job> PreviousJob;
 public:
     Job(int Num_): Num(Num_){}
     
     ~Job() = default;
     double Slack;
-    //std::vector<std::shared_ptr<Job>> JobTo;
-    //std::vector<std::shared_ptr<Job>> JobFrom;
-    
     std::map<std::shared_ptr<PC>, double> ListBandwidth; // сделать просто номером 
     std::map<std::shared_ptr<PC>, double> ListFill; // сделать просто номером 
     std::multimap<double, std::shared_ptr<PC>> ListResult; // сделать просто номером 
@@ -83,16 +80,13 @@ public:
 class Message
 {
 public:
-    std::shared_ptr<Task> Src; // просто номер
-    std::shared_ptr<Task> Dest; // просто номер
-    int SrcNum;
-    bool NotModify = false;
-    int DestNum;
+    std::shared_ptr<Task> Src;
+    std::shared_ptr<Task> Dest;
+    int SrcNum; //not diagrammed
+    int DestNum; //not diagrammed
     double Size;
     double Bandwidth = 0.0;
     double Dur = 0.0;
-    double TmpDur = 1.0;
-    bool IsPlanned = false;
     StableCoef StabilityCoef;
 public:
     Message(std::shared_ptr<Task> Src_, std::shared_ptr<Task> Dest_, double Size_): Size(Size_) 
@@ -107,8 +101,8 @@ public:
 class ContextMessage: public Message
 {
 public:
-    std::shared_ptr<Job> Src; // просто номер
-    std::shared_ptr<Job> Dest; // просто номер
+    std::shared_ptr<Job> Src;
+    std::shared_ptr<Job> Dest;
     
 public:
     ContextMessage(std::shared_ptr<Job> Src_, std::shared_ptr<Job> Dest_) 
@@ -126,7 +120,7 @@ public:
     double PPoint = 0.0;
     double BTotal;
     double CurBand = 0.0;
-    double LCMPeriod;
+    double LCMPeriod;//TODO
     std::vector<std::shared_ptr<PC>> SystemPC;
     std::vector<std::shared_ptr<Task>> SystemTask;
     std::vector<std::shared_ptr<Message>> SystemMessage;

@@ -73,6 +73,8 @@ System::System (char * FileName)
         SystemTask.push_back(std::make_shared<Task>(
                              Period, Time, Left, Right, CMessageSize));
         SystemTask[i]->InitLeft = SystemTask[i]->Left;
+        SystemTask[i]->MaxLeft = SystemTask[i]->Left;
+        SystemTask[i]->MinLeft = SystemTask[i]->Left;
     }
     LCMPeriod = LCM(PeriosVector);
     InputFile >> BTotal;    
@@ -83,7 +85,7 @@ System::System (char * FileName)
         InputFile >> Src >> Dest >> Size;
         SystemMessage.push_back(std::make_shared<Message>(
                                 SystemTask[Src], SystemTask[Dest], Size));
-        SystemMessage[i]->IsPlanned = true;
+        //SystemMessage[i]->IsPlanned = true;
         SystemTask[Src]->OutMessage.emplace_back(Dest);
         SystemTask[Src]->MesOut.push_back(std::weak_ptr<Message>(SystemMessage[i]));
         SystemTask[Dest]->InMessage.emplace_back(Src);
@@ -92,8 +94,6 @@ System::System (char * FileName)
         SystemMessage[i]->SrcNum = Src;
         SystemMessage[i]->StabilityCoef = StableCoef(LCMPeriod / SystemTask[Src]->Period);
     }
-    
-    
     
     return;
 }

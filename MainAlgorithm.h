@@ -23,15 +23,15 @@ public:
     void UpdateFList(System* CurSystem);
     void UpdateRList();
     double UpdatePPoint(System* CurSystem);
-    
+    //not diagrammed
     static bool SortBySlack(std::shared_ptr<Job> i, std::shared_ptr<Job> j);
     
     double CritLimit = 250.0; //TODO
-    int LimitForPC; //TODO
+    double LimitForPC; //TODO
         
 
-    void PrintJobSystem(System* CurSystem);
-    void PrintJobSystemWithoutLists(System* CurSystem);
+    void PrintJobSystem(System* CurSystem); //not diagrammed
+    void PrintJobSystemWithoutLists(); //not diagrammed
     int Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForPlan, System* CurSystem);
 
 };

@@ -329,7 +329,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         }
 
         //Смотрим, как обновились левые директивные сроки
-        PrintJobSystemWithoutLists(CurSystem);
+        PrintJobSystemWithoutLists();
         
         while (FlagPPoint < 0)
         {
@@ -539,7 +539,7 @@ void MainAlgorithm:: PrintJobSystem(System* CurSystem)
 }
 
 
-void MainAlgorithm:: PrintJobSystemWithoutLists(System* CurSystem)
+void MainAlgorithm:: PrintJobSystemWithoutLists()
 {
     std::cout << "======== J O B ========" << std::endl; 
     

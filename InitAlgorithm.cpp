@@ -1,5 +1,5 @@
 #include <algorithm>
-
+#include <limits>
 #include "InitAlgorithm.h"
 
 
@@ -12,7 +12,7 @@ void InitAlgorithm:: SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::
         CurPath.pop_back();
         return;    
     }
-
+    //TODO тут одно устловие
     CurPath.push_back(std::shared_ptr<Task>(CurTask));
     for (size_t i = 0; i < CurTask->OutMessage.size(); i++)
     {
@@ -51,6 +51,100 @@ InitAlgorithm::InitAlgorithm(System* CurSystem)
 }
 
 void InitAlgorithm:: MainLoop(System* CurSystem)
+{
+    double minLeft, maxLeft;
+    PrintAllPath();  
+    for (size_t i = 0; i < AllPath.size(); i++)
+    {
+        std::cout << "Path " << i << std::endl;
+        minLeft = 0.0;
+        for (size_t j = 0; j < AllPath[i].size(); j++)
+        {
+            //std::cout << "Task : " << j << " Min Left: " << AllPath[i][j]->MinLeft << " cur min left: " << minLeft << std::endl;
+            AllPath[i][j]->MinLeft = std::max(AllPath[i][j]->MinLeft, minLeft);
+            minLeft = AllPath[i][j]->MinLeft + AllPath[i][j]->Time;
+            //std::cout << "Task Min Left " << AllPath[i][j]->MinLeft << std::endl;
+        }
+        maxLeft = CurSystem->LCMPeriod;
+        for (int j = AllPath[i].size() - 1; j >= 0; j--)
+        {
+            maxLeft -= AllPath[i][j]->Time;
+            //std::cout << "Task : " << j << " cur max left: " << maxLeft << " Right - time: " << AllPath[i][j]->Right - AllPath[i][j]->Time << " Right " << AllPath[i][j]->Right << " Time " << AllPath[i][j]->Time << std::endl; 
+            AllPath[i][j]->MaxLeft = std::min(AllPath[i][j]->Right - AllPath[i][j]->Time, maxLeft);
+            maxLeft = AllPath[i][j]->MaxLeft;
+            //std::cout <<"Task Max Left: " << AllPath[i][j]->MaxLeft << " cur max left: " << maxLeft << std::endl;
+        }
+        
+    }
+
+    for (size_t i = 0; i < AllPath.size(); i++)
+    {
+        std::cout << "Path " << i << std::endl;
+        
+        for (size_t j = 0; j < AllPath[i].size(); j++)
+        {
+            if (AllPath[i][j]->IsInit)
+            {
+                continue;
+            }
+            std::cout << "Task : " << j << " Add: " << (AllPath[i][j]->MaxLeft - AllPath[i][j]->MinLeft) / 2 << " To " << AllPath[i][j]->Left << " Right " << AllPath[i][j]->Right << " Time " << AllPath[i][j]->Time << std::endl; 
+            if (j == 0)
+            {
+                AllPath[i][j]->Left = AllPath[i][j]->MinLeft;
+            } else 
+            {
+                AllPath[i][j]->Left = AllPath[i][j]->MinLeft + (AllPath[i][j]->MaxLeft - AllPath[i][j]->MinLeft) / 2;
+            }
+            if (AllPath[i][j]->Left + AllPath[i][j]->Time > AllPath[i][j]->Right) {
+                std::cout << "PROBLEMS" << std::endl;
+                exit(1);
+            }
+            AllPath[i][j]->Right = AllPath[i][j]->Left + AllPath[i][j]->Time;
+            
+            
+            AllPath[i][j]->IsInit = true;
+        }
+    }
+    CurSystem->PrintSystem();
+    //TODO профтись просто по задачам
+    for (size_t i = 0; i < AllPath.size(); i++)
+    {
+        std::cout << "Path " << i << std::endl;    
+        for (size_t j = 0; j < AllPath[i].size(); j++)
+        {
+            for (const auto & CurMes: AllPath[i][j]->MesOut)
+            {
+                std::shared_ptr<Message> p = CurMes.lock();    
+                if (p) 
+                {
+                    if (p->Dest == AllPath[i][j + 1])
+                    {
+                        std::cout << "Task from " << AllPath[i][j]->Time << " Task to " << AllPath[i][j + 1]->Time << " Time: " << AllPath[i][j + 1]->Left - AllPath[i][j]->Time - AllPath[i][j]->Left << std::endl;
+                        p->Dur = AllPath[i][j + 1]->Left - AllPath[i][j]->Right;
+                        if (p->Dur == 0)
+                        {
+                            p->Bandwidth = std::numeric_limits<double>::max();
+                        } else 
+                        {
+                            p->Bandwidth = p->Size / p->Dur;   
+                         }
+                        
+                    }
+                } else 
+                {
+                    std::cout << "PROBLEMS INITALGORITHM MAIN LOOP" << std::endl;
+                }    
+            }
+        }
+    }
+    //TODO
+    //CurSystem->CurBLackCoef = BLackCoef(CurBandwidth, CurSystem->BTotal); 
+    
+    return;
+}
+
+
+/*void InitAlgorithm:: MainLoop(System* CurSystem)
 {
     double CurTimeSum, CurMesTime, NewDur, SumMesSize;
     int Mode, MessageCount;
@@ -152,8 +246,15 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
                 {
                     if (p->Dest == AllPath[i][j + 1])
                     {
-                        p->Bandwidth = p->Size / p->Dur;
-                        CurBandwidth += p->Bandwidth;
+                        if (p->Dur == 0.0)
+                        {
+                            p->Bandwidth = std::numeric_limits<double>::max();
+                            
+                        } else {
+                            p->Bandwidth = p->Size / p->Dur;
+                            CurBandwidth += p->Bandwidth;
+                            
+                        }
                     }
                 } else 
                 {
@@ -221,4 +322,4 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
         }
     }
     return;
-}
+}*/
