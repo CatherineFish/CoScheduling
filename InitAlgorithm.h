@@ -8,16 +8,14 @@
 #include "CoefClasses.h"
 
 
-
 class InitAlgorithm
 {
 public:
     std::vector<std::vector<std::shared_ptr<Task>>> AllPath;
-public:
     InitAlgorithm(System* CurSystem);
     ~InitAlgorithm() = default;
     void MainLoop (System* CurSystem);
-    void PrintAllPath(); //not diagrammed
+    void PrintAllPath();
     void SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem);
     
 };

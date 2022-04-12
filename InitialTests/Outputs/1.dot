@@ -1,0 +1,152 @@
+digraph G {
+
+fontname="Helvetica,Arial,sans-serif"
+node [fontname="Helvetica,Arial,sans-serif"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+graph [rankdir = "LR"];
+node [fontsize = "20" shape = "ellipse"];
+
+    subgraph cluster_Mod_0{
+        color =chartreuse
+        style = bold
+        subgraph cluster_0{
+           node [style=filled]
+           color = black
+
+
+            "node5" [
+               label = "Start Time : 0 | End Time : 6 | Duration : 6"
+               shape = "record"
+               color = orangered1
+            ]
+
+            "node2" [
+               label = "Start Time : 6 | End Time : 10 | Duration : 4"
+               shape = "record"
+               color = aqua
+            ]
+
+            node5 -> node2
+
+            label = "PC #1"
+
+        }
+    }
+    subgraph cluster_Mod_1{
+        color =chocolate
+        style = bold
+        subgraph cluster_1{
+           node [style=filled]
+           color = black
+
+
+            "node3" [
+               label = "Start Time : 2 | End Time : 7 | Duration : 5"
+               shape = "record"
+               color = aquamarine
+            ]
+
+            "node0" [
+               label = "Start Time : 7 | End Time : 10 | Duration : 3"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node4" [
+               label = "Start Time : 22 | End Time : 27 | Duration : 5"
+               shape = "record"
+               color = aquamarine
+            ]
+
+            "node1" [
+               label = "Start Time : 27 | End Time : 30 | Duration : 3"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            node3 -> node0 -> node4 -> node1
+
+            label = "PC #2"
+
+        }
+        subgraph cluster_2{
+           node [style=filled]
+           color = black
+
+
+            "node6" [
+               label = "Start Time : 7 | End Time : 14 | Duration : 7"
+               shape = "record"
+               color = x11purple
+            ]
+
+            "node7" [
+               label = "Start Time : 27 | End Time : 34 | Duration : 7"
+               shape = "record"
+               color = x11purple
+            ]
+
+            node6 -> node7
+
+            label = "PC #3"
+
+        }
+    }
+    subgraph cluster_Mod_3{
+        color =coral
+        style = bold
+        subgraph cluster_3{
+           node [style=filled]
+           color = black
+
+
+            
+
+            label = "PC #4"
+
+        }
+    }
+    subgraph cluster_Mod_4{
+        color =cornflower
+        style = bold
+        subgraph cluster_4{
+           node [style=filled]
+           color = black
+
+
+            
+
+            label = "PC #5"
+
+        }
+    }
+    subgraph cluster_Mod_5{
+        color =crimson
+        style = bold
+        subgraph cluster_5{
+           node [style=filled]
+           color = black
+
+
+            
+
+            label = "PC #6"
+
+        }
+        subgraph cluster_6{
+           node [style=filled]
+           color = black
+
+
+            
+
+            label = "PC #7"
+
+        }
+    }
+
+
+
+
+}
+

@@ -11,27 +11,21 @@
 class MainAlgorithm
 {
 public:
-public:
     std::vector<std::shared_ptr<Job>> Unplanned;
-    std::vector<std::shared_ptr<Job>> Planned;
-    
-    
-    MainAlgorithm(System* CurSystem);
+    std::vector<std::shared_ptr<Job>> Planned;   
+    MainAlgorithm(System* CurSystem, int Mood_ = 1);
     ~MainAlgorithm() = default;
     void MainLoop (System* CurSystem);
     void UpdateBList(System* CurSystem);
     void UpdateFList(System* CurSystem);
     void UpdateRList();
     double UpdatePPoint(System* CurSystem);
-    //not diagrammed
     static bool SortBySlack(std::shared_ptr<Job> i, std::shared_ptr<Job> j);
-    
-    double CritLimit = 250.0; //TODO
-    double LimitForPC; //TODO
-        
-
-    void PrintJobSystem(System* CurSystem); //not diagrammed
-    void PrintJobSystemWithoutLists(); //not diagrammed
+    double CritLimit; // Experiment
+    double LimitForPC; // Experiment
+    void PrintJobSystem(System* CurSystem);
+    void PrintJobSystemWithoutLists();
     int Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForPlan, System* CurSystem);
-
+    void ResultCheck(System * CurSystem);
+    int Mood; // Experiment
 };

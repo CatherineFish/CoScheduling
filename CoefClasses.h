@@ -2,19 +2,20 @@
 #include <memory>
 
 class Message;
-//можнос делать через один общий абстрактный класс для коэффициентов
+
 class BLackCoef
 {
 public:
     double Value;
-    double NeedBand, HaveBand;
+    double NeedBand, HaveBand, NeedBandInit;
     void Update(bool IsPlanned, double NewBand, int CountNotPlanned, int CountInPeriod);
     BLackCoef(double NeedBand_ = 0.0, double HaveBand_ = 0.0);
     ~BLackCoef() = default;
     void Reload(bool IsBetter, 
                 double NewBand, 
                 int CountNotPlanned, 
-                int CountInPeriod); 
+                int CountInPeriod);
+    void ReUpdate(); 
 
 };
 
@@ -29,7 +30,5 @@ public:
     StableCoef(int CountInPeriod_ = 0): CountInPeriod(CountInPeriod_) {}
     ~StableCoef() = default;
     void Reload(bool IsBetter);
-
-        
 };
 

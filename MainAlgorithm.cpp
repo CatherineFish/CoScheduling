@@ -4,7 +4,7 @@
 #include "LimitedSearch.h"
 
 
-MainAlgorithm:: MainAlgorithm(System* CurSystem)
+MainAlgorithm:: MainAlgorithm(System* CurSystem, int Mood_) : Mood(Mood_)
 {
     int j = 0;
     for (size_t k = 0; k < CurSystem->SystemTask.size(); k++)
@@ -12,20 +12,17 @@ MainAlgorithm:: MainAlgorithm(System* CurSystem)
         CurSystem->SystemTask[k]->JobInit = j;
         for (size_t i = 0; i < CurSystem->LCMPeriod / CurSystem->SystemTask[k]->Period; i++)
         {
-            //TODO возможно, можно как-то по-умному копировать
-            CurSystem->SystemJob.push_back(std::make_shared<Job>(i));
-            CurSystem->SystemJob[j]->Period = CurSystem->SystemTask[k]->Period;
-            CurSystem->SystemJob[j]->Time = CurSystem->SystemTask[k]->Time;
-            CurSystem->SystemJob[j]->Left = CurSystem->SystemTask[k]->Left + i * CurSystem->SystemTask[k]->Period;
-            CurSystem->SystemJob[j]->Right = CurSystem->SystemTask[k]->Right + i * CurSystem->SystemTask[k]->Period;
+            CurSystem->SystemJob.push_back(std::make_shared<Job>(CurSystem->SystemTask[k]->Period,
+                                                                 CurSystem->SystemTask[k]->Time,
+                                                                 CurSystem->SystemTask[k]->Left + i * CurSystem->SystemTask[k]->Period,
+                                                                 CurSystem->SystemTask[k]->Right + i * CurSystem->SystemTask[k]->Period,
+                                                                 i, k));
+            CurSystem->SystemJob[j]->InitRight = CurSystem->SystemTask[k]->InitRight + i * CurSystem->SystemTask[k]->Period;
             CurSystem->SystemJob[j]->InitLeft = CurSystem->SystemTask[k]->InitLeft + i * CurSystem->SystemTask[k]->Period;
-            CurSystem->SystemJob[j]->NumOfTask = k;
-            CurSystem->SystemJob[j]->CMessageSize = CurSystem->SystemTask[k]->CMessageSize;
             CurSystem->SystemJob[j]->Slack = CurSystem->SystemJob[j]->Right - CurSystem->SystemJob[j]->Time - CurSystem->PPoint;
             if (i != 0)
             {
                 CurSystem->SystemJob[j]->PreviousJob = std::shared_ptr<Job>(CurSystem->SystemJob[j - 1]);                                              
-                
             }
             j++;                                              
         }
@@ -56,17 +53,18 @@ void MainAlgorithm:: UpdateFList (System * CurSystem)
     std::vector<int> NewLimit;
     for (size_t i = 0; i < Unplanned.size(); i++)
     {
+        Unplanned[i]->NewLimitForPlan.clear();
+        Unplanned[i]->isUpdated.clear();
         for (size_t k = 0; k < CurSystem->SystemPC.size(); k++)
         {
 
             //пересчитываем новый левый директивный интервал работы для конкретного ядра
             //учитываем, что надо ждать сообщения
-            //TODO сохранить эти значения, чтобы для планирования не пересчитывать эти значения
             bool flag = false;
             double NewLeft = 0.0;
             for (const auto & SendIdx: Unplanned[i]->InMessage)
             {
-                if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == Unplanned[i]->ListResult.begin()->second->ModNum)
+                if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurSystem->SystemPC[k]->ModNum)
                 {
                     flag = true;
                     NewLeft = std::max(NewLeft, CurSystem->SystemJob[SendIdx]->Start + CurSystem->SystemJob[SendIdx]->Time); 
@@ -78,6 +76,21 @@ void MainAlgorithm:: UpdateFList (System * CurSystem)
                     
                 }
             }
+            if (Unplanned[i]->PreviousJob && Unplanned[i]->PreviousJob->IsPlanned && Unplanned[i]->PreviousJob->JobPC->ModNum != Unplanned[i]->ListResult.begin()->second->ModNum)
+            {
+                //проверим, нет ли контекстного сообщения уже
+                for (const auto & CurMes: CurSystem->SystemCMessage)
+                {
+                    if (CurMes->Src->NumOfTask == Unplanned[i]->NumOfTask)
+                    {
+                        //контекстное сообщение есть
+                        NewLeft = std::max(NewLeft, Unplanned[i]->PreviousJob->Start + Unplanned[i]->PreviousJob->Time + CurMes->Dur);
+                        break;
+                    }
+                }
+            }
+            Unplanned[i]->NewLimitForPlan.push_back(NewLeft);
+            Unplanned[i]->isUpdated.push_back(flag);
             if (flag)
             {
                 Unplanned[i]->ListFill[std::shared_ptr<PC>(CurSystem->SystemPC[k])] = CurSystem->SystemPC[k]->PC_PPoint <= std::max(NewLeft, Unplanned[i]->InitLeft) ? 
@@ -104,6 +117,7 @@ void MainAlgorithm:: UpdateBList (System* CurSystem)
 {
     double CurScore;
     bool IsContextMes;
+    std::vector<int> NewLimit;
     for (size_t i = 0; i < Unplanned.size(); i++)
     {
         for (size_t k = 0; k < CurSystem->SystemPC.size(); k++)
@@ -117,8 +131,8 @@ void MainAlgorithm:: UpdateBList (System* CurSystem)
                                 CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>
                                                       (CurSystem->SystemJob[SendIdx], Unplanned[i])]->Size *
                                 CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>
-                                                      (CurSystem->SystemJob[SendIdx], Unplanned[i])]->StabilityCoef.Value;
-                                ; //внести коэффициент
+                                                      (CurSystem->SystemJob[SendIdx], Unplanned[i])]->StabilityCoef.Value *
+                                CurSystem->CurBLackCoef.Value;
                 }
             }
             if (Unplanned[i]->PreviousJob && Unplanned[i]->PreviousJob->IsPlanned && Unplanned[i]->PreviousJob->JobPC->ModNum != CurSystem->SystemPC[k]->ModNum)
@@ -142,40 +156,51 @@ void MainAlgorithm:: UpdateBList (System* CurSystem)
                 }
                 
             }
-            Unplanned[i]->ListBandwidth[std::shared_ptr<PC>(CurSystem->SystemPC[k])] = CurScore;   
+            Unplanned[i]->ListBandwidth[std::shared_ptr<PC>(CurSystem->SystemPC[k])] = CurScore;
+            NewLimit.emplace_back(CurScore);   
         }
     }
+    auto PCPointsSum = std::accumulate(NewLimit.begin(), NewLimit.end(), decltype(NewLimit)::value_type(0));
+    
+    CritLimit = PCPointsSum != 0.0 ? PCPointsSum / NewLimit.size() : PCPointsSum;
     return;
 }
 
 
 void MainAlgorithm:: UpdateRList ()
 {
-    /*сначала по пропускной способности, потом по ядрам
-    for (size_t i = 0; i < Unplanned.size(); i++)
+    if (Mood == 1)
     {
-        Unplanned[i]->ListResult.clear();
-        for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListBandwidth) 
+        //сначала по ядрам, потом по пропускной способности
+        for (size_t i = 0; i < Unplanned.size(); i++)
         {
-            if (CurPC.second < CritLimit)
+            Unplanned[i]->ListResult.clear();
+            for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListFill) 
             {
-                Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListFill[CurPC.first], CurPC.first));
+                if (CurPC.second <= LimitForPC)
+                {
+                    Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListBandwidth[CurPC.first], CurPC.first));
+                }
             }
         }
-    }
-    */
-
-    //сначала по ядрам, потом по пропускной способности
-    for (size_t i = 0; i < Unplanned.size(); i++)
+    } else if (Mood == 2)
     {
-        Unplanned[i]->ListResult.clear();
-        for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListFill) 
+        // сначала по пропускной способности, потом по ядрам
+        for (size_t i = 0; i < Unplanned.size(); i++)
         {
-            if (CurPC.second <= LimitForPC)
+            Unplanned[i]->ListResult.clear();
+            for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListBandwidth) 
             {
-                Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListBandwidth[CurPC.first], CurPC.first));
+                if (CurPC.second < CritLimit)
+                {
+                    Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListFill[CurPC.first], CurPC.first));
+                }
             }
         }
+    } else 
+    {
+        std::cout << "Invalid Mood for Result List" << std::endl;
+        exit(1);
     }
     return;
 }
@@ -222,7 +247,7 @@ int MainAlgorithm::Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForP
         }
         
     }
-    if (CurSystem->BTotal <= BSum + CurSystem->CurBand)
+    if (CurSystem->BTotal < BSum + CurSystem->CurBand)
     {
         return 1; // нехватка пропускной способности
     }
@@ -230,13 +255,22 @@ int MainAlgorithm::Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForP
     {
         return 2; //нарушение директивных сроков
     }
-    //CurSystem->CurBand += BSum;//обновление происходит в коэффициентах
     return 0;
 }
 
 double MainAlgorithm:: UpdatePPoint(System* CurSystem)
 {
     double NewPoint = CurSystem->LCMPeriod;
+    for (const auto & CurJob: Unplanned)
+    {
+        NewPoint = std::min(NewPoint, CurJob->Left);
+    }
+    
+    /*
+    //смысла ориентироваться на самое раннее время на ядрах нет
+    //работы планируется на свое самое ранее время
+    //если оно больше, чем на ядрах - будем двигать точку планирования
+    //если оно меньше - все равно не можем пдланировать
     for (const auto & CurPC: CurSystem->SystemPC)
     {
         if (CurPC->PlannedOnPC.size() == 0) {
@@ -246,12 +280,14 @@ double MainAlgorithm:: UpdatePPoint(System* CurSystem)
         NewPoint = std::min(NewPoint, CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start + 
                             CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Time);
     }
+    */
     return NewPoint;
 }
 
 
 void MainAlgorithm:: MainLoop(System* CurSystem)
 {
+    int repeat = 0;
     while (Unplanned.size())
     {
         std::vector<std::shared_ptr<Job>> QueueForPlan;
@@ -261,6 +297,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         
         //Что уже запланировано
         std::cout << "PLANNED" << std::endl;
+        std::cout << "Current band = " << CurSystem->CurBand << std::endl;
         for (size_t i = 0; i < CurSystem->SystemJob.size(); i++)
         {
             if (CurSystem->SystemJob[i]->IsPlanned)
@@ -285,44 +322,10 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         std::cout << "UPDATE" << std::endl;
         for (const auto & CurJob : Unplanned) 
         {
-            flag = false;
-            NewLeft = 0.0;
-            std::cout << "Job Time: " << CurJob->Time << " Job Num " << CurJob->Num << std::endl;
-            
-            for (const auto & SendIdx: CurJob->InMessage)
+            if (CurJob->isUpdated[CurJob->ListResult.begin()->second->Num])
             {
-                if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum == CurJob->ListResult.begin()->second->ModNum)
-                {
-                    flag = true;
-                    std::cout << "Sender " << SendIdx << " was planned on this Module" << std::endl;
-                    NewLeft = std::max(NewLeft, CurSystem->SystemJob[SendIdx]->Start + CurSystem->SystemJob[SendIdx]->Time); 
-                } else if (CurSystem->SystemJob[SendIdx]->IsPlanned)
-                {
-                    flag = true; 
-                    std::cout << "Sender " << SendIdx << " was planned on other Module" << std::endl;
-                	NewLeft = std::max(NewLeft, CurSystem->SystemJob[SendIdx]->Start + CurSystem->SystemJob[SendIdx]->Time + 
-                                       CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->Dur); 
-                	
-                }
-            }
-            if (CurJob->PreviousJob && CurJob->PreviousJob->IsPlanned && CurJob->PreviousJob->JobPC->ModNum != CurJob->ListResult.begin()->second->ModNum)
-            {
-                //проверим, нет ли контекстного сообщения уже
-                
-                for (const auto & CurMes: CurSystem->SystemCMessage)
-                {
-                    if (CurMes->Src->NumOfTask == CurJob->NumOfTask)
-                    {
-                        //контекстное сообщение есть
-                        NewLeft = std::max(NewLeft, CurJob->PreviousJob->Start + CurJob->PreviousJob->Time + CurMes->Dur);
-                        break;
-                    }
-                }
-            }
-            if (flag)
-            {
-                std::cout << "Updated Left from " << CurJob->Left << " to " << NewLeft << " OR " << CurJob->InitLeft << std::endl;
-                CurJob->Left = std::max(NewLeft, CurJob->InitLeft);    
+                std::cout << "Updated Left from " << CurJob->Left << " to " << CurJob->NewLimitForPlan[CurJob->ListResult.begin()->second->Num] << " OR " << CurJob->InitLeft << std::endl;
+                CurJob->Left = std::max(CurJob->NewLimitForPlan[CurJob->ListResult.begin()->second->Num], CurJob->InitLeft);    
             }
             std::cout << "Want to plan: " << CurJob->Left << " Can Plan: " << CurJob->ListResult.begin()->second->PC_PPoint << std::endl; 
             CurJob->Left = std::max(CurJob->ListResult.begin()->second->PC_PPoint, CurJob->Left);
@@ -344,9 +347,14 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                 std::cout << " Slack " << CurJob->Slack << std::endl;
                 if (CurJob->Slack < 0)
                 {
+                    // TODO на стресс-тест : эта работа встанет самой первой, попадет в перебор - то, чего мы и хотим
+                    // поправлять тут бессмысленно - левый директивный срок у задачи такой по первому ядру в результируеющем списке
+                    // проблемы в нем. Они решаются как раз в ограниченном переборе 
+                    /*
+                    // нужно обновлять точку планирования
                     if (Unplanned[0] == CurJob)
                     {
-                        //TODO нужно разбирать расписание от предыдущей работы
+                        //нужно разбирать расписание от предыдущей работы
                     }
                     CurSystem->PPoint = CurJob->Right - CurJob->Time;
                     QueueForPlan.clear();
@@ -354,6 +362,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                     // работа с отрицательным слаком поставлена первой, выходим из цикла и её хотим планировать
                     FlagPPoint = -1;
                     break;
+                    */
                 }
                 if (CurJob->Left <= CurSystem->PPoint)
                 {
@@ -362,7 +371,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                 }
             }
             if (FlagPPoint == -2) FlagPPoint = 0;
-            FlagPPoint *= -1;
+            // FlagPPoint *= -1;
             if (QueueForPlan.size() == 0)
             {
                 //нет работ для планирования из-за неправильной точки планирования
@@ -392,10 +401,47 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         std::cout << "Check Result: " << CheckResult << std::endl;
 
         auto CurPC = QueueForPlan[0]->ListResult.begin()->second;
-        if (CheckResult == 2) // TODO запуск ограниченного перебора
+        if (CheckResult == 1)
         {
-            LimitedSearch CurLimitedSerch(10);
-            CurPC = CurLimitedSerch.MainLoop(1, QueueForPlan[0], Planned, CurSystem); 
+            std::cout << "here problem with bandwidth" << std::endl;
+            LimitedSearch CurLimitedSerch(Mood, 10, 2, true);
+            std::cout << "limited serch object" << std::endl;
+            CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned);
+            if (!CurLimitedSerch.isSucces)
+            {
+                std::cout << "help" << std::endl;
+                Unplanned.clear();
+                for (const auto & CurJob: CurSystem->SystemJob)
+                {
+                    Unplanned.push_back(std::shared_ptr(CurJob));
+                }
+                for (const auto & CurJob: Planned)
+                {
+                    CurJob->IsPlanned = false;
+                    CurJob->ListBandwidth.clear();
+                    CurJob->ListFill.clear();
+                    CurJob->ListResult.clear();
+                }
+                for (const auto & CurPC: CurSystem->SystemPC)
+                {
+                    CurPC->PC_PPoint = 0;
+                }
+                for (const auto & CurMes : CurSystem->SystemMessage)
+                {
+                    CurMes->StabilityCoef.Value = 1.0;
+                    CurMes->StabilityCoef.NumOfPlanned = -1;
+                    CurMes->StabilityCoef.CountNotPlanned = 0;
+                }
+                Planned.clear();
+                CurSystem->SystemCMessage.clear();
+                CurSystem->CurBLackCoef.ReUpdate();
+                continue;
+            }
+                 
+        } else if (CheckResult == 2)
+        {
+            LimitedSearch CurLimitedSerch(Mood, 10, 2);
+            CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned); 
         }
         //Планируем
         QueueForPlan[0]->JobPC = std::shared_ptr<PC>(CurPC);
@@ -488,6 +534,23 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         //обновляем точку планирования
         CurSystem->PPoint = UpdatePPoint(CurSystem);
     }
+    for (const auto & CurMes: CurSystem->SystemMessage)
+    {
+        if (CurMes->StabilityCoef.CountNotPlanned == CurMes->StabilityCoef.CountInPeriod)
+        {
+           CurMes->ResultPlanned = false; 
+        }
+    }
+    for (const auto & CurMes: CurSystem->SystemCMessage)
+    {
+        if (CurMes->StabilityCoef.CountNotPlanned == CurMes->StabilityCoef.CountInPeriod)
+        {
+            std::cout << "CONTEXT MESSAGE NOT PLANNED" << std::endl;
+            return;
+            CurMes->ResultPlanned = false; 
+        } 
+
+    }
     return;
 }
 
@@ -555,4 +618,87 @@ void MainAlgorithm:: PrintJobSystemWithoutLists()
     std::cout << std::endl;
     std::cout << "======================" << std::endl; 
     return;  
+}
+
+void MainAlgorithm:: ResultCheck(System * CurSystem)
+{
+
+    if (Unplanned.size() != 0) 
+    {
+        std::cout << "Problem: not empty unplanned vector" << std::endl;
+        return;
+    }
+    if (Planned.size() != CurSystem->SystemJob.size()) 
+    {
+        std::cout << "Problem: not all jobs are planned" << std::endl;
+        return;
+    }
+    double SumBand = 0.0;
+    for (const auto & [Jobs, Mes] : CurSystem->JobMessage) {
+        if (Mes->ResultPlanned && (Jobs.first->JobPC->ModNum == Jobs.second->JobPC->ModNum)) 
+        {
+            std::cout << "Problem: message for jobs on one module" << std::endl;
+            std::cout << "Mes: " << Mes->Size << std::endl;
+            
+            //return;
+        } else {
+            std::cout << "OK Mes: " << Mes->Size << std::endl;    
+        }
+        if (!Mes->ResultPlanned && (Jobs.first->JobPC->ModNum != Jobs.second->JobPC->ModNum)) 
+        {
+            std::cout << "Problem: no message for jobs on different module" << std::endl;
+            std::cout << "Job SRC: " << Jobs.first->Start << " Time : " << Jobs.first->Time <<
+                         " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            return;
+        }
+            
+        if (Mes->ResultPlanned)
+        {
+            SumBand += Mes->Bandwidth;
+        }
+        if (Mes->ResultPlanned && Jobs.first->JobPC->ModNum != Jobs.second->JobPC->ModNum && Jobs.first->Start + Jobs.first->Time + Mes->Dur > Jobs.second->Start)
+        {
+            std::cout << "Problem: message arrives too late" << std::endl;
+            std::cout << "Job SRC: " << Jobs.first->Time << " Time : " << Jobs.first->Start <<
+                         " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            return;
+        }
+    }
+    for (const auto & Mes : CurSystem->SystemCMessage) {
+        if (Mes->Src->JobPC->ModNum == Mes->Dest->JobPC->ModNum) 
+        {
+            std::cout << "Problem: context message for jobs on one module" << std::endl;
+            return;
+        }
+        if (Mes->Src->Start + Mes->Src->Time + Mes->Dur > Mes->Dest->Start)
+        {
+            std::cout << "Problem: context message arrives too late" << std::endl;
+            return;
+        }
+        SumBand += Mes->Bandwidth;
+    }
+    if (SumBand > CurSystem->BTotal) 
+    {
+        std::cout << "Problem: messages have too much bandwidth" << std::endl;
+        return;
+    }
+    for (const auto & Job : CurSystem->SystemJob)
+    {
+        if (Job->Start + Job->Time > Job->InitRight) 
+        {
+            std::cout << "Problem: job ends too late" << std::endl;
+            std::cout << "Job: " << Job->Start << " Time: " << Job->Time << " Right : " << Job->InitRight << std::endl;
+            return;
+        }
+        if (Job->Start < Job->InitLeft) 
+        {
+            std::cout << "Problem: job starts too early" << std::endl;
+            return;
+        }
+
+    }
+    std::cout << "CHECK RESULT : OK" << std::endl;
+            
+    return;
+
 }
