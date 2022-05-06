@@ -1,0 +1,90 @@
+digraph G {
+
+fontname="Helvetica,Arial,sans-serif"
+node [fontname="Helvetica,Arial,sans-serif"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+graph [rankdir = "LR"];
+node [fontsize = "20" shape = "ellipse"];
+
+    subgraph cluster_Mod_0{
+        color =chartreuse
+        style = bold
+        subgraph cluster_0{
+           node [style=filled]
+           color = black
+
+
+            "node0" [
+               label = "Start Time : 0 | End Time : 1 | Duration : 1"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node2" [
+               label = "Start Time : 1 | End Time : 2 | Duration : 1"
+               shape = "record"
+               color = aqua
+            ]
+
+            "node1" [
+               label = "Start Time : 2 | End Time : 3 | Duration : 1"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node6" [
+               label = "Start Time : 3 | End Time : 4 | Duration : 1"
+               shape = "record"
+               color = x11purple
+            ]
+
+            node0 -> node2 -> node1 -> node6
+
+            label = "PC #1"
+
+        }
+    }
+    subgraph cluster_Mod_1{
+        color =chocolate
+        style = bold
+        subgraph cluster_1{
+           node [style=filled]
+           color = black
+
+
+            "node4" [
+               label = "Start Time : 0 | End Time : 1 | Duration : 1"
+               shape = "record"
+               color = orangered1
+            ]
+
+            "node3" [
+               label = "Start Time : 1 | End Time : 2 | Duration : 1"
+               shape = "record"
+               color = aquamarine
+            ]
+
+            "node5" [
+               label = "Start Time : 2 | End Time : 3 | Duration : 1"
+               shape = "record"
+               color = orangered1
+            ]
+
+            "node7" [
+               label = "Start Time : 3 | End Time : 4 | Duration : 1"
+               shape = "record"
+               color = thistle1
+            ]
+
+            node4 -> node3 -> node5 -> node7
+
+            label = "PC #2"
+
+        }
+    }
+
+
+
+
+}
+
