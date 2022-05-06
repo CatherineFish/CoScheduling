@@ -100,7 +100,6 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
             AllPath[i][j]->IsInit = true;
         }
     }
-    CurSystem->PrintSystem();
     for (const auto & CurMes : CurSystem->SystemMessage)
     {
         CurMes->Dur = CurMes->Dest->Left - CurMes->Src->Right;

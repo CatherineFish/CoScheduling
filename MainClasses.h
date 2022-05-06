@@ -44,9 +44,9 @@ public:
     std::vector<std::weak_ptr<Message>> MesOut;
     std::vector<std::weak_ptr<Message>> MesIn;
     Task (int Period_ = 0, 
-          int Time_ = 0, 
-          int Left_ = 0, 
-          int Right_ = 0,
+          double Time_ = 0, 
+          double Left_ = 0, 
+          double Right_ = 0,
           double CMessageSize_ = 0.0): Period(Period_), 
                                         Time(Time_), 
                                         Left(Left_), 
@@ -65,9 +65,9 @@ public:
     bool IsPlanned = false;
     std::shared_ptr<Job> PreviousJob;
     Job(int Period_ = 0, 
-        int Time_ = 0, 
-        int Left_ = 0, 
-        int Right_ = 0,
+        double Time_ = 0, 
+        double Left_ = 0, 
+        double Right_ = 0,
         double CMessageSize_ = 0.0,
         int Num_ = 0,
         int NumOfTask_ = 0): Task(Period_, Time_, Left_, Right_, CMessageSize_), 

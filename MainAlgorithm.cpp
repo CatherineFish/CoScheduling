@@ -12,11 +12,15 @@ MainAlgorithm:: MainAlgorithm(System* CurSystem, int Mood_) : Mood(Mood_)
         CurSystem->SystemTask[k]->JobInit = j;
         for (size_t i = 0; i < CurSystem->LCMPeriod / CurSystem->SystemTask[k]->Period; i++)
         {
+            std::cout << "LOOOK FOR PROBLEM TASK: " << CurSystem->SystemTask[k]->Left << " ";
             CurSystem->SystemJob.push_back(std::make_shared<Job>(CurSystem->SystemTask[k]->Period,
                                                                  CurSystem->SystemTask[k]->Time,
                                                                  CurSystem->SystemTask[k]->Left + i * CurSystem->SystemTask[k]->Period,
                                                                  CurSystem->SystemTask[k]->Right + i * CurSystem->SystemTask[k]->Period,
+                                                                 CurSystem->SystemTask[k]->CMessageSize,
                                                                  i, k));
+            std::cout << "JOB: " << CurSystem->SystemJob[j]->Left << " ";
+            
             CurSystem->SystemJob[j]->InitRight = CurSystem->SystemTask[k]->InitRight + i * CurSystem->SystemTask[k]->Period;
             CurSystem->SystemJob[j]->InitLeft = CurSystem->SystemTask[k]->InitLeft + i * CurSystem->SystemTask[k]->Period;
             CurSystem->SystemJob[j]->Slack = CurSystem->SystemJob[j]->Right - CurSystem->SystemJob[j]->Time - CurSystem->PPoint;
@@ -45,6 +49,7 @@ MainAlgorithm:: MainAlgorithm(System* CurSystem, int Mood_) : Mood(Mood_)
     {
         Unplanned.push_back(std::shared_ptr(CurJob));
     }
+    PrintJobSystem(CurSystem);
 }
 
 
