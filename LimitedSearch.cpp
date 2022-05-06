@@ -311,11 +311,22 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
 
 double LimitedSearch:: UpdatePPoint(System* CurSystem, std::vector<std::shared_ptr<Job>> Unplanned)
 {
-    double NewPoint = CurSystem->LCMPeriod;
+    double NewPoint = CurSystem->LCMPeriod, NewPoint2 = CurSystem->LCMPeriod;
     for (const auto & CurJob: Unplanned)
     {
         NewPoint = std::min(NewPoint, CurJob->Left);
     }
+    for (const auto & CurPC: CurSystem->SystemPC)
+    {
+        if (CurPC->PlannedOnPC.size() == 0) {
+            NewPoint2 = 0.0;
+            break;
+        }
+        NewPoint2 = std::min(NewPoint, CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start + 
+                            CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Time);
+    }
+
+    NewPoint = std::max(NewPoint, NewPoint2);
     /*
     for (const auto & CurPC: CurSystem->SystemPC)
     {

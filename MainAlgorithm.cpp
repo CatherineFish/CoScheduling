@@ -110,10 +110,9 @@ void MainAlgorithm:: UpdateFList (System * CurSystem)
             NewLimit.emplace_back(Unplanned[i]->ListFill[std::shared_ptr<PC>(CurSystem->SystemPC[k])]);
         }
     }
-
-    auto PCPointsSum = std::accumulate(NewLimit.begin(), NewLimit.end(), decltype(NewLimit)::value_type(0));
-    
+    double PCPointsSum = std::accumulate(NewLimit.begin(), NewLimit.end(), decltype(NewLimit)::value_type(0));
     LimitForPC = PCPointsSum != 0.0 ? PCPointsSum / NewLimit.size() : PCPointsSum;
+    
     return;
 }
 
@@ -187,9 +186,26 @@ void MainAlgorithm:: UpdateRList ()
                     Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListBandwidth[CurPC.first], CurPC.first));
                 }
             }
+            if (Unplanned[i]->ListResult.empty())
+            {
+                double CurMin = Unplanned[i]->ListFill.begin()->second;
+                for (std::pair<std::shared_ptr<PC>, double> CurPC : Unplanned[i]->ListFill) 
+                {
+                    if (CurPC.second == CurMin)
+                    {
+                        Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListBandwidth[CurPC.first], CurPC.first));
+                    } else if (CurPC.second < CurMin)
+                    {
+                        CurMin = CurPC.second;
+                        Unplanned[i]->ListResult.clear();
+                        Unplanned[i]->ListResult.insert(decltype(Unplanned[i]->ListResult)::value_type(Unplanned[i]->ListBandwidth[CurPC.first], CurPC.first));
+                    }
+                }    
+            }
         }
     } else if (Mood == 2)
     {
+        //TODO пустой резалт лист  как выше
         // сначала по пропускной способности, потом по ядрам
         for (size_t i = 0; i < Unplanned.size(); i++)
         {
@@ -265,12 +281,24 @@ int MainAlgorithm::Check(std::shared_ptr<Job> CurJob, std::shared_ptr<PC> PCForP
 
 double MainAlgorithm:: UpdatePPoint(System* CurSystem)
 {
-    double NewPoint = CurSystem->LCMPeriod;
+    double NewPoint = CurSystem->LCMPeriod, NewPoint2 = CurSystem->LCMPeriod;
     for (const auto & CurJob: Unplanned)
     {
         NewPoint = std::min(NewPoint, CurJob->Left);
     }
     
+    for (const auto & CurPC: CurSystem->SystemPC)
+    {
+    
+        if (CurPC->PlannedOnPC.size() == 0) {
+            NewPoint2 = 0.0;
+            break;
+        }
+        NewPoint2 = std::min(NewPoint2, CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start + 
+                            CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Time);    
+    }
+    
+    NewPoint = std::max(NewPoint, NewPoint2);
     /*
     //смысла ориентироваться на самое раннее время на ядрах нет
     //работы планируется на свое самое ранее время
@@ -394,8 +422,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         {
             std::cout << "Job Time: " << CurJob->Time << " JbNum: " << CurJob->NumOfTask << " Job Slack " << CurJob->Slack << std::endl;
         }
-        std::cout << std::endl;
-    
+        
         //что хотим запланировать
         std::cout << "Planning" << std::endl;
         std::cout << "Job Time " << QueueForPlan[0]->Time << " JobNum " << QueueForPlan[0]->Num << " PC: " << QueueForPlan[0]->ListResult.begin()->second->Num << std::endl;
@@ -406,6 +433,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         std::cout << "Check Result: " << CheckResult << std::endl;
 
         auto CurPC = QueueForPlan[0]->ListResult.begin()->second;
+
         if (CheckResult == 1)
         {
             std::cout << "here problem with bandwidth" << std::endl;
@@ -448,6 +476,8 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
             LimitedSearch CurLimitedSerch(Mood, 10, 2);
             CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned); 
         }
+        
+
         //Планируем
         QueueForPlan[0]->JobPC = std::shared_ptr<PC>(CurPC);
         QueueForPlan[0]->Start = CurSystem->PPoint;
@@ -491,7 +521,6 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
             //чтобы не перегружать CurSystem->JobMessage, там только одно контекстное сообщение 
                           
         }
-    
 
         //обновление коэффициентов для сообщений
         for (const auto & SendIdx: QueueForPlan[0]->InMessage)
@@ -530,7 +559,8 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         
         //обновляем ядро, на которое поставили работу
         //хз, зачем так сложно было
-        //auto ItPCForPlan = find(CurSystem->SystemPC.begin(), CurSystem->SystemPC.end(), QueueForPlan[0]->JobPC);	
+        //auto ItPCForPlan = find(CurSystem->SystemPC.begin(), CurSystem->SystemPC.end(), QueueForPlan[0]->JobPC);
+        
         QueueForPlan[0]->JobPC->PlannedOnPC.emplace_back(find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), QueueForPlan[0]) - CurSystem->SystemJob.begin());
         
         //обновляем список запланированных работ

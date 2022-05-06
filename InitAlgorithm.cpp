@@ -41,7 +41,7 @@ InitAlgorithm::InitAlgorithm(System* CurSystem)
 {
     for (size_t i = 0; i < CurSystem->SystemTask.size(); i++)
     {
-        if (CurSystem->SystemTask[i]->InMessage.size() == 0)
+        if (CurSystem->SystemTask[i]->InMessage.size() == 0 && CurSystem->SystemTask[i]->OutMessage.size() != 0)
         {
             std::vector<std::shared_ptr<Task>> NewPath;
             SearchPath(CurSystem->SystemTask[i], NewPath, CurSystem);   
