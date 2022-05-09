@@ -339,7 +339,9 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                              " Job Num " << CurSystem->SystemJob[i]->Num << 
                              " PC " << CurSystem->SystemJob[i]->JobPC->Num << 
                              " " << CurSystem->SystemJob[i]->JobPC->ModNum << 
-                             " NUM: " << i << std::endl;        
+                             " NUM: " << i << 
+                             " START: "<<CurSystem->SystemJob[i]->Start << std::endl;
+
             }
         }
 
@@ -436,8 +438,9 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
 
         if (CheckResult == 1)
         {
+            //TODO поменять порядок аргументов, чтобы вручную задавать перебор
             std::cout << "here problem with bandwidth" << std::endl;
-            LimitedSearch CurLimitedSerch(Mood, 10, 2, true);
+            LimitedSearch CurLimitedSerch(Mood, 100000, 100000, true);
             std::cout << "limited serch object" << std::endl;
             CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned);
             if (!CurLimitedSerch.isSucces)
@@ -473,7 +476,8 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                  
         } else if (CheckResult == 2)
         {
-            LimitedSearch CurLimitedSerch(Mood, 10, 2);
+
+            LimitedSearch CurLimitedSerch(Mood, 100000, 100000);
             CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned); 
         }
         

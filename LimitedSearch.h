@@ -18,8 +18,8 @@ public:
     bool isSucces = true; // флаг статуса завершения перебора при недостатке пропускной способности сети
     
     LimitedSearch(int RListMood_,
-                  int Depth = 10, 
-                  int Iteration = 2, 
+                  int Depth = 20, 
+                  int Iteration = 20, 
                   bool isBand=false) : RListMood(RListMood_),
                                        SearchDepth(Depth), 
                                        IterationDepth(Iteration),
@@ -27,29 +27,29 @@ public:
     ~LimitedSearch() = default;
     std::shared_ptr<PC> MainLoop(int Mode,
                                  std::shared_ptr<Job> CurJob,
-                                 std::vector<std::shared_ptr<Job>> Planned,
+                                 std::vector<std::shared_ptr<Job>> & Planned,
                                  System * CurSystem,
-                                 std::vector<std::shared_ptr<Job>> Unplanned);
+                                 std::vector<std::shared_ptr<Job>> & Unplanned);
     std::shared_ptr<PC> FirstSceme(std::shared_ptr<Job> CurJob,
                                    std::shared_ptr<PC> BadPC, 
-                                   std::vector<std::shared_ptr<Job>> Planned,
+                                   std::vector<std::shared_ptr<Job>> & Planned,
                                    System* CurSystem,
-                                   std::vector<std::shared_ptr<Job>> Unplanned,
+                                   std::vector<std::shared_ptr<Job>> & Unplanned,
                                    int CSearch = 1,
                                    int Iteration = 1);
     int Check(std::shared_ptr<Job> CurJob,
               std::shared_ptr<PC> PCForPlan,
               System* CurSystem,
               double NewPPoint);
-    void UnPlan (std::vector<std::shared_ptr<Job>> Planned,
+    void UnPlan (std::vector<std::shared_ptr<Job>> & Planned,
                  System * CurSystem,
-                 std::vector<std::shared_ptr<Job>> Unplanned);
-    double UpdatePPoint(System* CurSystem, std::vector<std::shared_ptr<Job>> Unplanned);
+                 std::vector<std::shared_ptr<Job>> & Unplanned);
+    double UpdatePPoint(System* CurSystem, std::vector<std::shared_ptr<Job>> & Unplanned);
     void Plan (std::shared_ptr<Job> CurJob,
                std::shared_ptr<PC> CurPC,
-               std::vector<std::shared_ptr<Job>> Planned, 
+               std::vector<std::shared_ptr<Job>> & Planned, 
                System * CurSystem,
-               std::vector<std::shared_ptr<Job>> Unplanned);
+               std::vector<std::shared_ptr<Job>> & Unplanned);
     void UpdateBList(System* CurSystem, std::shared_ptr<Job> CurJob);
     void UpdateFList(System* CurSystem, std::shared_ptr<Job> CurJob);
     void UpdateRList(std::shared_ptr<Job> CurJob);

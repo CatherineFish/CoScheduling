@@ -16,6 +16,6 @@ public:
     ~InitAlgorithm() = default;
     void MainLoop (System* CurSystem);
     void PrintAllPath();
-    void SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem);
+    void SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> & CurPath, System* CurSystem);
     
 };

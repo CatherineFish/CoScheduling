@@ -52,8 +52,8 @@ int LCM(std::vector<int> Periods)
 System::System (char * FileName)
 {
     int ModNum, PCNum, k = 0;
-    int TaskNum, Period, Time, Left, Right, Num;
-    double CMessageSize;
+    int TaskNum, Period, Num;
+    double CMessageSize, Time, Left, Right;
     int MessageNum, Src, Dest, Size;
     std::vector<int> PeriosVector;
     
@@ -115,17 +115,17 @@ System::System (char * FileName)
             exit(2);
         }
         pAttrib = pAttrib->Next();
-        if (pAttrib->QueryIntValue(&Time) != TIXML_SUCCESS) {
+        if (pAttrib->QueryDoubleValue(&Time) != TIXML_SUCCESS) {
             std::cerr << "Input file format error" << std::endl; 
             exit(2);
         }
         pAttrib = pAttrib->Next();
-        if (pAttrib->QueryIntValue(&Left) != TIXML_SUCCESS) {
+        if (pAttrib->QueryDoubleValue(&Left) != TIXML_SUCCESS) {
             std::cerr << "Input file format error" << std::endl; 
             exit(2);
         }
         pAttrib = pAttrib->Next();
-        if (pAttrib->QueryIntValue(&Right) != TIXML_SUCCESS) {
+        if (pAttrib->QueryDoubleValue(&Right) != TIXML_SUCCESS) {
             std::cerr << "Input file format error" << std::endl; 
             exit(2);
         }

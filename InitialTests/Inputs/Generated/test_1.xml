@@ -1,0 +1,27 @@
+<system modnum="2" tasknum="15" bandwidth="61.5" mesnum="2">
+    <modules>
+        <pc>2</pc>
+        <pc>1</pc>
+    </modules>
+    <tasks>
+        <task period="10" time="2" left="0" right="10" messize="6" />
+        <task period="10" time="2" left="0" right="10" messize="40" />
+        <task period="10" time="2" left="0" right="10" messize="49" />
+        <task period="20" time="2" left="0" right="20" messize="0" />
+        <task period="40" time="2" left="0" right="40" messize="64" />
+        <task period="20" time="2" left="0" right="20" messize="38" />
+        <task period="20" time="2" left="0" right="20" messize="18" />
+        <task period="40" time="2" left="0" right="40" messize="64" />
+        <task period="10" time="2" left="0" right="10" messize="66" />
+        <task period="10" time="2" left="0" right="10" messize="33" />
+        <task period="40" time="2" left="0" right="40" messize="54" />
+        <task period="10" time="2" left="0" right="10" messize="44" />
+        <task period="10" time="2" left="0" right="10" messize="1" />
+        <task period="20" time="2" left="0" right="20" messize="6" />
+        <task period="20" time="2" left="0" right="20" messize="40" />
+    </tasks>
+    <messages>
+        <mes src="10" dest="4" size="69" />
+        <mes src="11" dest="8" size="59" />
+    </messages>
+</system>

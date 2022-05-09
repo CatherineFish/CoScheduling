@@ -3,7 +3,7 @@
 #include "InitAlgorithm.h"
 
 
-void InitAlgorithm:: SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> CurPath, System* CurSystem)
+void InitAlgorithm:: SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::shared_ptr<Task>> & CurPath, System* CurSystem)
 {
     CurPath.push_back(std::shared_ptr<Task>(CurTask));
     
