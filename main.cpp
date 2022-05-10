@@ -16,15 +16,15 @@ int main(int argc, char* argv[])
     InitAlgorithm CurInitAlg(&CurSystem);
     
     CurInitAlg.MainLoop(&CurSystem);
-    CurSystem.PrintSystem();
+    //CurSystem.PrintSystem();
     
     MainAlgorithm CurMainAlg(&CurSystem);
     
     CurMainAlg.MainLoop(&CurSystem);
     //CurMainAlg.PrintJobSystem(&CurSystem);
     
-    CurSystem.PrintPC();
-    CurSystem.PrintMessages();
+    //CurSystem.PrintPC();
+    //CurSystem.PrintMessages();
     CurSystem.ExportToDotFile(argv[2]);
     CurMainAlg.ResultCheck(&CurSystem);
     

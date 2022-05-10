@@ -1,0 +1,1040 @@
+1
+2
+1
+3
+ALL: 
+2 ****
+3 ******
+2
+CP: 
+2 **
+3 ***
+
+2 **
+3 ***
+
+
+PC NUM : 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 3 add = 0
+cur period = 3 add = 0
+cur period = 3 add = 0
+Period : 0
+2 2 3 3 3 
+Period : 1
+2 2 3 3 3 
+Period : 2
+2 2 3 3 3 
+Period : 3
+2 2 3 3 3 
+Period : 4
+2 2 3 3 3 
+Period : 5
+2 2 3 3 3 
+Period : 6
+2 2 3 3 3 
+Period : 7
+2 2 3 3 3 
+
+PC NUM : 1
+cur period = 3 add = 0
+cur period = 3 add = 0
+cur period = 3 add = 0
+Period : 0
+3 3 3 2 2 
+Period : 1
+3 3 3 2 2 
+Period : 2
+3 3 3 2 2 
+Period : 3
+3 3 3 2 2 
+Period : 4
+3 3 3 2 2 
+Period : 5
+3 3 3 2 2 
+Period : 6
+3 3 3 2 2 
+Period : 7
+3 3 3 2 2 
+MAx Lenght = 5
+
+PC NUM : 0
+Dur in this period = 4 2 5
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 3
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 4
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 5
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 6
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 7
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 8
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+New Job 0
+bb 0 Left 0
+Start 0
+Period 20
+Time 4
+Left 0
+Right 20
+InitLeft 0
+InitRight 20
+NumOfTask 0
+
+New Job 1
+bb 0 Left 4
+Start 4
+Period 20
+Time 4
+Left 0
+Right 20
+InitLeft 0
+InitRight 20
+NumOfTask 1
+
+New Job 2
+bb 0 Left 8
+Start 8
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 2
+
+New Job 3
+bb 0 Left 12
+Start 12
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 3
+
+New Job 4
+bb 0 Left 16
+Start 16
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 4
+
+New Job 5
+bb 20 Left 0
+Start 20
+Period 20
+Time 4
+Left 20
+Right 40
+InitLeft 20
+InitRight 40
+NumOfTask 0
+
+New Job 6
+bb 20 Left 4
+Start 24
+Period 20
+Time 4
+Left 20
+Right 40
+InitLeft 20
+InitRight 40
+NumOfTask 1
+
+New Job 7
+bb 20 Left 8
+Start 8
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 2
+
+New Job 8
+bb 20 Left 12
+Start 12
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 3
+
+New Job 9
+bb 20 Left 16
+Start 16
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 4
+
+New Job 10
+bb 40 Left 0
+Start 40
+Period 20
+Time 4
+Left 40
+Right 60
+InitLeft 40
+InitRight 60
+NumOfTask 0
+
+New Job 11
+bb 40 Left 4
+Start 44
+Period 20
+Time 4
+Left 40
+Right 60
+InitLeft 40
+InitRight 60
+NumOfTask 1
+
+New Job 12
+bb 40 Left 8
+Start 48
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 2
+
+New Job 13
+bb 40 Left 12
+Start 52
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 3
+
+New Job 14
+bb 40 Left 16
+Start 56
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 4
+
+New Job 15
+bb 60 Left 0
+Start 60
+Period 20
+Time 4
+Left 60
+Right 80
+InitLeft 60
+InitRight 80
+NumOfTask 0
+
+New Job 16
+bb 60 Left 4
+Start 64
+Period 20
+Time 4
+Left 60
+Right 80
+InitLeft 60
+InitRight 80
+NumOfTask 1
+
+New Job 17
+bb 60 Left 8
+Start 48
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 2
+
+New Job 18
+bb 60 Left 12
+Start 52
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 3
+
+New Job 19
+bb 60 Left 16
+Start 56
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 4
+
+New Job 20
+bb 80 Left 0
+Start 80
+Period 20
+Time 4
+Left 80
+Right 100
+InitLeft 80
+InitRight 100
+NumOfTask 0
+
+New Job 21
+bb 80 Left 4
+Start 84
+Period 20
+Time 4
+Left 80
+Right 100
+InitLeft 80
+InitRight 100
+NumOfTask 1
+
+New Job 22
+bb 80 Left 8
+Start 88
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 2
+
+New Job 23
+bb 80 Left 12
+Start 92
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 3
+
+New Job 24
+bb 80 Left 16
+Start 96
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 4
+
+New Job 25
+bb 100 Left 0
+Start 100
+Period 20
+Time 4
+Left 100
+Right 120
+InitLeft 100
+InitRight 120
+NumOfTask 0
+
+New Job 26
+bb 100 Left 4
+Start 104
+Period 20
+Time 4
+Left 100
+Right 120
+InitLeft 100
+InitRight 120
+NumOfTask 1
+
+New Job 27
+bb 100 Left 8
+Start 88
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 2
+
+New Job 28
+bb 100 Left 12
+Start 92
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 3
+
+New Job 29
+bb 100 Left 16
+Start 96
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 4
+
+New Job 30
+bb 120 Left 0
+Start 120
+Period 20
+Time 4
+Left 120
+Right 140
+InitLeft 120
+InitRight 140
+NumOfTask 0
+
+New Job 31
+bb 120 Left 4
+Start 124
+Period 20
+Time 4
+Left 120
+Right 140
+InitLeft 120
+InitRight 140
+NumOfTask 1
+
+New Job 32
+bb 120 Left 8
+Start 128
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 2
+
+New Job 33
+bb 120 Left 12
+Start 132
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 3
+
+New Job 34
+bb 120 Left 16
+Start 136
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 4
+
+New Job 35
+bb 140 Left 0
+Start 140
+Period 20
+Time 4
+Left 140
+Right 160
+InitLeft 140
+InitRight 160
+NumOfTask 0
+
+New Job 36
+bb 140 Left 4
+Start 144
+Period 20
+Time 4
+Left 140
+Right 160
+InitLeft 140
+InitRight 160
+NumOfTask 1
+
+New Job 37
+bb 140 Left 8
+Start 128
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 2
+
+New Job 38
+bb 140 Left 12
+Start 132
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 3
+
+New Job 39
+bb 140 Left 16
+Start 136
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 4
+
+
+PC NUM : 1
+Dur in this period = 4 2 5
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 3
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 4
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 5
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 6
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 7
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+Period : 8
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  
+New Job 40
+bb 0 Left 0
+Start 0
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 5
+
+New Job 41
+bb 0 Left 4
+Start 4
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 6
+
+New Job 42
+bb 0 Left 8
+Start 8
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 7
+
+New Job 43
+bb 0 Left 12
+Start 12
+Period 20
+Time 4
+Left 0
+Right 20
+InitLeft 0
+InitRight 20
+NumOfTask 8
+
+New Job 44
+bb 0 Left 16
+Start 16
+Period 20
+Time 4
+Left 0
+Right 20
+InitLeft 0
+InitRight 20
+NumOfTask 9
+
+New Job 45
+bb 20 Left 0
+Start 0
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 5
+
+New Job 46
+bb 20 Left 4
+Start 4
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 6
+
+New Job 47
+bb 20 Left 8
+Start 8
+Period 40
+Time 4
+Left 0
+Right 40
+InitLeft 0
+InitRight 40
+NumOfTask 7
+
+New Job 48
+bb 20 Left 12
+Start 32
+Period 20
+Time 4
+Left 20
+Right 40
+InitLeft 20
+InitRight 40
+NumOfTask 8
+
+New Job 49
+bb 20 Left 16
+Start 36
+Period 20
+Time 4
+Left 20
+Right 40
+InitLeft 20
+InitRight 40
+NumOfTask 9
+
+New Job 50
+bb 40 Left 0
+Start 40
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 5
+
+New Job 51
+bb 40 Left 4
+Start 44
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 6
+
+New Job 52
+bb 40 Left 8
+Start 48
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 7
+
+New Job 53
+bb 40 Left 12
+Start 52
+Period 20
+Time 4
+Left 40
+Right 60
+InitLeft 40
+InitRight 60
+NumOfTask 8
+
+New Job 54
+bb 40 Left 16
+Start 56
+Period 20
+Time 4
+Left 40
+Right 60
+InitLeft 40
+InitRight 60
+NumOfTask 9
+
+New Job 55
+bb 60 Left 0
+Start 40
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 5
+
+New Job 56
+bb 60 Left 4
+Start 44
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 6
+
+New Job 57
+bb 60 Left 8
+Start 48
+Period 40
+Time 4
+Left 40
+Right 80
+InitLeft 40
+InitRight 80
+NumOfTask 7
+
+New Job 58
+bb 60 Left 12
+Start 72
+Period 20
+Time 4
+Left 60
+Right 80
+InitLeft 60
+InitRight 80
+NumOfTask 8
+
+New Job 59
+bb 60 Left 16
+Start 76
+Period 20
+Time 4
+Left 60
+Right 80
+InitLeft 60
+InitRight 80
+NumOfTask 9
+
+New Job 60
+bb 80 Left 0
+Start 80
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 5
+
+New Job 61
+bb 80 Left 4
+Start 84
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 6
+
+New Job 62
+bb 80 Left 8
+Start 88
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 7
+
+New Job 63
+bb 80 Left 12
+Start 92
+Period 20
+Time 4
+Left 80
+Right 100
+InitLeft 80
+InitRight 100
+NumOfTask 8
+
+New Job 64
+bb 80 Left 16
+Start 96
+Period 20
+Time 4
+Left 80
+Right 100
+InitLeft 80
+InitRight 100
+NumOfTask 9
+
+New Job 65
+bb 100 Left 0
+Start 80
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 5
+
+New Job 66
+bb 100 Left 4
+Start 84
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 6
+
+New Job 67
+bb 100 Left 8
+Start 88
+Period 40
+Time 4
+Left 80
+Right 120
+InitLeft 80
+InitRight 120
+NumOfTask 7
+
+New Job 68
+bb 100 Left 12
+Start 112
+Period 20
+Time 4
+Left 100
+Right 120
+InitLeft 100
+InitRight 120
+NumOfTask 8
+
+New Job 69
+bb 100 Left 16
+Start 116
+Period 20
+Time 4
+Left 100
+Right 120
+InitLeft 100
+InitRight 120
+NumOfTask 9
+
+New Job 70
+bb 120 Left 0
+Start 120
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 5
+
+New Job 71
+bb 120 Left 4
+Start 124
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 6
+
+New Job 72
+bb 120 Left 8
+Start 128
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 7
+
+New Job 73
+bb 120 Left 12
+Start 132
+Period 20
+Time 4
+Left 120
+Right 140
+InitLeft 120
+InitRight 140
+NumOfTask 8
+
+New Job 74
+bb 120 Left 16
+Start 136
+Period 20
+Time 4
+Left 120
+Right 140
+InitLeft 120
+InitRight 140
+NumOfTask 9
+
+New Job 75
+bb 140 Left 0
+Start 120
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 5
+
+New Job 76
+bb 140 Left 4
+Start 124
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 6
+
+New Job 77
+bb 140 Left 8
+Start 128
+Period 40
+Time 4
+Left 120
+Right 160
+InitLeft 120
+InitRight 160
+NumOfTask 7
+
+New Job 78
+bb 140 Left 12
+Start 152
+Period 20
+Time 4
+Left 140
+Right 160
+InitLeft 140
+InitRight 160
+NumOfTask 8
+
+New Job 79
+bb 140 Left 16
+Start 156
+Period 20
+Time 4
+Left 140
+Right 160
+InitLeft 140
+InitRight 160
+NumOfTask 9
+
+GEn Messages
+PC : 1 Period : 2 Num : 3 TaskPeriod : 2
+PC TO : 1 PeriodUntil : 2
+PC : 1 Period : 1 Num : 4 TaskPeriod : 2
+PC TO : 1 PeriodUntil : 2
+1 0  3
+1 1  3
+1 2  3
+1 3  2
+1 4  2
+PC : 0 Period : 1 Num : 1 TaskPeriod : 2
+PC TO : 0 PeriodUntil : 2
+1 0  2
+1 1  2
+1 2  3
+1 3  3
+1 4  3
+PC : 1 Period : 1 Num : 3 TaskPeriod : 2
+PC TO : 1 PeriodUntil : 2
+1 0  3
+1 1  3
+1 2  3
+1 3  2
+1 4  2
+PC : 0 Period : 3 Num : 4 TaskPeriod : 3
+PC TO : 1 PeriodUntil : 3
+PC : 0 Period : 2 Num : 3 TaskPeriod : 3
+PC TO : 0 PeriodUntil : 3
+2 0  2
+2 1  2
+2 2  3
+2 3  3
+2 4  3
+PC : 0 Period : 0 Num : 2 TaskPeriod : 3
+PC TO : 1 PeriodUntil : 3
+0 0  3
+1 0  3
+2 0  3
+49 4 12.25 0
+12.25
+Message 0
+5 2
+================================
+0 0 0
+1 1 1
+2 2 2
+3 3 3
+Modules
+2
+12.25
+24.5
+Problem: message for jobs on one module
+Mes: 49
+Problem: message for jobs on one module
+Mes: 49
+Problem: message for jobs on one module
+Mes: 49
+Problem: message for jobs on one module
+Mes: 49
+REs Band 49
+Problem: messages have too much bandwidth
+CHECK RESULT : OK

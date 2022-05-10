@@ -1,0 +1,27 @@
+<system modnum="1" tasknum="16" bandwidth="16.0833" mesnum="2">
+    <modules>
+        <pc>3</pc>
+    </modules>
+    <tasks>
+        <task period="24" time="4" left="0" right="24" messize="68" />
+        <task period="24" time="4" left="0" right="24" messize="28" />
+        <task period="24" time="4" left="0" right="24" messize="34" />
+        <task period="48" time="4" left="0" right="48" messize="31" />
+        <task period="48" time="4" left="0" right="48" messize="40" />
+        <task period="48" time="4" left="0" right="48" messize="18" />
+        <task period="48" time="4" left="0" right="48" messize="56" />
+        <task period="48" time="4" left="0" right="48" messize="50" />
+        <task period="24" time="4" left="0" right="24" messize="43" />
+        <task period="24" time="4" left="0" right="24" messize="41" />
+        <task period="24" time="4" left="0" right="24" messize="43" />
+        <task period="96" time="4" left="0" right="96" messize="48" />
+        <task period="24" time="4" left="0" right="24" messize="44" />
+        <task period="24" time="4" left="0" right="24" messize="55" />
+        <task period="48" time="4" left="0" right="48" messize="53" />
+        <task period="48" time="4" left="0" right="48" messize="52" />
+    </tasks>
+    <messages>
+        <mes src="12" dest="10" size="62" />
+        <mes src="5" dest="3" size="23" />
+    </messages>
+</system>

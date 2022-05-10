@@ -15,37 +15,42 @@
 #include "../TinyXml/tinystr.h"
 
 
-InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, int PCNum_, int ModNum_, int MesNum_, int Mean, int Disp, int MaxSize):
+InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, int PCNum_, int ModNum_, int MesNum_, int MaxSize):
     TaskNum(TaskNum_), PCNum(PCNum_), ModNum(ModNum_), MesNum(MesNum_)
 {
-    std::cout << MaxSize << std::endl;
     std::srand(std::time(nullptr));
     
     LCM = int(std::pow(2, LCM_));
-    std::vector<int> NumOfPeriodTask;
-
+    
     std::random_device rd{};
     std::mt19937 gen{rd()};
- 
-    std::normal_distribution<double> d{LCM_ / 2.0, LCM_ / 4.0};
+    std::cout << "1" <<std::endl;
+    std::normal_distribution<double> d{LCM_ / 2.0, LCM_ / 6.0};
     //TODO какая должна быть дисперсия?
- 
+    
     std::map<int, int> distribute{};
     for(int n = 0; n < TaskNum;) {
         int number = std::round(d(gen));
-        if ((number >= 1) && (number <= LCM_)) {
+        if ((number >= 2) && (number <= LCM_)) {
             ++distribute[number];
             n++;
         }
     }
-
+    std::cout << "2" <<std::endl;
+    
     for (int i = 0; i < ModNum; i++)
     {
         ModVec.emplace_back(std::vector<int>{});
+        ModVec[i].push_back(i);
     }
-    for(int n = 0; n < PCNum; n++) {
+    std::cout << ModNum << std::endl;
+    
+    for(int n = ModNum; n < PCNum; n++) {
         ModVec[std::rand() % ModNum].push_back(n);
+        
     }
+    std::cout << "3" <<std::endl;
+    
     std::cout << "ALL: " << std::endl;
     for(auto p : distribute) {
         std::cout << p.first << ' ' << std::string(p.second, '*') << '\n';
@@ -85,11 +90,16 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
     }
 
     std::cout << "CP: " << std::endl;
-    
+    int sum = 0;
     for (int i = 0; i < PCNum; i++)
     {
+        sum = 0;
         for(auto p : PCandTask[i]) {
             std::cout << p.first << ' ' << std::string(p.second, '*') << '\n';
+            sum += p.second;
+        }
+        if (sum == 0) {
+            exit(0);
         }
         std::cout << std::endl;
     
@@ -105,13 +115,13 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
         GeneratorForPC2(PCandTask[i], LCM_);
     }
     
-    GeneratorForMessage(Mean, Disp, MaxSize);
+    GeneratorForMessage(MaxSize);
     std::random_device rd2{};
     std::mt19937 gen2{rd2()}; 
     //TODO random вынести в класс
-    std::normal_distribution<double> d2{Mean, Disp};
+    std::normal_distribution<double> d2{MaxSize / 2.0, MaxSize / 6.0};
     
-    int bb = 0;
+    /*int bb = 0;
     for (int i = 0; i < PtrAllPeriods.size(); i++)
     {
         bb = 0;
@@ -130,8 +140,8 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
                 AllJobs[AllJobs.size() - 1]->InitRight = AllJobs[AllJobs.size() - 1]->InitLeft + PtrAllPeriods[i][j][k]->Period * MaxLenght;
                 AllJobs[AllJobs.size() - 1]->JobInit = PtrAllPeriods[i][j][k]->JobInit;
                 AllJobs[AllJobs.size() - 1]->NumOfTask = std::find(AllTasks.begin(), AllTasks.end(), PtrAllPeriods[i][j][k]) - AllTasks.begin();
-                /*std::cout << "New Job " << AllJobs.size() - 1 << std::endl;
-                //std::cout << "bb " << bb << " Left " << PtrAllPeriods[i][j][k]->Left << std::endl;
+                std::cout << "New Job " << AllJobs.size() - 1 << std::endl;
+                std::cout << "bb " << bb << " Left " << PtrAllPeriods[i][j][k]->Left << std::endl;
                 
                 std::cout << "Start " << AllJobs[AllJobs.size() - 1]->Start << std::endl;
                 
@@ -143,13 +153,13 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
                 std::cout << "InitRight " << AllJobs[AllJobs.size() - 1]->InitRight << std::endl;
                 std::cout << "NumOfTask " << AllJobs[AllJobs.size() - 1]->NumOfTask << std::endl;
                 
-                std::cout << std::endl;*/
+                std::cout << std::endl;
                          
             }
             bb += 2 * MaxLenght;
             
         }
-    }
+    }*/
     LCM *= MaxLenght;
     
 
@@ -162,7 +172,12 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
         AllTasks[i]->Period *= MaxLenght;
         
         AllTasks[i]->Right = AllTasks[i]->Period;
-        AllTasks[i]->CMessageSize = int(std::round(d2(gen2))) % MaxSize;
+        int CMessageSize = int(std::round(d2(gen2)));
+        while (CMessageSize < 0 || CMessageSize > MaxSize)
+        {
+            CMessageSize = int(std::round(d2(gen2)));
+        }
+        AllTasks[i]->CMessageSize = CMessageSize;
         MinDur = MinDur < 0.0 || MinDur < AllTasks[i]->Time ? AllTasks[i]->Time : MinDur; 
         /*std::cout << "Task " << i << " : " << std::endl;
         std::cout << "Left : " << AllTasks[i]->Left << std::endl;
@@ -234,7 +249,7 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
     
     std::cout << Band << std::endl;
     
-    Band = Band == 0.0 ? 0.5 * MesNum * ((int(std::round(d2(gen2))) % MaxSize) / MinDur) : Band * 1.5;
+    Band = Band == 0.0 ? MesNum * ((int(std::round(d2(gen2))) % MaxSize) / MinDur) : Band * 2;
     //TODO тут тоньше настройка
     std::cout << Band << std::endl;
     ResultCheck();
@@ -245,13 +260,13 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
 }
 
 
-void InitialGenerator :: GeneratorForMessage(int Mean, int Disp, int MaxSize)
+void InitialGenerator :: GeneratorForMessage(int MaxSize)
 {
     std::cout << "GEn Messages" << std::endl;
     std::srand(std::time(nullptr));
     std::random_device rd{};
     std::mt19937 gen{rd()}; 
-    std::normal_distribution<double> d{Mean, Disp};
+    std::normal_distribution<double> d{MaxSize / 2.0, MaxSize / 6.0};
             //TODO какая должна быть дисперсия?
      
     int iter = 0;
@@ -332,8 +347,8 @@ void InitialGenerator :: GeneratorForMessage(int Mean, int Disp, int MaxSize)
         if (found) {
             
             int MessageSize = int(std::round(d(gen)));
-            if (MessageSize < 0) {
-                MessageSize *= -1;
+            while (MessageSize < 0 || MessageSize > MaxSize) {
+                MessageSize = int(std::round(d(gen)));
             }
             MessageSize %= MaxSize;
             auto CurMes = std::make_shared<Message>(std::shared_ptr<Task>(PtrAllPeriods[FromPC][FromPeriod][FromNum]),
@@ -374,10 +389,10 @@ void InitialGenerator :: GeneratorForMessage(int Mean, int Disp, int MaxSize)
             //}
         } else {
             iter++;
-            if (iter > 10)
+            if (iter > 100)
             {
                 std::cout << "Problems. Messages have " << n << std::endl;
-
+                exit(1);
                 break;
             }
         }
@@ -423,23 +438,24 @@ void InitialGenerator :: GeneratorForPC(std::map<int, int> TaskMap, int LCM_)
         {
             AllTasks.push_back(std::make_shared<Task>(std::pow(2, CurTask.first)));
         
-            int add = k[CurTask.first - 1];
+            int add = k[CurTask.first / (*TaskMap.begin()).first - 1];
+            std::cout << "cur period = " << CurTask.first << " add = " << add << std::endl;
             for (int i = 0; i < NumOfPeriod; i++)
             {
                 if (i == add)
                 {
                     AllPeriods[PC][i].push_back(CurTask.first);
                     PtrAllPeriods[PC][i].push_back(std::shared_ptr<Task>(AllTasks[AllTasks.size() - 1]));    
-                    add += CurTask.first;
+                    add += CurTask.first / (*TaskMap.begin()).first;
                 } else {
                     AllPeriods[PC][i].push_back(0);
                     PtrAllPeriods[PC][i].push_back(std::make_shared<Task>(0));  
 
                 }
             }
-            k[CurTask.first - 1]++;
-            if (k[CurTask.first - 1] > CurTask.first - 1)
-                k[CurTask.first - 1] = 0;
+            k[CurTask.first / (*TaskMap.begin()).first - 1]++;
+            if (k[CurTask.first / (*TaskMap.begin()).first - 1] > (CurTask.first / (*TaskMap.begin()).first) - 1)
+                k[CurTask.first / (*TaskMap.begin()).first - 1] = 0;
         }
     }
     for (int ii = 0; ii < Bias; ii++)
@@ -449,23 +465,23 @@ void InitialGenerator :: GeneratorForPC(std::map<int, int> TaskMap, int LCM_)
         {
             AllTasks.push_back(std::make_shared<Task>(std::pow(2, CurTask.first)));
         
-            int add = k[CurTask.first - 1];
+            int add = k[CurTask.first / (*TaskMap.begin()).first - 1];
             for (int i = 0; i < NumOfPeriod; i++)
             {
                 if (i == add)
                 {
                     AllPeriods[PC][i].push_back(CurTask.first);
                     PtrAllPeriods[PC][i].push_back(std::shared_ptr<Task>(AllTasks[AllTasks.size() - 1]));    
-                    add += CurTask.first;
+                    add += CurTask.first / (*TaskMap.begin()).first;
                 } else {
                     AllPeriods[PC][i].push_back(0);
                     PtrAllPeriods[PC][i].push_back(std::make_shared<Task>(0));  
 
                 }
             }
-            k[CurTask.first - 1]++;
-            if (k[CurTask.first - 1] > CurTask.first - 1)
-                k[CurTask.first - 1] = 0;
+            k[CurTask.first / (*TaskMap.begin()).first - 1]++;
+            if (k[CurTask.first / (*TaskMap.begin()).first - 1] > (CurTask.first / (*TaskMap.begin()).first) - 1)
+                k[CurTask.first / (*TaskMap.begin()).first - 1] = 0;
         }
     }
     Bias++;
@@ -529,8 +545,8 @@ void InitialGenerator :: GeneratorForPC2(std::map<int, int> TaskMap, int LCM_)
             MaxLenght2 = PtrAllPeriods[PC][i].size();
         }
     }
-    int Dur = std::ceil((std::pow(2, (*TaskMap.begin()).first) * MaxLenght) / MaxLenght2) ;
-    std::cout << "Dur in this period = " << Dur << std::endl;
+    int Dur = std::floor((std::pow(2, (*TaskMap.begin()).first) * MaxLenght) / double(MaxLenght2)) ;
+    std::cout << "Dur in this period = " << Dur << " " << (*TaskMap.begin()).first << " " << MaxLenght2 << std::endl;
     for (size_t i = 0; i < PtrAllPeriods[PC].size(); i++)
     {
         for (size_t j = 0; j < PtrAllPeriods[PC][i].size(); j++)
@@ -574,6 +590,44 @@ void InitialGenerator :: GeneratorForPC2(std::map<int, int> TaskMap, int LCM_)
         std::cout << std::endl;
     }
     
+    int bb = 0;
+    for (int j = 0; j < PtrAllPeriods[PC].size(); j++)
+    {
+        for (int k = 0; k < PtrAllPeriods[PC][j].size(); k++)
+        {
+            if (PtrAllPeriods[PC][j][k]->Period == 0) continue;
+            AllJobs.emplace_back(std::make_shared<Job>(PtrAllPeriods[PC][j][k]->Period * MaxLenght,
+                                                       PtrAllPeriods[PC][j][k]->Right - PtrAllPeriods[PC][j][k]->Left,
+                                                       int(bb / (PtrAllPeriods[PC][j][k]->Period * MaxLenght)) * PtrAllPeriods[PC][j][k]->Period * MaxLenght,
+                                                       int(bb / (PtrAllPeriods[PC][j][k]->Period * MaxLenght)) * PtrAllPeriods[PC][j][k]->Period * MaxLenght + PtrAllPeriods[PC][j][k]->Period * MaxLenght,
+                                                       0, 0, 0));
+            AllJobs[AllJobs.size() - 1]->Start = int(bb / (PtrAllPeriods[PC][j][k]->Period * MaxLenght)) * PtrAllPeriods[PC][j][k]->Period * MaxLenght  + PtrAllPeriods[PC][j][k]->Left;
+            AllJobs[AllJobs.size() - 1]->InitLeft = int(bb / (PtrAllPeriods[PC][j][k]->Period * MaxLenght)) * PtrAllPeriods[PC][j][k]->Period * MaxLenght;
+            AllJobs[AllJobs.size() - 1]->InitRight = AllJobs[AllJobs.size() - 1]->InitLeft + PtrAllPeriods[PC][j][k]->Period * MaxLenght;
+            AllJobs[AllJobs.size() - 1]->JobInit = PtrAllPeriods[PC][j][k]->JobInit;
+            AllJobs[AllJobs.size() - 1]->NumOfTask = std::find(AllTasks.begin(), AllTasks.end(), PtrAllPeriods[PC][j][k]) - AllTasks.begin();
+            std::cout << "New Job " << AllJobs.size() - 1 << std::endl;
+            std::cout << "bb " << bb << " Left " << PtrAllPeriods[PC][j][k]->Left << std::endl;
+            
+            std::cout << "Start " << AllJobs[AllJobs.size() - 1]->Start << std::endl;
+            
+            std::cout << "Period " << AllJobs[AllJobs.size() - 1]->Period << std::endl;
+            std::cout << "Time " << AllJobs[AllJobs.size() - 1]->Time << std::endl;
+            std::cout << "Left " << AllJobs[AllJobs.size() - 1]->Left << std::endl;
+            std::cout << "Right " << AllJobs[AllJobs.size() - 1]->Right << std::endl;
+            std::cout << "InitLeft " << AllJobs[AllJobs.size() - 1]->InitLeft << std::endl;
+            std::cout << "InitRight " << AllJobs[AllJobs.size() - 1]->InitRight << std::endl;
+            std::cout << "NumOfTask " << AllJobs[AllJobs.size() - 1]->NumOfTask << std::endl;
+            
+            std::cout << std::endl;
+                     
+        }
+        bb += std::pow(2, (*TaskMap.begin()).first) * MaxLenght;
+        
+    }
+    
+
+
     PC++;
 
     return;
@@ -654,7 +708,7 @@ void InitialGenerator:: ResultCheck()
             std::cout << "Problem: no message for jobs on different module" << std::endl;
             std::cout << "Job SRC: " << Jobs.first->Start << " Time : " << Jobs.first->Time <<
                          " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
-            return;
+            exit(1);;
         }
             
         if (Mes->ResultPlanned)
@@ -666,7 +720,7 @@ void InitialGenerator:: ResultCheck()
             std::cout << "Problem: message arrives too late" << std::endl;
             std::cout << "Job SRC: " << Jobs.first->Time << " Time : " << Jobs.first->Start <<
                          " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
-            return;
+            exit(1);
         }
     }
     
@@ -688,7 +742,7 @@ void InitialGenerator:: ResultCheck()
     if (SumBand > Band) 
     {
         std::cout << "Problem: messages have too much bandwidth" << std::endl;
-        return;
+        //exit(1);
     }
     for (const auto & Job : AllJobs)
     {
@@ -696,12 +750,12 @@ void InitialGenerator:: ResultCheck()
         {
             std::cout << "Problem: job ends too late" << std::endl;
             std::cout << "Job: " << Job->Start << " Time: " << Job->Time << " Right : " << Job->InitRight << std::endl;
-            return;
+            exit(1);
         }
         if (Job->Start < Job->InitLeft) 
         {
             std::cout << "Problem: job starts too early" << std::endl;
-            return;
+            exit(1);
         }
 
     }

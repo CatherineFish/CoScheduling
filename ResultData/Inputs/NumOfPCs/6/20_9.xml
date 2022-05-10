@@ -1,0 +1,38 @@
+<system modnum="3" tasknum="25" bandwidth="121" mesnum="2">
+    <modules>
+        <pc>2</pc>
+        <pc>6</pc>
+        <pc>2</pc>
+    </modules>
+    <tasks>
+        <task period="12" time="6" left="0" right="12" messize="50" />
+        <task period="12" time="6" left="0" right="12" messize="36" />
+        <task period="24" time="4" left="0" right="24" messize="76" />
+        <task period="12" time="4" left="0" right="12" messize="86" />
+        <task period="12" time="4" left="0" right="12" messize="47" />
+        <task period="12" time="4" left="0" right="12" messize="44" />
+        <task period="12" time="4" left="0" right="12" messize="35" />
+        <task period="24" time="4" left="0" right="24" messize="25" />
+        <task period="24" time="4" left="0" right="24" messize="32" />
+        <task period="12" time="4" left="0" right="12" messize="26" />
+        <task period="12" time="4" left="0" right="12" messize="44" />
+        <task period="12" time="4" left="0" right="12" messize="68" />
+        <task period="12" time="4" left="0" right="12" messize="63" />
+        <task period="24" time="4" left="0" right="24" messize="27" />
+        <task period="24" time="4" left="0" right="24" messize="32" />
+        <task period="12" time="4" left="0" right="12" messize="76" />
+        <task period="12" time="4" left="0" right="12" messize="66" />
+        <task period="12" time="6" left="0" right="12" messize="76" />
+        <task period="12" time="6" left="0" right="12" messize="72" />
+        <task period="12" time="6" left="0" right="12" messize="74" />
+        <task period="12" time="6" left="0" right="12" messize="92" />
+        <task period="12" time="6" left="0" right="12" messize="29" />
+        <task period="12" time="6" left="0" right="12" messize="53" />
+        <task period="12" time="6" left="0" right="12" messize="36" />
+        <task period="12" time="6" left="0" right="12" messize="66" />
+    </tasks>
+    <messages>
+        <mes src="5" dest="1" size="64" />
+        <mes src="23" dest="10" size="57" />
+    </messages>
+</system>

@@ -1,0 +1,322 @@
+1
+2
+1
+3
+ALL: 
+2 ************
+2
+CP: 
+2 ******
+
+2 ******
+
+
+PC NUM : 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+Period : 0
+2 2 2 2 2 2 
+Period : 1
+2 2 2 2 2 2 
+
+PC NUM : 1
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+Period : 0
+2 2 2 2 2 2 
+Period : 1
+2 2 2 2 2 2 
+MAx Lenght = 6
+
+PC NUM : 0
+Dur in this period = 4 2 6
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+New Job 0
+bb 0 Left 0
+Start 0
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 0
+
+New Job 1
+bb 0 Left 4
+Start 4
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 1
+
+New Job 2
+bb 0 Left 8
+Start 8
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 2
+
+New Job 3
+bb 0 Left 12
+Start 12
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 3
+
+New Job 4
+bb 0 Left 16
+Start 16
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 4
+
+New Job 5
+bb 0 Left 20
+Start 20
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 5
+
+New Job 6
+bb 24 Left 0
+Start 24
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 0
+
+New Job 7
+bb 24 Left 4
+Start 28
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 1
+
+New Job 8
+bb 24 Left 8
+Start 32
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 2
+
+New Job 9
+bb 24 Left 12
+Start 36
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 3
+
+New Job 10
+bb 24 Left 16
+Start 40
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 4
+
+New Job 11
+bb 24 Left 20
+Start 44
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 5
+
+
+PC NUM : 1
+Dur in this period = 4 2 6
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+New Job 12
+bb 0 Left 0
+Start 0
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 6
+
+New Job 13
+bb 0 Left 4
+Start 4
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 7
+
+New Job 14
+bb 0 Left 8
+Start 8
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 8
+
+New Job 15
+bb 0 Left 12
+Start 12
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 9
+
+New Job 16
+bb 0 Left 16
+Start 16
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 10
+
+New Job 17
+bb 0 Left 20
+Start 20
+Period 24
+Time 4
+Left 0
+Right 24
+InitLeft 0
+InitRight 24
+NumOfTask 11
+
+New Job 18
+bb 24 Left 0
+Start 24
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 6
+
+New Job 19
+bb 24 Left 4
+Start 28
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 7
+
+New Job 20
+bb 24 Left 8
+Start 32
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 8
+
+New Job 21
+bb 24 Left 12
+Start 36
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 9
+
+New Job 22
+bb 24 Left 16
+Start 40
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 10
+
+New Job 23
+bb 24 Left 20
+Start 44
+Period 24
+Time 4
+Left 24
+Right 48
+InitLeft 24
+InitRight 48
+NumOfTask 11
+
+GEn Messages
+Modules
+2
+0
+0
+REs Band 0
+CHECK RESULT : OK

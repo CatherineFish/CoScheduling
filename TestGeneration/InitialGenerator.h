@@ -11,7 +11,7 @@ class InitialGenerator
 public:
     int LCM;
     int TaskNum, PCNum, ModNum, MesNum;
-    InitialGenerator(char * Filename, int LCM_, int TaskNum_, int PCNum_, int ModNum_, int MesNum_, int Mean, int Disp, int MaxSize);
+    InitialGenerator(char * Filename, int LCM_, int TaskNum_, int PCNum_, int ModNum_, int MesNum_,  int MaxSize);
     ~InitialGenerator() = default;
     void GeneratorForPC(std::map<int, int> TaskMap, int LCM_);
     void GeneratorForPC2(std::map<int, int> TaskMap, int LCM_);
@@ -21,7 +21,7 @@ public:
     std::map<std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>, std::shared_ptr<Message>> JobMessage;
     
     std::vector<std::shared_ptr<Message>> Mes {};
-    void GeneratorForMessage(int Mean, int Disp, int MaxSize);
+    void GeneratorForMessage(int MaxSize);
         
     std::vector<std::vector<std::vector<int>>> AllPeriods;
     std::vector<std::vector<std::vector<std::shared_ptr<Task>>>> PtrAllPeriods;

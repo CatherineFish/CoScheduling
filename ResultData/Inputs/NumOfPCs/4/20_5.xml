@@ -1,0 +1,37 @@
+<system modnum="2" tasknum="26" bandwidth="41.3333" mesnum="1">
+    <modules>
+        <pc>5</pc>
+        <pc>5</pc>
+    </modules>
+    <tasks>
+        <task period="16" time="8" left="0" right="16" messize="41" />
+        <task period="32" time="8" left="0" right="32" messize="34" />
+        <task period="32" time="5" left="0" right="32" messize="45" />
+        <task period="32" time="5" left="0" right="32" messize="74" />
+        <task period="16" time="5" left="0" right="16" messize="39" />
+        <task period="64" time="5" left="0" right="64" messize="47" />
+        <task period="16" time="5" left="0" right="16" messize="30" />
+        <task period="32" time="5" left="0" right="32" messize="82" />
+        <task period="128" time="4" left="0" right="128" messize="43" />
+        <task period="16" time="4" left="0" right="16" messize="59" />
+        <task period="32" time="4" left="0" right="32" messize="47" />
+        <task period="64" time="4" left="0" right="64" messize="47" />
+        <task period="16" time="5" left="0" right="16" messize="13" />
+        <task period="32" time="5" left="0" right="32" messize="67" />
+        <task period="64" time="5" left="0" right="64" messize="48" />
+        <task period="32" time="5" left="0" right="32" messize="71" />
+        <task period="64" time="5" left="0" right="64" messize="38" />
+        <task period="16" time="5" left="0" right="16" messize="64" />
+        <task period="64" time="5" left="0" right="64" messize="73" />
+        <task period="16" time="5" left="0" right="16" messize="43" />
+        <task period="32" time="5" left="0" right="32" messize="72" />
+        <task period="16" time="8" left="0" right="16" messize="41" />
+        <task period="32" time="8" left="0" right="32" messize="51" />
+        <task period="16" time="8" left="0" right="16" messize="77" />
+        <task period="32" time="8" left="0" right="32" messize="54" />
+        <task period="32" time="16" left="0" right="32" messize="64" />
+    </tasks>
+    <messages>
+        <mes src="2" dest="1" size="62" />
+    </messages>
+</system>

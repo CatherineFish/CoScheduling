@@ -23,17 +23,17 @@ void InitAlgorithm:: SearchPath(std::shared_ptr<Task> CurTask, std::vector<std::
 
 void InitAlgorithm:: PrintAllPath()
 {
-    std::cout << "======All Graph Path======" << std::endl;
+    //std::cout << "======All Graph Path======" << std::endl;
     for (size_t i = 0; i < AllPath.size(); i++)
     {
-        std::cout << "---- Path " << i << " ----" << std::endl;
+        //std::cout << "---- Path " << i << " ----" << std::endl;
         for (size_t j = 0; j < AllPath[i].size(); j++)
         {
-            std::cout << AllPath[i][j]->Time << " " << std::endl;
+            //std::cout << AllPath[i][j]->Time << " " << std::endl;
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
     }
-    std::cout << "=========================" << std::endl;
+    //std::cout << "=========================" << std::endl;
     
 }
 
@@ -56,7 +56,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
     PrintAllPath();  
     for (size_t i = 0; i < AllPath.size(); i++)
     {
-        std::cout << "Path " << i << std::endl;
+        //std::cout << "Path " << i << std::endl;
         minLeft = 0.0;
         for (size_t j = 0; j < AllPath[i].size(); j++)
         {
@@ -74,7 +74,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
 
     for (size_t i = 0; i < AllPath.size(); i++)
     {
-        std::cout << "Path " << i << std::endl;
+        //std::cout << "Path " << i << std::endl;
         
         for (size_t j = 0; j < AllPath[i].size(); j++)
         {
@@ -82,7 +82,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
             {
                 continue;
             }
-            std::cout << "Task : " << j << " Add: " << (AllPath[i][j]->MaxLeft - AllPath[i][j]->MinLeft) / 2 << " To " << AllPath[i][j]->Left << " Right " << AllPath[i][j]->Right << " Time " << AllPath[i][j]->Time << std::endl; 
+            //std::cout << "Task : " << j << " Add: " << (AllPath[i][j]->MaxLeft - AllPath[i][j]->MinLeft) / 2 << " To " << AllPath[i][j]->Left << " Right " << AllPath[i][j]->Right << " Time " << AllPath[i][j]->Time << std::endl; 
             if (j == 0)
             {
                 AllPath[i][j]->Left = AllPath[i][j]->MinLeft;
@@ -91,7 +91,7 @@ void InitAlgorithm:: MainLoop(System* CurSystem)
                 AllPath[i][j]->Left = AllPath[i][j]->MinLeft + (AllPath[i][j]->MaxLeft - AllPath[i][j]->MinLeft) / 2;
             }
             if (AllPath[i][j]->Left + AllPath[i][j]->Time > AllPath[i][j]->Right) {
-                std::cout << "PROBLEM: input data are incorrect" << std::endl;
+                //std::cout << "PROBLEM: input data are incorrect" << std::endl;
                 exit(1);
             }
             AllPath[i][j]->Right = AllPath[i][j]->Left + AllPath[i][j]->Time;

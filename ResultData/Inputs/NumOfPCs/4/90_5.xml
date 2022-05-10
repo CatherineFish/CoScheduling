@@ -1,0 +1,117 @@
+<system modnum="9" tasknum="90" bandwidth="329.8" mesnum="10">
+    <modules>
+        <pc>4</pc>
+        <pc>3</pc>
+        <pc>3</pc>
+        <pc>2</pc>
+        <pc>12</pc>
+        <pc>1</pc>
+        <pc>5</pc>
+        <pc>3</pc>
+        <pc>3</pc>
+    </modules>
+    <tasks>
+        <task period="16" time="5" left="0" right="16" messize="60" />
+        <task period="16" time="5" left="0" right="16" messize="55" />
+        <task period="32" time="5" left="0" right="32" messize="66" />
+        <task period="32" time="4" left="0" right="32" messize="52" />
+        <task period="32" time="4" left="0" right="32" messize="72" />
+        <task period="16" time="4" left="0" right="16" messize="63" />
+        <task period="16" time="4" left="0" right="16" messize="51" />
+        <task period="64" time="4" left="0" right="64" messize="25" />
+        <task period="16" time="4" left="0" right="16" messize="41" />
+        <task period="32" time="4" left="0" right="32" messize="53" />
+        <task period="32" time="4" left="0" right="32" messize="83" />
+        <task period="16" time="4" left="0" right="16" messize="40" />
+        <task period="32" time="4" left="0" right="32" messize="66" />
+        <task period="32" time="4" left="0" right="32" messize="64" />
+        <task period="64" time="4" left="0" right="64" messize="59" />
+        <task period="32" time="4" left="0" right="32" messize="61" />
+        <task period="32" time="4" left="0" right="32" messize="81" />
+        <task period="64" time="4" left="0" right="64" messize="34" />
+        <task period="16" time="4" left="0" right="16" messize="42" />
+        <task period="64" time="4" left="0" right="64" messize="52" />
+        <task period="16" time="4" left="0" right="16" messize="51" />
+        <task period="32" time="4" left="0" right="32" messize="48" />
+        <task period="32" time="4" left="0" right="32" messize="17" />
+        <task period="16" time="4" left="0" right="16" messize="35" />
+        <task period="32" time="4" left="0" right="32" messize="47" />
+        <task period="32" time="4" left="0" right="32" messize="57" />
+        <task period="64" time="4" left="0" right="64" messize="46" />
+        <task period="32" time="5" left="0" right="32" messize="86" />
+        <task period="64" time="5" left="0" right="64" messize="22" />
+        <task period="16" time="5" left="0" right="16" messize="55" />
+        <task period="64" time="5" left="0" right="64" messize="37" />
+        <task period="16" time="5" left="0" right="16" messize="28" />
+        <task period="32" time="5" left="0" right="32" messize="82" />
+        <task period="16" time="5" left="0" right="16" messize="70" />
+        <task period="32" time="5" left="0" right="32" messize="46" />
+        <task period="64" time="5" left="0" right="64" messize="26" />
+        <task period="32" time="5" left="0" right="32" messize="47" />
+        <task period="64" time="5" left="0" right="64" messize="70" />
+        <task period="16" time="5" left="0" right="16" messize="37" />
+        <task period="64" time="5" left="0" right="64" messize="69" />
+        <task period="16" time="5" left="0" right="16" messize="64" />
+        <task period="32" time="5" left="0" right="32" messize="10" />
+        <task period="16" time="8" left="0" right="16" messize="59" />
+        <task period="32" time="8" left="0" right="32" messize="52" />
+        <task period="32" time="8" left="0" right="32" messize="46" />
+        <task period="16" time="8" left="0" right="16" messize="52" />
+        <task period="16" time="8" left="0" right="16" messize="59" />
+        <task period="32" time="8" left="0" right="32" messize="45" />
+        <task period="16" time="8" left="0" right="16" messize="40" />
+        <task period="32" time="8" left="0" right="32" messize="23" />
+        <task period="32" time="8" left="0" right="32" messize="37" />
+        <task period="16" time="8" left="0" right="16" messize="48" />
+        <task period="16" time="8" left="0" right="16" messize="10" />
+        <task period="32" time="8" left="0" right="32" messize="71" />
+        <task period="16" time="8" left="0" right="16" messize="76" />
+        <task period="32" time="8" left="0" right="32" messize="20" />
+        <task period="32" time="8" left="0" right="32" messize="57" />
+        <task period="16" time="8" left="0" right="16" messize="52" />
+        <task period="16" time="8" left="0" right="16" messize="55" />
+        <task period="32" time="8" left="0" right="32" messize="62" />
+        <task period="16" time="8" left="0" right="16" messize="72" />
+        <task period="32" time="8" left="0" right="32" messize="43" />
+        <task period="32" time="8" left="0" right="32" messize="35" />
+        <task period="16" time="8" left="0" right="16" messize="22" />
+        <task period="16" time="8" left="0" right="16" messize="46" />
+        <task period="32" time="8" left="0" right="32" messize="53" />
+        <task period="16" time="8" left="0" right="16" messize="42" />
+        <task period="32" time="8" left="0" right="32" messize="70" />
+        <task period="32" time="8" left="0" right="32" messize="76" />
+        <task period="16" time="8" left="0" right="16" messize="51" />
+        <task period="16" time="8" left="0" right="16" messize="13" />
+        <task period="32" time="8" left="0" right="32" messize="45" />
+        <task period="16" time="8" left="0" right="16" messize="34" />
+        <task period="32" time="8" left="0" right="32" messize="19" />
+        <task period="32" time="8" left="0" right="32" messize="55" />
+        <task period="16" time="8" left="0" right="16" messize="52" />
+        <task period="16" time="8" left="0" right="16" messize="41" />
+        <task period="32" time="8" left="0" right="32" messize="60" />
+        <task period="16" time="8" left="0" right="16" messize="52" />
+        <task period="32" time="8" left="0" right="32" messize="49" />
+        <task period="32" time="8" left="0" right="32" messize="59" />
+        <task period="16" time="8" left="0" right="16" messize="52" />
+        <task period="16" time="8" left="0" right="16" messize="25" />
+        <task period="32" time="8" left="0" right="32" messize="50" />
+        <task period="16" time="8" left="0" right="16" messize="41" />
+        <task period="32" time="8" left="0" right="32" messize="23" />
+        <task period="32" time="8" left="0" right="32" messize="34" />
+        <task period="16" time="8" left="0" right="16" messize="33" />
+        <task period="16" time="8" left="0" right="16" messize="61" />
+        <task period="32" time="8" left="0" right="32" messize="44" />
+    </tasks>
+    <messages>
+        <mes src="0" dest="81" size="19" />
+        <mes src="36" dest="89" size="67" />
+        <mes src="60" dest="6" size="67" />
+        <mes src="86" dest="41" size="66" />
+        <mes src="44" dest="10" size="24" />
+        <mes src="36" dest="13" size="34" />
+        <mes src="36" dest="2" size="62" />
+        <mes src="23" dest="69" size="53" />
+        <mes src="11" dest="75" size="48" />
+        <mes src="64" dest="29" size="63" />
+    </messages>
+</system>

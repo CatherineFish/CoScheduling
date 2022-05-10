@@ -1,0 +1,68 @@
+<system modnum="7" tasknum="52" bandwidth="7.6" mesnum="1">
+    <modules>
+        <pc>3</pc>
+        <pc>1</pc>
+        <pc>5</pc>
+        <pc>3</pc>
+        <pc>2</pc>
+        <pc>2</pc>
+        <pc>4</pc>
+    </modules>
+    <tasks>
+        <task period="16" time="8" left="0" right="16" messize="44" />
+        <task period="16" time="8" left="0" right="16" messize="28" />
+        <task period="32" time="5" left="0" right="32" messize="61" />
+        <task period="16" time="5" left="0" right="16" messize="59" />
+        <task period="16" time="5" left="0" right="16" messize="52" />
+        <task period="64" time="4" left="0" right="64" messize="43" />
+        <task period="16" time="4" left="0" right="16" messize="63" />
+        <task period="16" time="4" left="0" right="16" messize="61" />
+        <task period="32" time="4" left="0" right="32" messize="41" />
+        <task period="16" time="4" left="0" right="16" messize="30" />
+        <task period="16" time="4" left="0" right="16" messize="72" />
+        <task period="32" time="4" left="0" right="32" messize="81" />
+        <task period="64" time="4" left="0" right="64" messize="80" />
+        <task period="32" time="5" left="0" right="32" messize="35" />
+        <task period="16" time="5" left="0" right="16" messize="64" />
+        <task period="16" time="5" left="0" right="16" messize="47" />
+        <task period="16" time="5" left="0" right="16" messize="38" />
+        <task period="16" time="5" left="0" right="16" messize="47" />
+        <task period="32" time="5" left="0" right="32" messize="42" />
+        <task period="16" time="5" left="0" right="16" messize="20" />
+        <task period="16" time="5" left="0" right="16" messize="35" />
+        <task period="32" time="5" left="0" right="32" messize="64" />
+        <task period="32" time="5" left="0" right="32" messize="54" />
+        <task period="16" time="5" left="0" right="16" messize="37" />
+        <task period="16" time="5" left="0" right="16" messize="74" />
+        <task period="16" time="5" left="0" right="16" messize="57" />
+        <task period="16" time="5" left="0" right="16" messize="22" />
+        <task period="32" time="5" left="0" right="32" messize="18" />
+        <task period="16" time="5" left="0" right="16" messize="60" />
+        <task period="16" time="5" left="0" right="16" messize="38" />
+        <task period="32" time="5" left="0" right="32" messize="54" />
+        <task period="32" time="5" left="0" right="32" messize="72" />
+        <task period="16" time="5" left="0" right="16" messize="74" />
+        <task period="16" time="5" left="0" right="16" messize="52" />
+        <task period="16" time="5" left="0" right="16" messize="72" />
+        <task period="16" time="5" left="0" right="16" messize="37" />
+        <task period="32" time="5" left="0" right="32" messize="38" />
+        <task period="16" time="5" left="0" right="16" messize="98" />
+        <task period="16" time="5" left="0" right="16" messize="52" />
+        <task period="32" time="5" left="0" right="32" messize="68" />
+        <task period="32" time="5" left="0" right="32" messize="48" />
+        <task period="16" time="5" left="0" right="16" messize="47" />
+        <task period="16" time="5" left="0" right="16" messize="74" />
+        <task period="16" time="5" left="0" right="16" messize="62" />
+        <task period="16" time="5" left="0" right="16" messize="49" />
+        <task period="32" time="5" left="0" right="32" messize="41" />
+        <task period="16" time="8" left="0" right="16" messize="61" />
+        <task period="32" time="8" left="0" right="32" messize="50" />
+        <task period="16" time="16" left="0" right="16" messize="52" />
+        <task period="16" time="16" left="0" right="16" messize="33" />
+        <task period="16" time="16" left="0" right="16" messize="55" />
+        <task period="16" time="16" left="0" right="16" messize="14" />
+    </tasks>
+    <messages>
+        <mes src="40" dest="21" size="19" />
+    </messages>
+</system>

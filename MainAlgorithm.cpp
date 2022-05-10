@@ -12,14 +12,14 @@ MainAlgorithm:: MainAlgorithm(System* CurSystem, int Mood_) : Mood(Mood_)
         CurSystem->SystemTask[k]->JobInit = j;
         for (size_t i = 0; i < CurSystem->LCMPeriod / CurSystem->SystemTask[k]->Period; i++)
         {
-            std::cout << "LOOOK FOR PROBLEM TASK: " << CurSystem->SystemTask[k]->Left << " ";
+            ////std::cout << "LOOOK FOR PROBLEM TASK: " << CurSystem->SystemTask[k]->Left << " ";
             CurSystem->SystemJob.push_back(std::make_shared<Job>(CurSystem->SystemTask[k]->Period,
                                                                  CurSystem->SystemTask[k]->Time,
                                                                  CurSystem->SystemTask[k]->Left + i * CurSystem->SystemTask[k]->Period,
                                                                  CurSystem->SystemTask[k]->Right + i * CurSystem->SystemTask[k]->Period,
                                                                  CurSystem->SystemTask[k]->CMessageSize,
                                                                  i, k));
-            std::cout << "JOB: " << CurSystem->SystemJob[j]->Left << " ";
+            ////std::cout << "JOB: " << CurSystem->SystemJob[j]->Left << " ";
             
             CurSystem->SystemJob[j]->InitRight = CurSystem->SystemTask[k]->InitRight + i * CurSystem->SystemTask[k]->Period;
             CurSystem->SystemJob[j]->InitLeft = CurSystem->SystemTask[k]->InitLeft + i * CurSystem->SystemTask[k]->Period;
@@ -220,7 +220,7 @@ void MainAlgorithm:: UpdateRList ()
         }
     } else 
     {
-        std::cout << "Invalid Mood for Result List" << std::endl;
+        //std::cout << "Invalid Mood for Result List" << std::endl;
         exit(1);
     }
     return;
@@ -329,18 +329,18 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         bool flag = false;
         
         //Что уже запланировано
-        std::cout << "PLANNED" << std::endl;
-        std::cout << "Current band = " << CurSystem->CurBand << std::endl;
+        //std::cout << "PLANNED" << std::endl;
+        //std::cout << "Current band = " << CurSystem->CurBand << std::endl;
         for (size_t i = 0; i < CurSystem->SystemJob.size(); i++)
         {
             if (CurSystem->SystemJob[i]->IsPlanned)
             {
-                std::cout << "Job Time: " << CurSystem->SystemJob[i]->Time << 
-                             " Job Num " << CurSystem->SystemJob[i]->Num << 
-                             " PC " << CurSystem->SystemJob[i]->JobPC->Num << 
-                             " " << CurSystem->SystemJob[i]->JobPC->ModNum << 
-                             " NUM: " << i << 
-                             " START: "<<CurSystem->SystemJob[i]->Start << std::endl;
+                //std::cout << "Job Time: " << CurSystem->SystemJob[i]->Time << 
+                //             " Job Num " << CurSystem->SystemJob[i]->Num << 
+                //             " PC " << CurSystem->SystemJob[i]->JobPC->Num << 
+                //             " " << CurSystem->SystemJob[i]->JobPC->ModNum << 
+                //             " NUM: " << i << 
+                //             " START: "<<CurSystem->SystemJob[i]->Start << std::endl;
 
             }
         }
@@ -354,15 +354,15 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         PrintJobSystem(CurSystem);
         
         //Обновление левого директивного срока после формирования списков
-        std::cout << "UPDATE" << std::endl;
+        //std::cout << "UPDATE" << std::endl;
         for (const auto & CurJob : Unplanned) 
         {
             if (CurJob->isUpdated[CurJob->ListResult.begin()->second->Num])
             {
-                std::cout << "Updated Left from " << CurJob->Left << " to " << CurJob->NewLimitForPlan[CurJob->ListResult.begin()->second->Num] << " OR " << CurJob->InitLeft << std::endl;
+                //std::cout << "Updated Left from " << CurJob->Left << " to " << CurJob->NewLimitForPlan[CurJob->ListResult.begin()->second->Num] << " OR " << CurJob->InitLeft << std::endl;
                 CurJob->Left = std::max(CurJob->NewLimitForPlan[CurJob->ListResult.begin()->second->Num], CurJob->InitLeft);    
             }
-            std::cout << "Want to plan: " << CurJob->Left << " Can Plan: " << CurJob->ListResult.begin()->second->PC_PPoint << std::endl; 
+            //std::cout << "Want to plan: " << CurJob->Left << " Can Plan: " << CurJob->ListResult.begin()->second->PC_PPoint << std::endl; 
             CurJob->Left = std::max(CurJob->ListResult.begin()->second->PC_PPoint, CurJob->Left);
         }
 
@@ -372,14 +372,14 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         while (FlagPPoint < 0)
         {
             MinLeft = CurSystem->LCMPeriod;
-            std::cout << "MAKE Queue" << std::endl;
-            std::cout << "Cur PPoint = " << CurSystem->PPoint << std::endl;
+            //std::cout << "MAKE Queue" << std::endl;
+            //std::cout << "Cur PPoint = " << CurSystem->PPoint << std::endl;
             for (const auto & CurJob: Unplanned)
             {
                 MinLeft = std::min(CurJob->Left, MinLeft);
-                std::cout << "Cur Job: " << CurJob->Time << " NUM " << CurJob->Num;
+                //std::cout << "Cur Job: " << CurJob->Time << " NUM " << CurJob->Num;
                 CurJob->Slack = CurJob->Right - CurJob->Time - CurSystem->PPoint;
-                std::cout << " Slack " << CurJob->Slack << std::endl;
+                //std::cout << " Slack " << CurJob->Slack << std::endl;
                 if (CurJob->Slack < 0)
                 {
                     // TODO на стресс-тест : эта работа встанет самой первой, попадет в перебор - то, чего мы и хотим
@@ -401,7 +401,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
                 }
                 if (CurJob->Left <= CurSystem->PPoint)
                 {
-                    std::cout << "Add in Queue" << std::endl;
+                    //std::cout << "Add in Queue" << std::endl;
                     QueueForPlan.push_back(std::shared_ptr(CurJob));
                 }
             }
@@ -419,33 +419,33 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
 
         //сортируем по слаку и смотри на очередь для планирования
         std::sort(QueueForPlan.begin() + FlagPPoint, QueueForPlan.end(), SortBySlack);
-        std::cout << "Queue For Planning: " << std::endl;
+        //std::cout << "Queue For Planning: " << std::endl;
         for (const auto& CurJob: QueueForPlan)
         {
-            std::cout << "Job Time: " << CurJob->Time << " JbNum: " << CurJob->NumOfTask << " Job Slack " << CurJob->Slack << std::endl;
+            //std::cout << "Job Time: " << CurJob->Time << " JbNum: " << CurJob->NumOfTask << " Job Slack " << CurJob->Slack << std::endl;
         }
         
         //что хотим запланировать
-        std::cout << "Planning" << std::endl;
-        std::cout << "Job Time " << QueueForPlan[0]->Time << " JobNum " << QueueForPlan[0]->Num << " PC: " << QueueForPlan[0]->ListResult.begin()->second->Num << std::endl;
-        std::cout << "Point for plan: " << CurSystem->PPoint;
+        //std::cout << "Planning" << std::endl;
+        //std::cout << "Job Time " << QueueForPlan[0]->Time << " JobNum " << QueueForPlan[0]->Num << " PC: " << QueueForPlan[0]->ListResult.begin()->second->Num << std::endl;
+        //std::cout << "Point for plan: " << CurSystem->PPoint;
         
         //проверяем, что можно запланировать
         CheckResult = Check(QueueForPlan[0], QueueForPlan[0]->ListResult.begin()->second, CurSystem);
-        std::cout << "Check Result: " << CheckResult << std::endl;
+        //std::cout << "Check Result: " << CheckResult << std::endl;
 
         auto CurPC = QueueForPlan[0]->ListResult.begin()->second;
 
         if (CheckResult == 1)
         {
             //TODO поменять порядок аргументов, чтобы вручную задавать перебор
-            std::cout << "here problem with bandwidth" << std::endl;
-            LimitedSearch CurLimitedSerch(Mood, 100000, 100000, true);
-            std::cout << "limited serch object" << std::endl;
+            //std::cout << "here problem with bandwidth" << std::endl;
+            LimitedSearch CurLimitedSerch(Mood, 100, 100, true);
+            //std::cout << "limited serch object" << std::endl;
             CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned);
             if (!CurLimitedSerch.isSucces)
             {
-                std::cout << "help" << std::endl;
+                //std::cout << "help" << std::endl;
                 Unplanned.clear();
                 for (const auto & CurJob: CurSystem->SystemJob)
                 {
@@ -477,7 +477,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
         } else if (CheckResult == 2)
         {
 
-            LimitedSearch CurLimitedSerch(Mood, 100000, 100000);
+            LimitedSearch CurLimitedSerch(Mood, 100, 100);
             CurPC = CurLimitedSerch.MainLoop(0, QueueForPlan[0], Planned, CurSystem, Unplanned); 
         }
         
@@ -584,7 +584,7 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
     {
         if (CurMes->StabilityCoef.CountNotPlanned == CurMes->StabilityCoef.CountInPeriod)
         {
-            std::cout << "CONTEXT MESSAGE NOT PLANNED" << std::endl;
+            //std::cout << "CONTEXT MESSAGE NOT PLANNED" << std::endl;
             return;
             CurMes->ResultPlanned = false; 
         } 
@@ -597,65 +597,65 @@ void MainAlgorithm:: MainLoop(System* CurSystem)
 
 void MainAlgorithm:: PrintJobSystem(System* CurSystem)
 {
-    std::cout << "======== J O B ========" << std::endl; 
+    //std::cout << "======== J O B ========" << std::endl; 
     
-    std::cout << "--------UNPLANNED--------:" << std::endl;
+    //std::cout << "--------UNPLANNED--------:" << std::endl;
     for (size_t i = 0; i < Unplanned.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Job " << Unplanned[i]->Time << std::endl;
-        std::cout << "Number: " << Unplanned[i]->Num << std::endl;
-        std::cout << "Period: " << Unplanned[i]->Period << std::endl;
-        std::cout << "Left: " << Unplanned[i]->Left << std::endl;
-        std::cout << "Right: " << Unplanned[i]->Right << std::endl;
-        std::cout << "Input Mes From:" << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Job " << Unplanned[i]->Time << std::endl;
+        //std::cout << "Number: " << Unplanned[i]->Num << std::endl;
+        //std::cout << "Period: " << Unplanned[i]->Period << std::endl;
+        //std::cout << "Left: " << Unplanned[i]->Left << std::endl;
+        //std::cout << "Right: " << Unplanned[i]->Right << std::endl;
+        //std::cout << "Input Mes From:" << std::endl;
         for (size_t j = 0; j < Unplanned[i]->InMessage.size(); j++)
         {
-            std::cout << CurSystem->SystemJob[Unplanned[i]->InMessage[j]]->Time << " " << CurSystem->SystemJob[Unplanned[i]->InMessage[j]]->Num << std::endl;    
+            //std::cout << CurSystem->SystemJob[Unplanned[i]->InMessage[j]]->Time << " " << CurSystem->SystemJob[Unplanned[i]->InMessage[j]]->Num << std::endl;    
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
         for (size_t j = 0; j < Unplanned[i]->OutMessage.size(); j++)
         {
-            std::cout << CurSystem->SystemJob[Unplanned[i]->OutMessage[j]]->Time << " " << CurSystem->SystemJob[Unplanned[i]->OutMessage[j]]->Num << std::endl;    
+            //std::cout << CurSystem->SystemJob[Unplanned[i]->OutMessage[j]]->Time << " " << CurSystem->SystemJob[Unplanned[i]->OutMessage[j]]->Num << std::endl;    
         }
-        std::cout << std::endl;
-        std::cout << "List Bandwidth: " << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "List Bandwidth: " << std::endl;
         for (const auto& [key, value] : Unplanned[i]->ListBandwidth) {
-            std::cout << '[' << key->Num << "] = " << value << "; " << std::endl;
+            //std::cout << '[' << key->Num << "] = " << value << "; " << std::endl;
         }
-        std::cout << std::endl;
-        std::cout << "List Fill: " << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "List Fill: " << std::endl;
         for (const auto& [key, value] : Unplanned[i]->ListFill) {
-            std::cout << '[' << key->Num << "] = " << value << "; " << std::endl;
+            //std::cout << '[' << key->Num << "] = " << value << "; " << std::endl;
         }
-        std::cout << std::endl;
-        std::cout << "List Result: " << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "List Result: " << std::endl;
         for (const auto& [key, value] : Unplanned[i]->ListResult) {
-            std::cout << '[' <<  key  << "] = " << value->Num << "; " << std::endl;
+            //std::cout << '[' <<  key  << "] = " << value->Num << "; " << std::endl;
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "======================" << std::endl; 
+    //std::cout << std::endl;
+    //std::cout << "======================" << std::endl; 
     return;  
 }
 
 
 void MainAlgorithm:: PrintJobSystemWithoutLists()
 {
-    std::cout << "======== J O B ========" << std::endl; 
+    //std::cout << "======== J O B ========" << std::endl; 
     
     for (size_t i = 0; i < Unplanned.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Job " << Unplanned[i]->Time << std::endl;
-        std::cout << "Number: " << Unplanned[i]->Num << std::endl;
-        std::cout << "Period: " << Unplanned[i]->Period << std::endl;
-        std::cout << "Left: " << Unplanned[i]->Left << std::endl;
-        std::cout << "Right: " << Unplanned[i]->Right << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Job " << Unplanned[i]->Time << std::endl;
+        //std::cout << "Number: " << Unplanned[i]->Num << std::endl;
+        //std::cout << "Period: " << Unplanned[i]->Period << std::endl;
+        //std::cout << "Left: " << Unplanned[i]->Left << std::endl;
+        //std::cout << "Right: " << Unplanned[i]->Right << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "======================" << std::endl; 
+    //std::cout << std::endl;
+    //std::cout << "======================" << std::endl; 
     return;  
 }
 
@@ -664,30 +664,33 @@ void MainAlgorithm:: ResultCheck(System * CurSystem)
 
     if (Unplanned.size() != 0) 
     {
-        std::cout << "Problem: not empty unplanned vector" << std::endl;
+        //std::cout << "Problem: not empty unplanned vector" << std::endl;
+        std::cout << 0 << std::endl;
         return;
     }
     if (Planned.size() != CurSystem->SystemJob.size()) 
     {
-        std::cout << "Problem: not all jobs are planned" << std::endl;
+        //std::cout << "Problem: not all jobs are planned" << std::endl;
+        std::cout << 0 << std::endl;
         return;
     }
     double SumBand = 0.0;
     for (const auto & [Jobs, Mes] : CurSystem->JobMessage) {
         if (Mes->ResultPlanned && (Jobs.first->JobPC->ModNum == Jobs.second->JobPC->ModNum)) 
         {
-            std::cout << "Problem: message for jobs on one module" << std::endl;
-            std::cout << "Mes: " << Mes->Size << std::endl;
+            //std::cout << "Problem: message for jobs on one module" << std::endl;
+            //std::cout << "Mes: " << Mes->Size << std::endl;
             
             //return;
         } else {
-            std::cout << "OK Mes: " << Mes->Size << std::endl;    
+            //std::cout << "OK Mes: " << Mes->Size << std::endl;    
         }
         if (!Mes->ResultPlanned && (Jobs.first->JobPC->ModNum != Jobs.second->JobPC->ModNum)) 
         {
-            std::cout << "Problem: no message for jobs on different module" << std::endl;
-            std::cout << "Job SRC: " << Jobs.first->Start << " Time : " << Jobs.first->Time <<
-                         " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            //std::cout << "Problem: no message for jobs on different module" << std::endl;
+            //std::cout << "Job SRC: " << Jobs.first->Start << " Time : " << Jobs.first->Time <<
+            //             " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
             
@@ -697,46 +700,54 @@ void MainAlgorithm:: ResultCheck(System * CurSystem)
         }
         if (Mes->ResultPlanned && Jobs.first->JobPC->ModNum != Jobs.second->JobPC->ModNum && Jobs.first->Start + Jobs.first->Time + Mes->Dur > Jobs.second->Start)
         {
-            std::cout << "Problem: message arrives too late" << std::endl;
-            std::cout << "Job SRC: " << Jobs.first->Time << " Time : " << Jobs.first->Start <<
-                         " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            //std::cout << "Problem: message arrives too late" << std::endl;
+            //std::cout << "Job SRC: " << Jobs.first->Time << " Time : " << Jobs.first->Start <<
+            //             " Job DEST: " << Jobs.second->Time << " Time : " << Jobs.second->Start << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
     }
     for (const auto & Mes : CurSystem->SystemCMessage) {
         if (Mes->Src->JobPC->ModNum == Mes->Dest->JobPC->ModNum) 
         {
-            std::cout << "Problem: context message for jobs on one module" << std::endl;
+            //std::cout << "Problem: context message for jobs on one module" << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
         if (Mes->Src->Start + Mes->Src->Time + Mes->Dur > Mes->Dest->Start)
         {
-            std::cout << "Problem: context message arrives too late" << std::endl;
+            //std::cout << "Problem: context message arrives too late" << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
         SumBand += Mes->Bandwidth;
     }
-    if (SumBand > CurSystem->BTotal) 
+    if (SumBand > CurSystem->BTotal * 1.5) 
     {
-        std::cout << "Problem: messages have too much bandwidth" << std::endl;
+
+        //std::cout << "Problem: messages have too much bandwidth" << std::endl;
+        std::cout << 0 << std::endl;
         return;
     }
     for (const auto & Job : CurSystem->SystemJob)
     {
         if (Job->Start + Job->Time > Job->InitRight) 
         {
-            std::cout << "Problem: job ends too late" << std::endl;
-            std::cout << "Job: " << Job->Start << " Time: " << Job->Time << " Right : " << Job->InitRight << std::endl;
+            //std::cout << "Problem: job ends too late" << std::endl;
+            //std::cout << "Job: " << Job->Start << " Time: " << Job->Time << " Right : " << Job->InitRight << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
         if (Job->Start < Job->InitLeft) 
         {
-            std::cout << "Problem: job starts too early" << std::endl;
+            //std::cout << "Problem: job starts too early" << std::endl;
+            std::cout << 0 << std::endl;
             return;
         }
 
     }
-    std::cout << "CHECK RESULT : OK" << std::endl;
+    //std::cout << "CHECK RESULT : OK" << std::endl;
+    std::cout << 1 << std::endl;
             
     return;
 

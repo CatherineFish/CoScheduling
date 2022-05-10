@@ -8,7 +8,7 @@ BLackCoef:: BLackCoef(double NeedBand_, double HaveBand_): NeedBand(NeedBand_), 
 {
 	if (HaveBand - NeedBand < 0)
 	{
-		std::cout << "Too much bandwidth need" << std::endl;
+		//std::cout << "Too much bandwidth need" << std::endl;
 		Value = NeedBand / HaveBand;
 	} else
 	{
@@ -59,7 +59,7 @@ void BLackCoef:: Reload(bool IsBetter, double NewBand, int CountNotPlanned, int 
 
 void StableCoef:: Reload(bool IsBetter)
 {
-    std::cout << "REload COEF " << IsBetter << std::endl;
+    //std::cout << "REload COEF " << IsBetter << std::endl;
     if (IsBetter)
     {
         Value = CountInPeriod / (CountInPeriod - CountNotPlanned);
@@ -67,16 +67,16 @@ void StableCoef:: Reload(bool IsBetter)
     } else 
     {
         CountNotPlanned--;
-        std::cout << CountNotPlanned << " " << CountInPeriod << std::endl; 
+        //std::cout << CountNotPlanned << " " << CountInPeriod << std::endl; 
         Value = CountInPeriod / (CountInPeriod - CountNotPlanned);  
     }
-    std::cout << "Res Val : " << Value << std::endl;
+    //std::cout << "Res Val : " << Value << std::endl;
     return;
 }
 
 void StableCoef:: Update(bool IsPlanned) 
 {
-    std::cout << "Update COEF " << IsPlanned << " val " << Value << std::endl;
+    //std::cout << "Update COEF " << IsPlanned << " val " << Value << std::endl;
     if (!IsPlanned && Value)
     {
         CountNotPlanned++;
@@ -85,11 +85,11 @@ void StableCoef:: Update(bool IsPlanned)
         } else {
             Value = CountInPeriod / (CountInPeriod - CountNotPlanned); 
         }
-        std::cout << "Count " << CountInPeriod << std::endl;  
+        //std::cout << "Count " << CountInPeriod << std::endl;  
     } else {
         NumOfPlanned = CountNotPlanned;
         Value = 0.0;
     }
-    std::cout << "Res Val : " << Value << std::endl;
+    //std::cout << "Res Val : " << Value << std::endl;
     return; 
 }

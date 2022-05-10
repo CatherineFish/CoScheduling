@@ -1,0 +1,539 @@
+1
+2
+1
+3
+ALL: 
+2 ****************
+3 ****
+3
+CP: 
+2 ******
+3 *
+
+2 *****
+3 **
+
+2 *****
+3 *
+
+
+PC NUM : 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 3 add = 0
+Period : 0
+2 2 2 2 2 2 3 
+Period : 1
+2 2 2 2 2 2 3 
+
+PC NUM : 1
+cur period = 3 add = 0
+cur period = 3 add = 0
+Period : 0
+3 3 2 2 2 2 2 
+Period : 1
+3 3 2 2 2 2 2 
+
+PC NUM : 2
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 2 add = 0
+cur period = 3 add = 0
+Period : 0
+2 2 2 2 2 3 
+Period : 1
+2 2 2 2 2 3 
+MAx Lenght = 7
+
+PC NUM : 0
+Dur in this period = 4 2 7
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  (24, 28)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  (24, 28)  
+New Job 0
+bb 0 Left 0
+Start 0
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 0
+
+New Job 1
+bb 0 Left 4
+Start 4
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 1
+
+New Job 2
+bb 0 Left 8
+Start 8
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 2
+
+New Job 3
+bb 0 Left 12
+Start 12
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 3
+
+New Job 4
+bb 0 Left 16
+Start 16
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 4
+
+New Job 5
+bb 0 Left 20
+Start 20
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 5
+
+New Job 6
+bb 0 Left 24
+Start 24
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 6
+
+New Job 7
+bb 28 Left 0
+Start 28
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 0
+
+New Job 8
+bb 28 Left 4
+Start 32
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 1
+
+New Job 9
+bb 28 Left 8
+Start 36
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 2
+
+New Job 10
+bb 28 Left 12
+Start 40
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 3
+
+New Job 11
+bb 28 Left 16
+Start 44
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 4
+
+New Job 12
+bb 28 Left 20
+Start 48
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 5
+
+New Job 13
+bb 28 Left 24
+Start 24
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 6
+
+
+PC NUM : 1
+Dur in this period = 4 2 7
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  (24, 28)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  (24, 28)  
+New Job 14
+bb 0 Left 0
+Start 0
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 7
+
+New Job 15
+bb 0 Left 4
+Start 4
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 8
+
+New Job 16
+bb 0 Left 8
+Start 8
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 9
+
+New Job 17
+bb 0 Left 12
+Start 12
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 10
+
+New Job 18
+bb 0 Left 16
+Start 16
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 11
+
+New Job 19
+bb 0 Left 20
+Start 20
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 12
+
+New Job 20
+bb 0 Left 24
+Start 24
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 13
+
+New Job 21
+bb 28 Left 0
+Start 0
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 7
+
+New Job 22
+bb 28 Left 4
+Start 4
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 8
+
+New Job 23
+bb 28 Left 8
+Start 36
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 9
+
+New Job 24
+bb 28 Left 12
+Start 40
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 10
+
+New Job 25
+bb 28 Left 16
+Start 44
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 11
+
+New Job 26
+bb 28 Left 20
+Start 48
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 12
+
+New Job 27
+bb 28 Left 24
+Start 52
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 13
+
+
+PC NUM : 2
+Dur in this period = 4 2 6
+Period : 1
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+Period : 2
+(0, 4)  (4, 8)  (8, 12)  (12, 16)  (16, 20)  (20, 24)  
+New Job 28
+bb 0 Left 0
+Start 0
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 14
+
+New Job 29
+bb 0 Left 4
+Start 4
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 15
+
+New Job 30
+bb 0 Left 8
+Start 8
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 16
+
+New Job 31
+bb 0 Left 12
+Start 12
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 17
+
+New Job 32
+bb 0 Left 16
+Start 16
+Period 28
+Time 4
+Left 0
+Right 28
+InitLeft 0
+InitRight 28
+NumOfTask 18
+
+New Job 33
+bb 0 Left 20
+Start 20
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 19
+
+New Job 34
+bb 28 Left 0
+Start 28
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 14
+
+New Job 35
+bb 28 Left 4
+Start 32
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 15
+
+New Job 36
+bb 28 Left 8
+Start 36
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 16
+
+New Job 37
+bb 28 Left 12
+Start 40
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 17
+
+New Job 38
+bb 28 Left 16
+Start 44
+Period 28
+Time 4
+Left 28
+Right 56
+InitLeft 28
+InitRight 56
+NumOfTask 18
+
+New Job 39
+bb 28 Left 20
+Start 20
+Period 56
+Time 4
+Left 0
+Right 56
+InitLeft 0
+InitRight 56
+NumOfTask 19
+
+GEn Messages
+PC : 0 Period : 0 Num : 0 TaskPeriod : 2
+PC TO : 1 PeriodUntil : 2
+0 0  3
+0 1  3
+0 2  2
+1 0  3
+1 1  3
+1 2  2
+28 4 7 0
+7
+Message 0
+0 9
+================================
+0 0 0
+1 1 1
+Modules
+3
+7
+14
+Problem: message for jobs on one module
+Mes: 28
+Problem: message for jobs on one module
+Mes: 28
+REs Band 14
+CHECK RESULT : OK

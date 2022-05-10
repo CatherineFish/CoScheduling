@@ -1,0 +1,328 @@
+digraph G {
+
+fontname="Helvetica,Arial,sans-serif"
+node [fontname="Helvetica,Arial,sans-serif"]
+edge [fontname="Helvetica,Arial,sans-serif"]
+graph [rankdir = "LR"];
+node [fontsize = "20" shape = "ellipse"];
+
+    subgraph cluster_Mod_0{
+        color =chartreuse
+        style = bold
+        subgraph cluster_0{
+           node [style=filled]
+           color = black
+
+
+            "node36" [
+               label = "Start Time : 0 | End Time : 5 | Duration : 5"
+               shape = "record"
+               color = cornflower
+            ]
+
+            "node15" [
+               label = "Start Time : 5 | End Time : 10 | Duration : 5"
+               shape = "record"
+               color = violet
+            ]
+
+            "node11" [
+               label = "Start Time : 10 | End Time : 15 | Duration : 5"
+               shape = "record"
+               color = x11purple
+            ]
+
+            "node10" [
+               label = "Start Time : 15 | End Time : 20 | Duration : 5"
+               shape = "record"
+               color = orangered1
+            ]
+
+            "node37" [
+               label = "Start Time : 20 | End Time : 25 | Duration : 5"
+               shape = "record"
+               color = cornflower
+            ]
+
+            "node16" [
+               label = "Start Time : 25 | End Time : 30 | Duration : 5"
+               shape = "record"
+               color = violet
+            ]
+
+            "node38" [
+               label = "Start Time : 40 | End Time : 45 | Duration : 5"
+               shape = "record"
+               color = cornflower
+            ]
+
+            "node17" [
+               label = "Start Time : 45 | End Time : 50 | Duration : 5"
+               shape = "record"
+               color = violet
+            ]
+
+            "node12" [
+               label = "Start Time : 50 | End Time : 55 | Duration : 5"
+               shape = "record"
+               color = x11purple
+            ]
+
+            "node39" [
+               label = "Start Time : 60 | End Time : 65 | Duration : 5"
+               shape = "record"
+               color = cornflower
+            ]
+
+            "node18" [
+               label = "Start Time : 65 | End Time : 70 | Duration : 5"
+               shape = "record"
+               color = violet
+            ]
+
+            node36 -> node15 -> node11 -> node10 -> node37 -> node16 -> node38 -> node17 -> node12 -> node39 -> node18
+
+            label = "PC #1"
+
+        }
+        subgraph cluster_1{
+           node [style=filled]
+           color = black
+
+
+            "node42" [
+               label = "Start Time : 0 | End Time : 5 | Duration : 5"
+               shape = "record"
+               color = cyan
+            ]
+
+            "node19" [
+               label = "Start Time : 5 | End Time : 10 | Duration : 5"
+               shape = "record"
+               color = brown1
+            ]
+
+            "node13" [
+               label = "Start Time : 10 | End Time : 15 | Duration : 5"
+               shape = "record"
+               color = thistle1
+            ]
+
+            "node44" [
+               label = "Start Time : 15 | End Time : 20 | Duration : 5"
+               shape = "record"
+               color = darkgoldenrod
+            ]
+
+            "node1" [
+               label = "Start Time : 20 | End Time : 25 | Duration : 5"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node25" [
+               label = "Start Time : 25 | End Time : 29 | Duration : 4"
+               shape = "record"
+               color = cadetblue1
+            ]
+
+            "node43" [
+               label = "Start Time : 40 | End Time : 45 | Duration : 5"
+               shape = "record"
+               color = cyan
+            ]
+
+            "node21" [
+               label = "Start Time : 45 | End Time : 50 | Duration : 5"
+               shape = "record"
+               color = brown1
+            ]
+
+            "node14" [
+               label = "Start Time : 50 | End Time : 55 | Duration : 5"
+               shape = "record"
+               color = thistle1
+            ]
+
+            "node3" [
+               label = "Start Time : 60 | End Time : 65 | Duration : 5"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node27" [
+               label = "Start Time : 65 | End Time : 69 | Duration : 4"
+               shape = "record"
+               color = cadetblue1
+            ]
+
+            node42 -> node19 -> node13 -> node44 -> node1 -> node25 -> node43 -> node21 -> node14 -> node3 -> node27
+
+            label = "PC #2"
+
+        }
+        subgraph cluster_2{
+           node [style=filled]
+           color = black
+
+
+            "node0" [
+               label = "Start Time : 0 | End Time : 5 | Duration : 5"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node24" [
+               label = "Start Time : 5 | End Time : 9 | Duration : 4"
+               shape = "record"
+               color = cadetblue1
+            ]
+
+            "node34" [
+               label = "Start Time : 9 | End Time : 13 | Duration : 4"
+               shape = "record"
+               color = coral
+            ]
+
+            "node40" [
+               label = "Start Time : 13 | End Time : 18 | Duration : 5"
+               shape = "record"
+               color = crimson
+            ]
+
+            "node23" [
+               label = "Start Time : 18 | End Time : 22 | Duration : 4"
+               shape = "record"
+               color = burlywood1
+            ]
+
+            "node20" [
+               label = "Start Time : 22 | End Time : 27 | Duration : 5"
+               shape = "record"
+               color = brown1
+            ]
+
+            "node2" [
+               label = "Start Time : 40 | End Time : 45 | Duration : 5"
+               shape = "record"
+               color = steelblue2
+            ]
+
+            "node26" [
+               label = "Start Time : 45 | End Time : 49 | Duration : 4"
+               shape = "record"
+               color = cadetblue1
+            ]
+
+            "node35" [
+               label = "Start Time : 49 | End Time : 53 | Duration : 4"
+               shape = "record"
+               color = coral
+            ]
+
+            "node41" [
+               label = "Start Time : 53 | End Time : 58 | Duration : 5"
+               shape = "record"
+               color = crimson
+            ]
+
+            "node7" [
+               label = "Start Time : 60 | End Time : 65 | Duration : 5"
+               shape = "record"
+               color = aqua
+            ]
+
+            "node31" [
+               label = "Start Time : 65 | End Time : 69 | Duration : 4"
+               shape = "record"
+               color = chartreuse
+            ]
+
+            node0 -> node24 -> node34 -> node40 -> node23 -> node20 -> node2 -> node26 -> node35 -> node41 -> node7 -> node31
+
+            label = "PC #3"
+
+        }
+        subgraph cluster_3{
+           node [style=filled]
+           color = black
+
+
+            "node4" [
+               label = "Start Time : 0 | End Time : 5 | Duration : 5"
+               shape = "record"
+               color = aqua
+            ]
+
+            "node28" [
+               label = "Start Time : 5 | End Time : 9 | Duration : 4"
+               shape = "record"
+               color = chartreuse
+            ]
+
+            "node8" [
+               label = "Start Time : 9 | End Time : 14 | Duration : 5"
+               shape = "record"
+               color = aquamarine
+            ]
+
+            "node32" [
+               label = "Start Time : 14 | End Time : 18 | Duration : 4"
+               shape = "record"
+               color = chocolate
+            ]
+
+            "node5" [
+               label = "Start Time : 20 | End Time : 25 | Duration : 5"
+               shape = "record"
+               color = aqua
+            ]
+
+            "node29" [
+               label = "Start Time : 25 | End Time : 29 | Duration : 4"
+               shape = "record"
+               color = chartreuse
+            ]
+
+            "node6" [
+               label = "Start Time : 40 | End Time : 45 | Duration : 5"
+               shape = "record"
+               color = aqua
+            ]
+
+            "node30" [
+               label = "Start Time : 45 | End Time : 49 | Duration : 4"
+               shape = "record"
+               color = chartreuse
+            ]
+
+            "node9" [
+               label = "Start Time : 49 | End Time : 54 | Duration : 5"
+               shape = "record"
+               color = aquamarine
+            ]
+
+            "node33" [
+               label = "Start Time : 54 | End Time : 58 | Duration : 4"
+               shape = "record"
+               color = chocolate
+            ]
+
+            "node22" [
+               label = "Start Time : 60 | End Time : 65 | Duration : 5"
+               shape = "record"
+               color = brown1
+            ]
+
+            node4 -> node28 -> node8 -> node32 -> node5 -> node29 -> node6 -> node30 -> node9 -> node33 -> node22
+
+            label = "PC #4"
+
+        }
+    }
+
+
+
+
+}
+

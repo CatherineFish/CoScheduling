@@ -1,0 +1,90 @@
+<system modnum="6" tasknum="67" bandwidth="90.3234" mesnum="9">
+    <modules>
+        <pc>3</pc>
+        <pc>2</pc>
+        <pc>3</pc>
+        <pc>1</pc>
+        <pc>2</pc>
+        <pc>3</pc>
+    </modules>
+    <tasks>
+        <task period="32" time="8" left="0" right="32" messize="48" />
+        <task period="256" time="8" left="0" right="256" messize="52" />
+        <task period="512" time="8" left="0" right="512" messize="57" />
+        <task period="2048" time="8" left="0" right="2048" messize="33" />
+        <task period="64" time="10" left="0" right="64" messize="57" />
+        <task period="256" time="10" left="0" right="256" messize="44" />
+        <task period="32" time="10" left="0" right="32" messize="20" />
+        <task period="128" time="8" left="0" right="128" messize="51" />
+        <task period="256" time="8" left="0" right="256" messize="79" />
+        <task period="32" time="8" left="0" right="32" messize="61" />
+        <task period="64" time="8" left="0" right="64" messize="54" />
+        <task period="256" time="8" left="0" right="256" messize="47" />
+        <task period="256" time="8" left="0" right="256" messize="52" />
+        <task period="64" time="8" left="0" right="64" messize="57" />
+        <task period="128" time="8" left="0" right="128" messize="60" />
+        <task period="512" time="6" left="0" right="512" messize="73" />
+        <task period="64" time="6" left="0" right="64" messize="35" />
+        <task period="128" time="6" left="0" right="128" messize="51" />
+        <task period="256" time="6" left="0" right="256" messize="65" />
+        <task period="256" time="6" left="0" right="256" messize="39" />
+        <task period="1024" time="5" left="0" right="1024" messize="45" />
+        <task period="64" time="5" left="0" right="64" messize="35" />
+        <task period="128" time="5" left="0" right="128" messize="68" />
+        <task period="256" time="5" left="0" right="256" messize="62" />
+        <task period="256" time="5" left="0" right="256" messize="65" />
+        <task period="512" time="5" left="0" right="512" messize="66" />
+        <task period="2048" time="4" left="0" right="2048" messize="39" />
+        <task period="64" time="4" left="0" right="64" messize="44" />
+        <task period="128" time="4" left="0" right="128" messize="19" />
+        <task period="256" time="4" left="0" right="256" messize="49" />
+        <task period="256" time="4" left="0" right="256" messize="48" />
+        <task period="512" time="4" left="0" right="512" messize="61" />
+        <task period="1024" time="4" left="0" right="1024" messize="42" />
+        <task period="4096" time="4" left="0" right="4096" messize="36" />
+        <task period="64" time="4" left="0" right="64" messize="73" />
+        <task period="128" time="4" left="0" right="128" messize="43" />
+        <task period="256" time="4" left="0" right="256" messize="71" />
+        <task period="256" time="4" left="0" right="256" messize="54" />
+        <task period="512" time="4" left="0" right="512" messize="71" />
+        <task period="1024" time="4" left="0" right="1024" messize="52" />
+        <task period="2048" time="4" left="0" right="2048" messize="74" />
+        <task period="64" time="5" left="0" right="64" messize="37" />
+        <task period="128" time="5" left="0" right="128" messize="71" />
+        <task period="256" time="5" left="0" right="256" messize="57" />
+        <task period="512" time="5" left="0" right="512" messize="54" />
+        <task period="1024" time="5" left="0" right="1024" messize="75" />
+        <task period="2048" time="5" left="0" right="2048" messize="75" />
+        <task period="128" time="6" left="0" right="128" messize="49" />
+        <task period="256" time="6" left="0" right="256" messize="42" />
+        <task period="512" time="6" left="0" right="512" messize="56" />
+        <task period="1024" time="6" left="0" right="1024" messize="22" />
+        <task period="2048" time="6" left="0" right="2048" messize="44" />
+        <task period="128" time="6" left="0" right="128" messize="48" />
+        <task period="256" time="6" left="0" right="256" messize="84" />
+        <task period="512" time="6" left="0" right="512" messize="28" />
+        <task period="1024" time="6" left="0" right="1024" messize="37" />
+        <task period="2048" time="6" left="0" right="2048" messize="15" />
+        <task period="256" time="8" left="0" right="256" messize="45" />
+        <task period="512" time="8" left="0" right="512" messize="49" />
+        <task period="1024" time="8" left="0" right="1024" messize="45" />
+        <task period="2048" time="8" left="0" right="2048" messize="15" />
+        <task period="512" time="10" left="0" right="512" messize="52" />
+        <task period="2048" time="10" left="0" right="2048" messize="63" />
+        <task period="256" time="10" left="0" right="256" messize="46" />
+        <task period="2048" time="10" left="0" right="2048" messize="60" />
+        <task period="256" time="10" left="0" right="256" messize="47" />
+        <task period="512" time="10" left="0" right="512" messize="34" />
+    </tasks>
+    <messages>
+        <mes src="18" dest="5" size="78" />
+        <mes src="52" dest="14" size="41" />
+        <mes src="12" dest="37" size="49" />
+        <mes src="64" dest="46" size="41" />
+        <mes src="18" dest="1" size="56" />
+        <mes src="48" dest="19" size="41" />
+        <mes src="4" dest="13" size="67" />
+        <mes src="36" dest="57" size="51" />
+        <mes src="42" dest="17" size="31" />
+    </messages>
+</system>

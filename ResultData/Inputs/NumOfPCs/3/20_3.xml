@@ -1,0 +1,36 @@
+<system modnum="2" tasknum="23" bandwidth="159.417" mesnum="3">
+    <modules>
+        <pc>3</pc>
+        <pc>2</pc>
+    </modules>
+    <tasks>
+        <task period="48" time="9" left="0" right="48" messize="42" />
+        <task period="192" time="9" left="0" right="192" messize="42" />
+        <task period="384" time="9" left="0" right="384" messize="64" />
+        <task period="768" time="9" left="0" right="768" messize="41" />
+        <task period="1536" time="9" left="0" right="1536" messize="41" />
+        <task period="96" time="8" left="0" right="96" messize="72" />
+        <task period="192" time="8" left="0" right="192" messize="34" />
+        <task period="384" time="8" left="0" right="384" messize="37" />
+        <task period="768" time="8" left="0" right="768" messize="51" />
+        <task period="1536" time="8" left="0" right="1536" messize="27" />
+        <task period="48" time="8" left="0" right="48" messize="61" />
+        <task period="192" time="8" left="0" right="192" messize="49" />
+        <task period="192" time="8" left="0" right="192" messize="16" />
+        <task period="384" time="8" left="0" right="384" messize="64" />
+        <task period="768" time="8" left="0" right="768" messize="57" />
+        <task period="48" time="8" left="0" right="48" messize="56" />
+        <task period="96" time="8" left="0" right="96" messize="65" />
+        <task period="384" time="16" left="0" right="384" messize="40" />
+        <task period="96" time="16" left="0" right="96" messize="45" />
+        <task period="192" time="16" left="0" right="192" messize="65" />
+        <task period="768" time="16" left="0" right="768" messize="38" />
+        <task period="192" time="16" left="0" right="192" messize="78" />
+        <task period="384" time="16" left="0" right="384" messize="64" />
+    </tasks>
+    <messages>
+        <mes src="22" dest="7" size="46" />
+        <mes src="11" dest="1" size="74" />
+        <mes src="11" dest="19" size="68" />
+    </messages>
+</system>
