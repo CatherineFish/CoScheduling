@@ -9,7 +9,7 @@ std::shared_ptr<PC> LimitedSearch:: MainLoop(int Mode,
                                              std::vector<std::shared_ptr<Job>> & Unplanned)
 {
     //std::cout << "In Limited Search" << std::endl;
-    //std::cout << "Cur Job " << CurJob->Time << std::endl;
+    //std::cout << "Cur Job " << std::find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob) - CurSystem->SystemJob.begin() << std::endl;
     //std::cout << "Cur Job failed PC for plan " << CurJob->ListResult.begin()->second->Num << std::endl;
     for (int i = 0; i < Planned.size(); i++)
     {
@@ -43,18 +43,13 @@ int LimitedSearch:: Check(std::shared_ptr<Job> CurJob,
                           double NewPPoint)
 {
     //if (NewPPoint == 16) return 0;
-    //std::cout << "Check Start" << std::endl;
     bool flag = false;
     double NewLeft = 0.0;
     double BSum = 0.0;
-    //std::cout << CurJob->InMessage.size() << std::endl;
     if (CurJob->InMessage.size() != 0)
     {
         for (const auto & SendIdx: CurJob->InMessage)
         {
-            //std::cout << SendIdx << " " << CurSystem->SystemJob.size() << std::endl;
-            //std::cout << "Chech sender " << CurSystem->SystemJob[SendIdx] << std::endl;
-        
             if (CurSystem->SystemJob[SendIdx]->IsPlanned && CurSystem->SystemJob[SendIdx]->JobPC->ModNum != PCForPlan->ModNum)
             {
                 if (CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>
@@ -78,7 +73,6 @@ int LimitedSearch:: Check(std::shared_ptr<Job> CurJob,
             
         }
     }
-    //std::cout << "Here" << std::endl;
     if (CurJob->PreviousJob && CurJob->PreviousJob->IsPlanned && CurJob->PreviousJob->JobPC->ModNum != PCForPlan->ModNum)
     {   
         bool IsContextMes = false;
@@ -105,7 +99,6 @@ int LimitedSearch:: Check(std::shared_ptr<Job> CurJob,
         CurJob->Left = std::max(PCForPlan->PC_PPoint, CurJob->Left);
                 
     }
-    //std::cout << "Here Too" << std::endl;
     
     if (CurSystem->BTotal <= BSum + CurSystem->CurBand)
     {
@@ -115,7 +108,6 @@ int LimitedSearch:: Check(std::shared_ptr<Job> CurJob,
     {
         return 2; //нарушение директивных сроков
     }
-    //std::cout << "Correct Res" << std::endl;
     
     return 0;
 
@@ -131,40 +123,47 @@ std::shared_ptr<PC> LimitedSearch:: FirstSceme(std::shared_ptr<Job> CurJob,
 {
     //WARNING результирующий список не содержит всех ядер, перебор не полный - не стремимся к полному
     //std::cout << "Cur Depth " << CSearch << " Cur Iteration " << Iteration << std::endl;
-
+    //std::cout << " Cur Job " << std::find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob) - CurSystem->SystemJob.begin() << std::endl;
+    //std::cout << "Banned " << CurJob->Tried.size()  << std::endl;
+    for (int i = 0; i < CurJob->Tried.size(); i++)
+    {
+        //std::cout << "In " << i  << std::endl;
+        //std::cout << CurJob->Tried[i].first->Num << std::endl;
+    
+        //std::cout << CurJob->Tried[i].second << std::endl;
+    }
+    
     if (CSearch > SearchDepth || Iteration > IterationDepth)
     {
         //std::cout << "Не удалось построить расписание: перебрали все на глубину поиска" << std::endl;
-        if (!isBandwidthProblem) {
-            std::cout << 0 << std::endl;
-            exit(0); //глобальная неудача, перебрали все на глубину поиска
-        }
+        if (!isBandwidthProblem) exit(1); //глобальная неудача, перебрали все на глубину поиска
         else {
             isSucces = false;
-            //std::cout << "here" << std::endl;
+            ////std::cout << "here" << std::endl;
             return nullptr;
         }
     }
-    
     if (Iteration != 1)
     {
-        //std::cout << "Size before " << CurJob->ListResult.size() << std::endl;
-        for (int i = 0; i < CurSystem->SystemCMessage.size(); i++)
-        {
-            //std::cout << CurSystem->SystemCMessage[i]->Dur << std::endl;
-        }
-        UpdateBList(CurSystem, CurJob);
-        //std::cout << "Update_1" << std::endl;
-        UpdateFList(CurSystem, CurJob);
-        //std::cout << "Update_2" << std::endl;
         
+        UpdateBList(CurSystem, CurJob);
+    
+        UpdateFList(CurSystem, CurJob);
         UpdateRList(CurJob);
-        //std::cout << "Size after " << CurJob->ListResult.size() << std::endl;
     }
+    //std::cout << "Result List" << std::endl;
 
+    for (const auto & CurPC: CurJob->ListResult)
+    {
+        //std::cout << CurPC.second->Num << " ";
+    }
+    //std::cout << std::endl;
+    //if (BadPC != nullptr)
+        //std::cout << "Bad PC : " << BadPC->Num << std::endl;
     auto CurPC = CurJob->ListResult.begin();     
     if (BadPC != nullptr) 
     {
+
         while (CurPC != CurJob->ListResult.end())
         {
             if (CurPC->second == BadPC)
@@ -182,21 +181,22 @@ std::shared_ptr<PC> LimitedSearch:: FirstSceme(std::shared_ptr<Job> CurJob,
     }
     auto CurPCExtra = CurJob->ListFill.begin();
     bool isEmptyResult = false;
-    if (CurJob->ListResult.size() == 1)
+    if (CurJob->ListResult.size() == 1 || CurJob->ListResult.size() <= CurJob->Tried.size())
     {
         //TODO костыль
         isEmptyResult = true;
-        //std::cout << "CHECK LIST RESULT " << (CurPC != CurJob->ListResult.end()) << " " << (CurPCExtra != CurJob->ListFill.end()) << std::endl;  
     }
     //перебираем ядра в результирующем списке
-    while (CurPC != CurJob->ListResult.end() || (isEmptyResult && CurPCExtra != CurJob->ListFill.end()))
+    while ((!isEmptyResult && CurPC != CurJob->ListResult.end()) || (isEmptyResult && CurPCExtra != CurJob->ListFill.end()))
     {
-        //std::cout << "in cycle" << std::endl;
-        //std::cout << CurJob->Time << std::endl;
         
         ////std::cout << "Global Job Idx for Unplan: " << BadPC->PlannedOnPC[BadPC->PlannedOnPC.size() - 1] << std::endl;
+        //if (isEmptyResult)
+            //std::cout << " cur pc = " << CurPCExtra->first->Num << std::endl;
+        //else
+            //std::cout << " cur pc = " << CurPC->second->Num << std::endl;
+
         double NewPPoint = CurJob->InitLeft;
-        //std::cout << "new point " << NewPPoint << std::endl;
         
         for (const auto & SendIdx: CurJob->InMessage)
         {
@@ -209,7 +209,8 @@ std::shared_ptr<PC> LimitedSearch:: FirstSceme(std::shared_ptr<Job> CurJob,
                                    CurSystem->JobMessage[std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>(CurSystem->SystemJob[SendIdx], CurJob)]->Dur);         
             }
         }
-
+        ////std::cout << "new point " << NewPPoint << std::endl;
+        
         if (!isEmptyResult && CurPC->second->PlannedOnPC.size())
         {
             int Idx = CurPC->second->PlannedOnPC[CurPC->second->PlannedOnPC.size() - 1];
@@ -219,94 +220,99 @@ std::shared_ptr<PC> LimitedSearch:: FirstSceme(std::shared_ptr<Job> CurJob,
         } else if (isEmptyResult && CurPCExtra->first->PlannedOnPC.size())
         {
             int Idx = CurPCExtra->first->PlannedOnPC[CurPCExtra->first->PlannedOnPC.size() - 1];
-            
             NewPPoint = std::max(CurSystem->SystemJob[Idx]->Start + CurSystem->SystemJob[Idx]->Time, NewPPoint);
             
         }
-        //std::cout << "! new point " << NewPPoint << std::endl;
-        
+        std::shared_ptr<PC> NewPCForPlan;
         int CheckResult;
-        if (!isEmptyResult)
+        if (!isEmptyResult){
             CheckResult = Check(CurJob, CurPC->second, CurSystem, NewPPoint);
-        else 
+            NewPCForPlan = CurPC->second;
+        }
+        else {
             CheckResult = Check(CurJob, CurPCExtra->first, CurSystem, NewPPoint);
+            NewPCForPlan = CurPCExtra->first;
+        }
             
         
         //std::cout << "CheckResult " << CheckResult << std::endl;
-        
-        if (!CheckResult)
+        auto findTry = std::find(CurJob->Tried.begin(), CurJob->Tried.end(), std::pair<std::shared_ptr<PC>, double>(NewPCForPlan, NewPPoint));
+        ////std::cout << "find try res : " << (findTry == CurJob->Tried.end()) << std::endl;
+        if (!CheckResult && (BadPC == nullptr || NewPCForPlan != BadPC) && findTry == CurJob->Tried.end())
         {
+            //std::cout << "GOOD RES" << std::endl;
             CurSystem->PPoint = NewPPoint;
-            //std::cout << "I RETURN" << std::endl;
-
             if (!isEmptyResult)
             {
-                //std::cout << CurPC->second->PlannedOnPC.size() << std::endl;
-            
                 return std::shared_ptr<PC>(CurPC->second); 
             }
             else { 
-                //std::cout << CurPCExtra->first->PlannedOnPC.size() << std::endl;
-            
                 return std::shared_ptr<PC>(CurPCExtra->first);
             }
         }
         if (isEmptyResult)
         {
             CurPCExtra++;
+            
         } else {
             CurPC++;
         }
         
 
     }
-    //std::cout << "List Result Size : " << CurJob->ListResult.size() << std::endl;
     //std::cout << "List Result ended " << std::endl;
 
     //перебрали весь результирующий список для текущей работы
     if (Planned.size() == 0)
     {
-        
-        std::cout << 0 << std::endl;
-        exit(0);
-        /*
         //std::cout << "Не удалось построить расписание: перебрали все имеющиеся запланированные работы" << std::endl;
-        if (!isBandwidthProblem) {
-            //exit(0); //глобальная неудача, перебрали все имеющиеся запланированные работы
-            std::cout << 0 << std::endl;
-            exit(0);
-        }
+        exit(1);
+
+        // пока что глобальный выход
+        /*
+        if (!isBandwidthProblem) exit(1); //глобальная неудача, перебрали все имеющиеся запланированные работы
         else {
             isSucces = false;
             //std::cout << "here ?" << std::endl;
             return nullptr;
-        }
-        */
+        }*/
+
     }
     //std::cout << "Want to unplan" << std::endl;
     
     auto JobForUnPlan = std::shared_ptr<Job>(Planned[Planned.size() - 1]);
-    //std::cout << "Job for unplan " << JobForUnPlan->Time << std::endl;
-    
+    //std::cout << "Job for unplan " <<  std::find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), JobForUnPlan) - CurSystem->SystemJob.begin() << std::endl;
     auto PCForUnPlan = JobForUnPlan->JobPC;
-    //std::cout << "GLOB Before " << Planned.size() << std::endl;     
+    //std::cout << "Start " << JobForUnPlan->Start << " PC " << PCForUnPlan->Num << std::endl;
+
+    JobForUnPlan->Tried.push_back(std::pair<std::shared_ptr<PC>, double>(std::shared_ptr<PC>(PCForUnPlan), JobForUnPlan->Start));
     
-    UnPlan(Planned, CurSystem, Unplanned);
-    
-    //std::cout << "GLOB After " << Planned.size() << std::endl;
-         
-    auto NewPC = FirstSceme(JobForUnPlan, PCForUnPlan, Planned, CurSystem, Unplanned, CSearch + 1, Iteration);
-    //std::cout << (NewPC == nullptr) << std::endl;
-    //std::cout << "We have new PC " << NewPC->Num << std::endl;
-    //std::cout << NewPC->PlannedOnPC.size() << std::endl;
-    for (int i = 0; i < CurSystem->SystemPC.size(); i++)
+    for (const auto & UnplannedJob: Unplanned)
     {
-        //std::cout << CurSystem->SystemPC[i]->PlannedOnPC.size() << std::endl;    
-        
+        UnplannedJob->Tried.clear();
     }
+    //std::cout << "BEFORE" << std::endl;
+    for (int i = 0; i < JobForUnPlan->Tried.size(); i++)
+    {
+        //std::cout << JobForUnPlan->Tried[i].first->Num << std::endl;
+    
+        //std::cout << JobForUnPlan->Tried[i].second << std::endl;
+    }
+    UnPlan(Planned, CurSystem, Unplanned);
+    //std::cout << "AFTER" << std::endl;
+    for (int i = 0; i < JobForUnPlan->Tried.size(); i++)
+    {
+        //std::cout << JobForUnPlan->Tried[i].first->Num << std::endl;
+        //std::cout << JobForUnPlan->Tried[i].second << std::endl;
+    
+    }
+    //JobForUnPlan->Tried.clear();
+    auto NewPC = FirstSceme(JobForUnPlan, PCForUnPlan, Planned, CurSystem, Unplanned, CSearch + 1, Iteration);
+    ////std::cout << (NewPC == nullptr) << std::endl;
+    //std::cout << "We have new PC " << NewPC->Num << std::endl;
+    ////std::cout << NewPC->PlannedOnPC.size() << std::endl;
     Plan(JobForUnPlan, NewPC, Planned, CurSystem, Unplanned);
 
-    //std::cout << "Plan ended" << std::endl;
     return FirstSceme(CurJob, nullptr, Planned, CurSystem, Unplanned, CSearch, Iteration + 1);
 }
 
@@ -317,7 +323,6 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
                            System * CurSystem,
                            std::vector<std::shared_ptr<Job>> & Unplanned)
 {
-    //std::cout << "Plan_1" << std::endl;
     if (CurPC->PlannedOnPC.size())
     {
         int Idx = CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1];
@@ -325,14 +330,11 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
     }
     
 
-    //std::cout << "Plan_2" << std::endl;
-    //std::cout << CurPC->PlannedOnPC.size() << std::endl;
     //Планируем
     CurJob->JobPC = std::shared_ptr<PC>(CurPC);
     CurJob->Start = CurJob->NewLimitForPlan[CurPC->Num];
     CurJob->JobPC->PC_PPoint = CurJob->NewLimitForPlan[CurPC->Num] + CurJob->Time;
     CurJob->IsPlanned = true;
-    //std::cout << "Plan_3" << std::endl;
     
     //Если предыдущий экземпляр работы запланирован на дургой модуль, формируем контекстное сообщение, если его нет
     if (CurJob->PreviousJob && CurJob->PreviousJob->IsPlanned && 
@@ -361,8 +363,6 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
                                 (CurJob->Left -
                                 CurJob->PreviousJob->Start - 
                                 CurJob->PreviousJob->Time);
-            //std::cout << "UPDATE MESSAGES!!!!" << std::endl;
-            //std::cout << CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Dur << std::endl;
             
             CurSystem->CurBLackCoef.Update(false, CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Bandwidth, CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->StabilityCoef.CountNotPlanned, 
                                            CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->StabilityCoef.CountInPeriod);
@@ -375,9 +375,7 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
         //чтобы не перегружать CurSystem->JobMessage, там только одно контекстное сообщение 
                       
     }
-    //std::cout << "Plan_4" << std::endl;
     
-
     //обновление коэффициентов для сообщений
     if (CurJob->InMessage.size() != 0)
     {
@@ -402,17 +400,14 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
             }
         }
     }
-    //std::cout << "Plan_5" << std::endl;
     
     //обновляем ядро, на которое поставили работу
-    //std::cout << CurJob->Time << std::endl;
-    //std::cout << CurJob->JobPC->Num << std::endl;
-    //std::cout << CurJob->JobPC->PlannedOnPC.size() << std::endl;
     int add = std::find(CurSystem->SystemJob.begin(), CurSystem->SystemJob.end(), CurJob) - CurSystem->SystemJob.begin();
-    //std::cout << add << std::endl;
     CurJob->JobPC->PlannedOnPC.push_back(add);
-    //std::cout << "Plan_6" << std::endl;
     
+
+    auto noElem = std::remove(Unplanned.begin(), Unplanned.end(), CurJob);
+    Unplanned.erase(noElem, Unplanned.end());
     //обновляем список запланированных работ
     Planned.push_back(std::shared_ptr<Job>(CurJob));
     
@@ -424,13 +419,11 @@ void LimitedSearch:: Plan (std::shared_ptr<Job> CurJob,
 
 double LimitedSearch:: UpdatePPoint(System* CurSystem, std::vector<std::shared_ptr<Job>> & Unplanned)
 {
-    //std::cout << "Update PPoint_1" << std::endl;
     double NewPoint = CurSystem->LCMPeriod, NewPoint2 = CurSystem->LCMPeriod;
     for (const auto & CurJob: Unplanned)
     {
         NewPoint = std::min(NewPoint, CurJob->Left);
     }
-    //std::cout << "Update PPoint_2" << std::endl;
     
     for (const auto & CurPC: CurSystem->SystemPC)
     {
@@ -438,27 +431,12 @@ double LimitedSearch:: UpdatePPoint(System* CurSystem, std::vector<std::shared_p
             NewPoint2 = 0.0;
             break;
         }
-        //std::cout << "pp" << std::endl;
-        for (int ii = 0; ii < CurPC->PlannedOnPC.size(); ii++)
-        {
-            //std::cout << CurPC->PlannedOnPC[ii] << " ";
-        }
-        //std::cout << std::endl;
-        //std::cout << CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1] << std::endl;
-        //std::cout << CurSystem->SystemJob.size() << std::endl;
-        for (int i = 0; i < CurSystem->SystemJob.size(); i++)
-        {
-            //std::cout << "I = " << i << "  elem = " << CurSystem->SystemJob[i]->Time << std::endl;
-        }
-        //std::cout << CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start << std::endl;
-        //std::cout << "not end" << std::endl;
+    
         NewPoint2 = std::min(NewPoint2, CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Start + 
                             CurSystem->SystemJob[CurPC->PlannedOnPC[CurPC->PlannedOnPC.size() - 1]]->Time);
     }
-    //std::cout << "Update PPoint_3" << std::endl;
     
     NewPoint = std::max(NewPoint, NewPoint2);
-    //std::cout << "Update PPoint_4" << std::endl;
     
     /*
     for (const auto & CurPC: CurSystem->SystemPC)
@@ -480,13 +458,11 @@ void LimitedSearch:: UnPlan (std::vector<std::shared_ptr<Job>> & Planned,
 {
     
     int size = Planned.size() - 1;
-    //std::cout << "Size after : " << size << std::endl;
-
+    
     //Если предыдущий экземпляр работы запланирован на дургой модуль, есть контекстное сообщение, убираем его
     if (Planned[size]->PreviousJob && Planned[size]->PreviousJob->IsPlanned && 
         Planned[size]->JobPC->ModNum != Planned[size]->PreviousJob->JobPC->ModNum)
     {
-        //std::cout << "INOUT" << std::endl;
         //проверяем, что контекстное сообщение создано только из-за этой работы, иначе не удаляем сообщение
         for (const auto & CurMes: CurSystem->SystemCMessage)
         {
@@ -497,10 +473,8 @@ void LimitedSearch:: UnPlan (std::vector<std::shared_ptr<Job>> & Planned,
                     //контекстное из-за рассматриваемой работы - удаляем
                     CurSystem->JobMessage.erase(std::pair<std::shared_ptr<Job>, std::shared_ptr<Job>>
                                                 (Planned[size]->PreviousJob, Planned[size]));
-                    //std::cout << "Size befor" << CurSystem->SystemCMessage.size() << std::endl; 
                     auto noElem = std::remove(CurSystem->SystemCMessage.begin(), CurSystem->SystemCMessage.end(), CurMes);
                     CurSystem->SystemCMessage.erase(noElem, CurSystem->SystemCMessage.end());
-                    //std::cout << "Size befor" << CurSystem->SystemCMessage.size() << std::endl;
                 }
                 break;
             }
@@ -508,10 +482,6 @@ void LimitedSearch:: UnPlan (std::vector<std::shared_ptr<Job>> & Planned,
         
                      
     }
-
-    
-        
-    //std::cout << "UnPlan_1" << std::endl;
 
     //обновление коэффициентов для сообщений
     for (const auto & SendIdx: Planned[size]->InMessage)
@@ -533,30 +503,24 @@ void LimitedSearch:: UnPlan (std::vector<std::shared_ptr<Job>> & Planned,
             CurSystem->CurBLackCoef.Reload(false, CurMes->Bandwidth, CurMes->StabilityCoef.CountNotPlanned, CurMes->StabilityCoef.CountInPeriod);
         }
     }
-    //std::cout << "UnPlan_2" << std::endl;
     
     //обновляем ядро, на которое поставили работу, она там точно последняя
     Planned[size]->JobPC->PlannedOnPC.pop_back();
     Planned[size]->JobPC->PC_PPoint = CurSystem->SystemJob[*(Planned[size]->JobPC->PlannedOnPC.rend())]->Start + CurSystem->SystemJob[*(Planned[size]->JobPC->PlannedOnPC.rend())]->Time;
     
     //обновляем список запланированных работ
-    //std::cout << "UnPlan_3" << std::endl;
     
     //обновляем точку планирования
     
     CurSystem->PPoint = UpdatePPoint(CurSystem, Unplanned); 
 
     //delete Planned[size]->JobPC;//тут могут быть проблемы
-    //std::cout << "UnPlan_4" << std::endl;
     
     Planned[size]->IsPlanned = false;
-    //std::cout << "UnPlan_5" << std::endl;
-    //std::cout << "Before Size " << Planned.size() << std::endl;
+    Unplanned.push_back(Planned[size]);
+    
     Planned.pop_back();
     
-    //std::cout << "New Size " << Planned.size() << std::endl;
-    //std::cout << "Unplanned" << std::endl;
-
     return;
 }  
 
@@ -625,14 +589,9 @@ void LimitedSearch:: UpdateFList (System * CurSystem, std::shared_ptr<Job> CurJo
 
 void LimitedSearch:: UpdateBList (System* CurSystem, std::shared_ptr<Job> CurJob)
 {
+    
     double CurScore;
     bool IsContextMes;
-    //std::cout << "Update BList" << std::endl;
-    for (int i = 0; i < CurSystem->SystemCMessage.size(); i++)
-    {
-        //std::cout << CurSystem->SystemCMessage[i]->Dur << std::endl;
-    }
-    //std::cout << "Update BList 2" << std::endl;
     
     for (size_t k = 0; k < CurSystem->SystemPC.size(); k++)
     {
@@ -654,23 +613,9 @@ void LimitedSearch:: UpdateBList (System* CurSystem, std::shared_ptr<Job> CurJob
             IsContextMes = false;
             //предыдущие экземпляр работы не на рассматриваем ядре
             //проверим, нет ли контекстного сообщения уже
-            //std::cout << "Here" << std::endl;
-            //std::cout << CurSystem->SystemCMessage.size() << std::endl;
-            for (int i = 0; i < CurSystem->SystemCMessage.size(); i++)
-            {
-                //std::cout << CurSystem->SystemCMessage[i]->Dur << std::endl;
-            }
-            ////std::cout << CurSystem->SystemCMessage[CurSystem->SystemCMessage.size() - 1]->Dur << std::endl;
             for (const auto & CurMes: CurSystem->SystemCMessage)
             {
-                //std::cout << "In" << std::endl;
-                //std::cout << CurMes->Dur << std::endl;
-                //std::cout << CurMes->Src->NumOfTask << std::endl;
-                //std::cout << "first" << std::endl;
-                //std::cout << CurJob->NumOfTask << std::endl;
-                //std::cout << "Test failed" << std::endl;
-            
-
+        
                 if (CurMes->Src->NumOfTask == CurJob->NumOfTask)
                 {
                     //контекстное сообщение есть
@@ -686,7 +631,6 @@ void LimitedSearch:: UpdateBList (System* CurSystem, std::shared_ptr<Job> CurJob
             }
             
         }
-        //std::cout << "Not Here" << std::endl;
             
         CurJob->ListBandwidth[std::shared_ptr<PC>(CurSystem->SystemPC[k])] = CurScore;   
     }
@@ -722,7 +666,7 @@ void LimitedSearch:: UpdateRList (std::shared_ptr<Job> CurJob)
     } else 
     {
         //std::cout << "Invalid Mood for Result List" << std::endl;
-        exit(0);
+        exit(1);
     }
     return;
 }

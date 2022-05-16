@@ -99,7 +99,7 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
             sum += p.second;
         }
         if (sum == 0) {
-            exit(0);
+            exit(1);
         }
         std::cout << std::endl;
     
@@ -249,7 +249,7 @@ InitialGenerator :: InitialGenerator(char * Filename, int LCM_, int TaskNum_, in
     
     std::cout << Band << std::endl;
     
-    Band = Band == 0.0 ? MesNum * ((int(std::round(d2(gen2))) % MaxSize) / MinDur) : Band * 2;
+    Band = Band == 0.0 ? MesNum * ((int(std::round(d2(gen2))) % MaxSize) / MinDur) : Band * 3;
     //TODO тут тоньше настройка
     std::cout << Band << std::endl;
     ResultCheck();

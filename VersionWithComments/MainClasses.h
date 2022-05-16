@@ -80,6 +80,7 @@ public:
     std::multimap<double, std::shared_ptr<PC>> ListResult; 
     std::vector<double> NewLimitForPlan; 
     std::vector<bool> isUpdated;
+    std::vector<std::pair<std::shared_ptr<PC>, double>> Tried;
 };
 
 class Message

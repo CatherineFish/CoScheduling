@@ -15,7 +15,7 @@ public:
     std::vector<std::shared_ptr<Job>> Planned;   
     MainAlgorithm(System* CurSystem, int Mood_ = 1);
     ~MainAlgorithm() = default;
-    void MainLoop (System* CurSystem);
+    void MainLoop (System* CurSystem, int Depth, int Search);
     void UpdateBList(System* CurSystem);
     void UpdateFList(System* CurSystem);
     void UpdateRList();

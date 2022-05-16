@@ -62,7 +62,7 @@ System::System (char * FileName)
     
     if (!IsLoaded)
     {
-        std::cout << "Input File didn't loaded" << std::endl;
+        //std::cout << "Input File didn't loaded" << std::endl;
     }
     
     TiXmlElement* XMLSystem = Document.FirstChildElement("system");
@@ -181,6 +181,7 @@ System::System (char * FileName)
         mes = mes->NextSiblingElement("mes");
     
     }
+    
     return;
 
 }
@@ -188,119 +189,119 @@ System::System (char * FileName)
 
 void System:: PrintSystem()
 {
-    std::cout << "========SYSTEM========" << std::endl; 
-    std::cout << "--------PC--------:" << std::endl;
+    //std::cout << "========SYSTEM========" << std::endl; 
+    //std::cout << "--------PC--------:" << std::endl;
     for (size_t i = 0; i < SystemPC.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "       PC " << i << std::endl;
-        std::cout << "Module: " << SystemPC[i]->ModNum << std::endl;
-        std::cout << "PPoint: " << SystemPC[i]->PC_PPoint << std::endl;
-        std::cout << "Num: " << SystemPC[i]->Num << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "       PC " << i << std::endl;
+        //std::cout << "Module: " << SystemPC[i]->ModNum << std::endl;
+        //std::cout << "PPoint: " << SystemPC[i]->PC_PPoint << std::endl;
+        //std::cout << "Num: " << SystemPC[i]->Num << std::endl;
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
     
-    std::cout << "--------Task--------:" << std::endl;
-    std::cout << "LCM = " << LCMPeriod << std::endl;
+    //std::cout << "--------Task--------:" << std::endl;
+    //std::cout << "LCM = " << LCMPeriod << std::endl;
     for (size_t i = 0; i < SystemTask.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Task " << i << std::endl;
-        std::cout << "Period: " << SystemTask[i]->Period << std::endl;
-        std::cout << "Time: " << SystemTask[i]->Time << std::endl;
-        std::cout << "Left: " << SystemTask[i]->Left << std::endl;
-        std::cout << "Right: " << SystemTask[i]->Right << std::endl;
-        std::cout << "Input Mes Count: " << SystemTask[i]->InMessage.size() << std::endl;
-        std::cout << "Output Mes Count: " << SystemTask[i]->OutMessage.size() << std::endl;
-        std::cout << "MesOut: " << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Task " << i << std::endl;
+        //std::cout << "Period: " << SystemTask[i]->Period << std::endl;
+        //std::cout << "Time: " << SystemTask[i]->Time << std::endl;
+        //std::cout << "Left: " << SystemTask[i]->Left << std::endl;
+        //std::cout << "Right: " << SystemTask[i]->Right << std::endl;
+        //std::cout << "Input Mes Count: " << SystemTask[i]->InMessage.size() << std::endl;
+        //std::cout << "Output Mes Count: " << SystemTask[i]->OutMessage.size() << std::endl;
+        //std::cout << "MesOut: " << std::endl;
         for (size_t j = 0; j < SystemTask[i]->MesOut.size(); j++)
         {
             std::shared_ptr<Message> p = SystemTask[i]->MesOut[j].lock();    
             if (p) 
             {
-                std::cout << p->Size << " ";
+                //std::cout << p->Size << " ";
             } else 
             {
-                std::cout << "PROBLEMS" << std::endl;
+                //std::cout << "PROBLEMS" << std::endl;
             }
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
 
-        std::cout << "MesIN: " << std::endl;
+        //std::cout << "MesIN: " << std::endl;
         for (size_t j = 0; j < SystemTask[i]->MesIn.size(); j++)
         {
             std::shared_ptr<Message> p = SystemTask[i]->MesIn[j].lock();    
             if (p) 
             {
-                std::cout << p->Size << " ";
+                //std::cout << p->Size << " ";
             } else 
             {
-                std::cout << "PROBLEMS" << std::endl;
+                //std::cout << "PROBLEMS" << std::endl;
             }
         }
-        std::cout << std::endl;
+        //std::cout << std::endl;
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 
-    std::cout << "--------Message--------:" << std::endl;
+    //std::cout << "--------Message--------:" << std::endl;
     for (size_t i = 0; i < SystemMessage.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Message " << i  << std::endl;
-        std::cout << "Src: " << SystemMessage[i]->Src->Time << std::endl;
-        std::cout << "Dest: " << SystemMessage[i]->Dest->Time << std::endl;
-        std::cout << "Size: " << SystemMessage[i]->Size << std::endl;
-        std::cout << "Bandwidth: " << SystemMessage[i]->Bandwidth << std::endl;
-        std::cout << "Dur: " << SystemMessage[i]->Dur << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Message " << i  << std::endl;
+        //std::cout << "Src: " << SystemMessage[i]->Src->Time << std::endl;
+        //std::cout << "Dest: " << SystemMessage[i]->Dest->Time << std::endl;
+        //std::cout << "Size: " << SystemMessage[i]->Size << std::endl;
+        //std::cout << "Bandwidth: " << SystemMessage[i]->Bandwidth << std::endl;
+        //std::cout << "Dur: " << SystemMessage[i]->Dur << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "======================" << std::endl; 
+    //std::cout << std::endl;
+    //std::cout << "======================" << std::endl; 
     return;
 }
 
 void System:: PrintMessages()
 {
-    std::cout << "--------Message--------:" << std::endl;
+    //std::cout << "--------Message--------:" << std::endl;
     for (size_t i = 0; i < SystemMessage.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Message " << i  << std::endl;
-        std::cout << "Src: " << SystemMessage[i]->Src->Time << std::endl;
-        std::cout << "Dest: " << SystemMessage[i]->Dest->Time << std::endl;
-        std::cout << "Size: " << SystemMessage[i]->Size << std::endl;
-        std::cout << "Bandwidth: " << SystemMessage[i]->Bandwidth << std::endl;
-        std::cout << "Dur: " << SystemMessage[i]->Dur << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Message " << i  << std::endl;
+        //std::cout << "Src: " << SystemMessage[i]->Src->Time << std::endl;
+        //std::cout << "Dest: " << SystemMessage[i]->Dest->Time << std::endl;
+        //std::cout << "Size: " << SystemMessage[i]->Size << std::endl;
+        //std::cout << "Bandwidth: " << SystemMessage[i]->Bandwidth << std::endl;
+        //std::cout << "Dur: " << SystemMessage[i]->Dur << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "-------- Context Message--------:" << std::endl;
+    //std::cout << std::endl;
+    //std::cout << "-------- Context Message--------:" << std::endl;
     for (size_t i = 0; i < SystemCMessage.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "     Message " << i  << std::endl;
-        std::cout << "Src: " << SystemCMessage[i]->Src->Time << std::endl;
-        std::cout << "Dest: " << SystemCMessage[i]->Dest->Time << std::endl;
-        std::cout << "Size: " << SystemCMessage[i]->Size << std::endl;
-        std::cout << "Bandwidth: " << SystemCMessage[i]->Bandwidth << std::endl;
-        std::cout << "Dur: " << SystemCMessage[i]->Dur << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "     Message " << i  << std::endl;
+        //std::cout << "Src: " << SystemCMessage[i]->Src->Time << std::endl;
+        //std::cout << "Dest: " << SystemCMessage[i]->Dest->Time << std::endl;
+        //std::cout << "Size: " << SystemCMessage[i]->Size << std::endl;
+        //std::cout << "Bandwidth: " << SystemCMessage[i]->Bandwidth << std::endl;
+        //std::cout << "Dur: " << SystemCMessage[i]->Dur << std::endl;
     }
-    std::cout << std::endl;
-    std::cout << "======================" << std::endl; 
+    //std::cout << std::endl;
+    //std::cout << "======================" << std::endl; 
     return;
 }
 
 void System:: PrintPC()
 {
-    std::cout << "--------PC--------:" << std::endl;
+    //std::cout << "--------PC--------:" << std::endl;
     for (size_t i = 0; i < SystemPC.size(); i++)
     {
-        std::cout << std::endl;
-        std::cout << "       PC " << i << std::endl;
+        //std::cout << std::endl;
+        //std::cout << "       PC " << i << std::endl;
         for (const auto & Idx: SystemPC[i]->PlannedOnPC)
         {
-            std::cout << "Job Start = " << SystemJob[Idx]->Start << " Time = " << SystemJob[Idx]->Time << std::endl;
+            //std::cout << "Job Start = " << SystemJob[Idx]->Start << " Time = " << SystemJob[Idx]->Time << std::endl;
         }
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 }
 
 
